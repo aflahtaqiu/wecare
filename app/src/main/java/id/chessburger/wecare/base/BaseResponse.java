@@ -1,10 +1,11 @@
-package id.chessburger.wecare.model.response;
+package id.chessburger.wecare.base;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 import java.util.Map;
 
+import id.chessburger.wecare.model.response.ResponsePaging;
 import lombok.Data;
 
 /**
@@ -16,10 +17,10 @@ import lombok.Data;
 @Data
 public class BaseResponse<T> {
 
-    @SerializedName("code")
+    @SerializedName("statusCode")
     private int code;
 
-    @SerializedName("status")
+    @SerializedName("error")
     private String status;
 
     @SerializedName("data")

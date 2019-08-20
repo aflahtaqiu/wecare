@@ -12,13 +12,14 @@
     <string name="baca_artikel_yuk">Baca Artikel Yuk…</string>
     <string name="batal_mengikuti">Batal Mengikuti</string>
     <string name="batalkan">Batalkan</string>
-    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="belum_punya_akun">Belum punya akun? </string>
     <string name="berikan_komentar_kamu">Berikan Komentar Kamu…</string>
     <string name="bookmark_kegiatan">Bookmark Kegiatan</string>
     <string name="briefing">Briefing</string>
     <string name="buat_akun">Buat Akun</string>
     <string name="buat_kampanye">Buat Kampanye</string>
     <string name="cairkan">Cairkan</string>
+    <string name="cari_artikel">Cari Artikel</string>
     <string name="cari_kegiatan">Cari Kegiatan</string>
     <string name="cari_relawan">Cari Relawan</string>
     <string name="daftar">Daftar</string>
@@ -96,6 +97,7 @@
     <string name="nomor_hp">Nomor HP</string>
     <string name="nomor_telfon">Nomor Telfon</string>
     <string name="oleh">Oleh</string>
+    <string name="password">Password</string>
     <string name="perlu_disiapkan">Perlu Disiapkan</string>
     <string name="perlu_disiapkan_fasilitator">Perlu Disiapkan Fasilitator</string>
     <string name="persyaratan">Persyaratan</string>
@@ -116,6 +118,7 @@
     <string name="semua">Semua</string>
     <string name="simpan_perubahan">Simpan Perubahan</string>
     <string name="sisa">Sisa</string>
+    <string name="sortir">Sortir</string>
     <string name="sudah_diikuti">Sudah Diikuti</string>
     <string name="surat_perizinan_tempat">Surat Perizinan Tempat</string>
     <string name="tanggal_mulai">Tanggal Mulai</string>
@@ -126,6 +129,7 @@
     <string name="tukar">Tukar</string>
     <string name="umur">Umur</string>
     <string name="upload_foto">Upload Foto</string>
+    <string name="urutkan">Urutkan</string>
     <string name="validasi">Validasi</string>
     <string name="wecare_indonesia">WeCare Indonesia</string>
     <string name="wecare_poin">WeCare Poin</string>
@@ -135,4 +139,5 @@
     <string name="welcome_back">Welcome Back</string>
     <string name="ya">Ya</string>
     <string name="yang_perlu_dibawa_relawan">Yang Perlu Dibawa Relawan</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>
