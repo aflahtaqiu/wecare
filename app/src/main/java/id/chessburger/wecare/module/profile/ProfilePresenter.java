@@ -19,4 +19,8 @@ public class ProfilePresenter {
         this.view = view;
         this.userDataRepository = Injector.provideUserRepository();
     }
+
+    void doLogout () {
+        // TODO: do logout logic and move into login activity
+    }
 }

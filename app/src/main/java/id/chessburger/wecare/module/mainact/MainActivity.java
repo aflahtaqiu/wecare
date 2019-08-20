@@ -2,9 +2,9 @@ package id.chessburger.wecare.module.mainact;
 
 import android.os.Bundle;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseActivity;
@@ -21,15 +21,15 @@ public class MainActivity extends BaseActivity implements IMainactView {
             = item -> {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        fragmentTransaction(HomeFragment.getInstance());
+                        return fragmentTransaction(HomeFragment.getInstance());
                     case R.id.navigation_article:
-                        fragmentTransaction(ArticleFragment.getInstance());
+                        return fragmentTransaction(ArticleFragment.getInstance());
                     case R.id.navigation_jadwal:
-                        fragmentTransaction(ScheduleFragment.getInstance());
+                        return fragmentTransaction(ScheduleFragment.getInstance());
                     case R.id.navigation_kampanye:
-                        fragmentTransaction(CampaignFragment.getInstance());
+                        return fragmentTransaction(CampaignFragment.getInstance());
                     case R.id.navigation_profile:
-                        fragmentTransaction(ProfileFragment.getInstance());
+                        return fragmentTransaction(ProfileFragment.getInstance());
                 }
                 return false;
             };
@@ -40,9 +40,9 @@ public class MainActivity extends BaseActivity implements IMainactView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        presenter = new MainactPresenter(this);
-
         setBottomNavigation();
+
+        presenter = new MainactPresenter(this);
     }
 
     private void setBottomNavigation() {
@@ -69,6 +69,5 @@ public class MainActivity extends BaseActivity implements IMainactView {
 
     @Override
     public void showMessage(String message) {
-
     }
 }

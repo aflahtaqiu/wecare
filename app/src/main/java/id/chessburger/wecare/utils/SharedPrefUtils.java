@@ -47,15 +47,15 @@ public class SharedPrefUtils {
     }
 
     public static void setObjectSharedPref(String key, Object object) {
-        String value = GlobalUtils.object2StringJSON(object);
-        editor.putString(key, value);
-        editor.apply();
+//        String value = GlobalUtils.object2StringJSON(object);
+//        editor.putString(key, value);
+//        editor.apply();
     }
 
     public static void setObjectArrayListSharedPref(String key, List<Object> objectList) {
-        String value = GlobalUtils.object2StringJSON(objectList);
-        editor.putString(key, value);
-        editor.apply();
+//        String value = GlobalUtils.object2StringJSON(objectList);
+//        editor.putString(key, value);
+//        editor.apply();
     }
 
     public static String getStringSharedPref(String key, String defValue) {
@@ -82,14 +82,14 @@ public class SharedPrefUtils {
         return sharedPreferences.getStringSet(key, defValue);
     }
 
-    public static Object getObjectSharedPref(String key, String defValue, Class cls){
-        String stringOfObject = sharedPreferences.getString(key, defValue);
-        return GlobalUtils.stringJson2Object(stringOfObject, cls);
-    }
+//    public static Object getObjectSharedPref(String key, String defValue, Class cls){
+//        String stringOfObject = sharedPreferences.getString(key, defValue);
+//        return GlobalUtils.stringJson2Object(stringOfObject, cls);
+//    }
 
-    public static List<Object> getObjectListSharedPref(String key, Class cls) {
-        String defValue = "[]";
-        String stringListOfObject = sharedPreferences.getString(key, defValue);
-        return GlobalUtils.stringJson2ObjectList(stringListOfObject, cls);
-    }
+//    public static List<Object> getObjectListSharedPref(String key, Class cls) {
+//        String defValue = "[]";
+//        String stringListOfObject = sharedPreferences.getString(key, defValue);
+//        return GlobalUtils.stringJson2ObjectList(stringListOfObject, cls);
+//    }
 }
