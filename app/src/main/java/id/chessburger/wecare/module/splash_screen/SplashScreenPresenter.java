@@ -21,6 +21,7 @@ public class SplashScreenPresenter {
     }
 
     void checkCache () {
+
         boolean isNotLogin = TextUtils.isEmpty(SharedPrefUtils.getStringSharedPref(
                 SharedPrefKeys.TOKEN.getKey(), ""));
 

@@ -7,4 +7,6 @@
     <color name="colorBlack">#000000</color>
 
     <color name="colorGreySearchBox">#F9FAFC</color>
+
+    <color name="colorGold">#b79260</color>
 </resources>

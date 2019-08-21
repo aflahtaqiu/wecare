@@ -2,16 +2,11 @@ package id.chessburger.wecare.module.splash_screen;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.DatePicker;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
