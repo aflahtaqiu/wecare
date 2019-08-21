@@ -1,6 +1,7 @@
 package id.chessburger.wecare.data.remote;
 
 import id.chessburger.wecare.base.BaseRemoteDataSource;
+import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.data.source.IUserDataSource;
 
 /**
@@ -10,7 +11,7 @@ import id.chessburger.wecare.data.source.IUserDataSource;
  */
 
 
-public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IUserDataSource {
+public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IActivityDataSource {
 
     private static ActivityRemoteDataSource remoteDataSource;
     public static ActivityRemoteDataSource getInstance() {

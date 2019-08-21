@@ -1,7 +1,15 @@
 package id.chessburger.wecare.module.login;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import id.chessburger.wecare.data.repository.UserDataRepository;
+import id.chessburger.wecare.data.source.IUserDataSource;
 import id.chessburger.wecare.di.Injector;
+import id.chessburger.wecare.model.enumerations.SharedPrefKeys;
+import id.chessburger.wecare.model.response.ResponseLogin;
+import id.chessburger.wecare.utils.ConverterUtils;
+import id.chessburger.wecare.utils.SharedPrefUtils;
 
 /**
  * Created by aflah on 20/08/19
@@ -13,6 +21,7 @@ import id.chessburger.wecare.di.Injector;
 class LoginPresenter {
 
     private static final String BEARER_TOKEN_PREFIX = "Bearer ";
+    private static final String LOGIN_LOADING_MESSAGE = "Login process ...";
     private static final String INVALID_TOKEN_MESSAGE = "Login failed - invalid user token...";
 
     private ILoginView view;
@@ -23,11 +32,32 @@ class LoginPresenter {
         this.userDataRepository = Injector.provideUserRepository();
     }
 
-    void doLogin () {
-        view.showLoading("Loading Process...");
-        // TODO: do login logic and save token to SP
-        view.hideLoading();
-        view.moveIntoMain();
-    }
+    void doLogin (String phoneNumber, String password) {
+        view.showLoading(LOGIN_LOADING_MESSAGE);
 
+        userDataRepository.login(phoneNumber, password, new IUserDataSource.LogInCallback() {
+            @Override
+            public void onSuccess(ResponseLogin responseLogin) {
+                String token = BEARER_TOKEN_PREFIX + responseLogin.getAccessToken();
+
+                if (!TextUtils.isEmpty(token)) {
+                    SharedPrefUtils.setStringSharedPref(SharedPrefKeys.TOKEN.getKey(), token);
+                } else {
+                    view.showMessage(INVALID_TOKEN_MESSAGE);
+                }
+
+                String userStringJson = ConverterUtils.object2StringJSON(responseLogin.getProfile());
+                SharedPrefUtils.setStringSharedPref(SharedPrefKeys.PROFIL.getKey(), userStringJson);
+
+                view.hideLoading();
+                view.moveIntoMain();
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                view.hideLoading();
+                view.showMessage(errorMessage);
+            }
+        });
+    }
 }

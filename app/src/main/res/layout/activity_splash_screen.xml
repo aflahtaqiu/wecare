@@ -7,11 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".module.splash_screen.SplashScreenActivity">
 
-
     <ImageView
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_150sdp"
-        android:src="@mipmap/logo"
+        android:src="@mipmap/logo_wecare"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 

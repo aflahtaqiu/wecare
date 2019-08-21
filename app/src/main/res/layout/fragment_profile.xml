@@ -62,6 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/relativelayout_toolbar_profile">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_user_photo"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_80sdp"
             android:src="@mipmap/img_no_picture" />
@@ -81,7 +82,7 @@
                 android:text="@string/nama_lengkap"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
-                android:textSize="@dimen/_17sdp"
+                android:textSize="@dimen/_20sdp"
                 android:maxLines="1" />
 
             <TextView
@@ -90,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/email"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_15sdp"
                 android:maxLines="1" />
 
             <TextView
