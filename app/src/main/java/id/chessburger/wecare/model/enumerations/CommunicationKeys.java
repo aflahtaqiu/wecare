@@ -11,7 +11,7 @@ public enum CommunicationKeys {
 
     BUNDLE_KEY("bundle"),
     SELECTED_ACTIVITY("selected activity"),
-    SELECTED_ITEM("selected item");
+    SELECTED_USER("selected_user");
 
     private String key;
 

@@ -1,5 +1,7 @@
 package id.chessburger.wecare.module.login;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +31,9 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     private LoginPresenter presenter;
 
+    private static final String LOGIN_FAILED_TITLE = "Login Failed";
+    private static final String OK = "OK";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,21 +55,39 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Override
     public void showMessage(String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(LOGIN_FAILED_TITLE)
+                .setMessage(message)
+                .setPositiveButton(OK, new AlertDialogOkClickListener())
+                .setCancelable(true)
+                .create();
 
+        alertDialog.setCanceledOnTouchOutside(true);
+        alertDialog.show();
     }
 
     @OnClick(R.id.btn_login)
     public void onBtnLoginClicked () {
-        presenter.doLogin();
+        String phoneNumber = etPhoneNumber.getText().toString();
+        String password = etPassword.getText().toString();
+
+        presenter.doLogin(phoneNumber,password);
     }
 
     @OnClick(R.id.tv_daftar_disini)
     public void onDaftarDisiniClicked () {
-
+        // TODO: change activity into register activity 
     }
 
     @Override
     public void moveIntoMain() {
         CommunicationUtils.changeActivity(this, MainActivity.class);
+    }
+
+    private static class AlertDialogOkClickListener implements DialogInterface.OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+        }
     }
 }

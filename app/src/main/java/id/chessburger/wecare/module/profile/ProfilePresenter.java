@@ -2,6 +2,9 @@ package id.chessburger.wecare.module.profile;
 
 import id.chessburger.wecare.data.repository.UserDataRepository;
 import id.chessburger.wecare.di.Injector;
+import id.chessburger.wecare.model.User;
+import id.chessburger.wecare.model.enumerations.SharedPrefKeys;
+import id.chessburger.wecare.utils.SharedPrefUtils;
 
 /**
  * Created by aflah on 09/08/19
@@ -21,6 +24,16 @@ public class ProfilePresenter {
     }
 
     void doLogout () {
-        // TODO: do logout logic and move into login activity
+        SharedPrefUtils.clearAll();
+        view.moveIntoLogin();
+    }
+
+    void getUserProfileData () {
+        User user = (User) SharedPrefUtils.getObjectSharedPref(SharedPrefKeys.PROFIL.getKey(),
+                null, User.class);
+
+        if (user != null) {
+            view.showUserProfileData(user);
+        }
     }
 }

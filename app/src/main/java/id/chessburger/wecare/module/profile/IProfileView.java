@@ -1,6 +1,7 @@
 package id.chessburger.wecare.module.profile;
 
 import id.chessburger.wecare.base.IBaseView;
+import id.chessburger.wecare.model.User;
 
 /**
  * Created by aflah on 09/08/19
@@ -10,4 +11,7 @@ import id.chessburger.wecare.base.IBaseView;
 
 
 public interface IProfileView extends IBaseView {
+    void moveIntoLogin();
+    void moveIntoEditProfile();
+    void showUserProfileData(User user);
 }

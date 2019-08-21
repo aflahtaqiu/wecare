@@ -2,6 +2,7 @@ package id.chessburger.wecare.data.repository;
 
 import id.chessburger.wecare.data.remote.UserRemoteDataSource;
 import id.chessburger.wecare.data.source.IUserDataSource;
+import id.chessburger.wecare.model.response.ResponseLogin;
 
 /**
  * Created by aflah on 12/08/19
@@ -22,7 +23,22 @@ public class UserDataRepository implements IUserDataSource {
         return dataRepository;
     }
 
-    public UserDataRepository(UserRemoteDataSource remoteDataSource) {
+    UserDataRepository(UserRemoteDataSource remoteDataSource) {
         this.remoteDataSource = remoteDataSource;
+    }
+
+    @Override
+    public void login(String phoneNumber, String password, LogInCallback callback) {
+        remoteDataSource.login(phoneNumber, password, new LogInCallback() {
+            @Override
+            public void onSuccess(ResponseLogin responseLogin) {
+                callback.onSuccess(responseLogin);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
     }
 }

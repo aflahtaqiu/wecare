@@ -45,7 +45,9 @@
            android:layout_height="wrap_content"
            android:textColorHint="@color/colorWhite"
            app:hintTextAppearance="@style/HintTextAppearance"
-           app:errorTextAppearance="@style/error_form_appearance">
+           app:errorTextAppearance="@style/error_form_appearance"
+           app:passwordToggleEnabled="true"
+           app:passwordToggleTint="@color/colorWhite">
 
            <com.google.android.material.textfield.TextInputEditText
                android:id="@+id/et_password_login"

@@ -13,10 +13,9 @@ import lombok.Data;
  */
 
 @Data
-@Builder
 public class ResponseLogin {
 
-    @SerializedName("profile")
+    @SerializedName("user")
     private User profile;
 
     @SerializedName("accessToken")

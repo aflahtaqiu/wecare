@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiRetrofit {
 
-    public static final String BASE_URL = "https://lele.com/";
+    public static final String BASE_URL = "https://wecare-id.herokuapp.com/";
     private static Retrofit retrofit;
 
     public static Retrofit getInstance() {

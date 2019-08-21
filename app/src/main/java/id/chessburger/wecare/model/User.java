@@ -2,6 +2,8 @@ package id.chessburger.wecare.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class User {
+public class User implements Serializable {
 
     @SerializedName("email")
     private String email;

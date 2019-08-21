@@ -20,7 +20,7 @@ public class SplashScreenActivity extends AppCompatActivity implements ISplashSc
     @BindView(R.id.layout_splash_screen)
     RelativeLayout relativeLayout;
 
-    private static final Integer DELAY_MILLIS = 2750;
+    private static final Integer DELAY_MILLIS = 3000;
 
     private SplashScreenPresenter presenter;
 

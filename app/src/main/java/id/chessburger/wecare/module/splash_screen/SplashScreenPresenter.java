@@ -12,11 +12,11 @@ import id.chessburger.wecare.utils.SharedPrefUtils;
  */
 
 
-public class SplashScreenPresenter {
+class SplashScreenPresenter {
 
     private ISplashScreenView view;
 
-    public SplashScreenPresenter(ISplashScreenView view) {
+    SplashScreenPresenter(ISplashScreenView view) {
         this.view = view;
     }
 
