@@ -2,16 +2,16 @@ package id.chessburger.wecare.module.profile;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
 
@@ -19,6 +19,9 @@ import id.chessburger.wecare.base.BaseFragment;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends BaseFragment implements IProfileView {
+
+    @BindView(R.id.iv_logout_profile)
+    ImageView ivLogout;
 
     private static ProfileFragment profileFragment;
 
@@ -39,32 +42,9 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        presenter = new ProfilePresenter(this);
+        ButterKnife.bind(this, view);
 
         return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        customToolbar();
-    }
-
-    private void customToolbar() {
-        getActivity().setTitle(getResources().getString(R.string.profil_kamu));
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.profile_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -80,5 +60,9 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
     @Override
     public void showMessage(String message) {
 
+    }
+
+    @OnClick(R.id.iv_logout_profile)
+    public void onMoreMenuClicked () {
     }
 }
