@@ -1,5 +1,7 @@
 package id.chessburger.wecare.data.remote;
 
+import android.util.Log;
+
 import java.io.IOException;
 
 import id.chessburger.wecare.base.BaseRemoteDataSource;
@@ -45,8 +47,12 @@ public class UserRemoteDataSource extends BaseRemoteDataSource implements IUserD
 
             private void sendErrorCallback(Response<BaseResponse<ResponseLogin>> response) {
                 try {
-                    ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
-                    callback.onError(responseError.getMessage());
+                    if (response.errorBody() != null) {
+                        ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                        callback.onError(responseError.getMessage());
+                    } else {
+                        callback.onError("Login Failed");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

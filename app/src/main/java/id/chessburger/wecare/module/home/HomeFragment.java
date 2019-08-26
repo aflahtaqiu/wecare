@@ -73,12 +73,6 @@ public class HomeFragment extends BaseFragment implements IHomeView {
     @Override
     public void onStart() {
         super.onStart();
-        customToolbar();
-    }
-
-    private void customToolbar() {
-        getActivity().setTitle(getResources().getString(R.string.app_name));
-        setHasOptionsMenu(true);
     }
 
     @Override

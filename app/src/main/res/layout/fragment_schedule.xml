@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,47 +8,91 @@
     tools:context=".module.schedule.ScheduleFragment"
     android:background="@color/colorWhite">
 
-    <View
-        android:id="@+id/view_toolbar_schedule"
-        android:background="@drawable/bg_toolbar_top_left"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_190sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_20sdp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_schedule_title"
+        <View
+            android:id="@+id/view_toolbar_schedule"
+            android:background="@drawable/bg_toolbar_top_left"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_170sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_toolbar_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/tv_schedule_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/kegiatan_kamu_ikuti"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15sdp" />
+
+            <ImageView
+                android:id="@+id/iv_sort_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sort_grey_24dp"
+                android:layout_marginRight="@dimen/_18sdp"
+                android:layout_toLeftOf="@id/iv_filter_schedule"/>
+
+            <ImageView
+                android:id="@+id/iv_filter_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_filter_grey_24dp"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_button_schedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/kegiatan_kamu_ikuti"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_15sdp" />
+            app:layout_constraintTop_toBottomOf="@id/relativelayout_toolbar_schedule"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:layout_marginRight="@dimen/_20sdp">
 
-        <ImageView
-            android:id="@+id/iv_sort_schedule"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_sort_grey_24dp"
-            android:layout_marginRight="@dimen/_18sdp"
-            android:layout_toLeftOf="@id/iv_filter_schedule"/>
+            <Button
+                android:id="@+id/btn_akan_diikuti_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/akan_diikuti"
+                android:padding="@dimen/_10sdp"
+                android:background="@drawable/btn_round_white_border_grey"/>
 
-        <ImageView
-            android:id="@+id/iv_filter_schedule"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_filter_grey_24dp"
-            android:layout_alignParentRight="true"/>
+            <Button
+                android:id="@+id/btn_sudah_diikuti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sudah_diikuti"
+                android:background="@drawable/btn_round_white_border_grey"
+                android:layout_toRightOf="@id/btn_akan_diikuti_schedule"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"/>
 
-    </RelativeLayout>
+        </RelativeLayout>
 
+        <FrameLayout
+            android:id="@+id/framelayout_schedule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativelayout_button_schedule"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
