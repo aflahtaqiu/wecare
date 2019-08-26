@@ -13,6 +13,7 @@
     <string name="batal_mengikuti">Batal Mengikuti</string>
     <string name="batalkan">Batalkan</string>
     <string name="belum_punya_akun">Belum punya akun? </string>
+    <string name="belum_terlaksana">Belum Terlaksana</string>
     <string name="berikan_komentar_kamu">Berikan Komentar Kamu…</string>
     <string name="bookmark_kegiatan">Bookmark Kegiatan</string>
     <string name="briefing">Briefing</string>
@@ -120,6 +121,7 @@
     <string name="sisa">Sisa</string>
     <string name="sortir">Sortir</string>
     <string name="sudah_diikuti">Sudah Diikuti</string>
+    <string name="sudah_terlaksana">Sudah Terlaksana</string>
     <string name="surat_perizinan_tempat">Surat Perizinan Tempat</string>
     <string name="tanggal_mulai">Tanggal Mulai</string>
     <string name="tanggal_selesai">Tanggal Selesai</string>
@@ -140,4 +142,7 @@
     <string name="ya">Ya</string>
     <string name="yang_perlu_dibawa_relawan">Yang Perlu Dibawa Relawan</string>
     <string name="title_activity_login">LoginActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

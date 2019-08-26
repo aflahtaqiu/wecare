@@ -45,12 +45,6 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     @Override
     public void onStart() {
         super.onStart();
-        customToolbar();
-    }
-
-    private void customToolbar() {
-        getActivity().setTitle(getResources().getString(R.string.baca_artikel_yuk));
-        setHasOptionsMenu(true);
     }
 
     @Override

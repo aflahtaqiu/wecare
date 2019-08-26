@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_4sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <ImageView
+                android:id="@+id/iv_foto_item_activity_relawan_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/banner_1"
+                android:scaleType="fitXY"
+                android:foreground="@drawable/bg_black_gradient"/>
+
+            <TextView
+                android:id="@+id/tv_name_activity_item-activity_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I am TextView"
+                android:textColor="@color/colorWhite"
+                android:layout_gravity="left|bottom"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/_10sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_tanggal_pelaksanaan_item_activity_relawan_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 April 2019"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_user_gold_24dp"
+                    android:layout_toLeftOf="@id/tv_sisa_volunter_item_activity_relawan_home"/>
+
+                <TextView
+                    android:id="@+id/tv_sisa_volunter_item_activity_relawan_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/colorGold"
+                    android:text="Sisa 10"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_deskripsi_singkat_item_activity_relawan_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:layout_marginTop="@dimen/_4sdp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cari_relawan"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
