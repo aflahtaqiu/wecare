@@ -8,4 +8,10 @@ package id.chessburger.wecare.module.schedule_sudah_diikuti;
 
 
 public class ScheduleSudahDiikutiPresenter {
+
+    private IScheduleSudahDiikutiView view;
+
+    public ScheduleSudahDiikutiPresenter(IScheduleSudahDiikutiView view) {
+        this.view = view;
+    }
 }

@@ -10,7 +10,7 @@ package id.chessburger.wecare.model.enumerations;
 public enum CommunicationKeys {
 
     BUNDLE_KEY("bundle"),
-    SELECTED_ACTIVITY("selected activity"),
+    SELECTED_ACTIVITY("selected_activity"),
     SELECTED_USER("selected_user");
 
     private String key;

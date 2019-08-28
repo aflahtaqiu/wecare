@@ -19,6 +19,8 @@ public class ScheduleSudahDiikutiFragment extends BaseFragment implements ISched
 
     public static ScheduleSudahDiikutiFragment scheduleSudahDiikutiFragment;
 
+    private ScheduleSudahDiikutiPresenter presenter;
+
     public static ScheduleSudahDiikutiFragment getInstance() {
         if (scheduleSudahDiikutiFragment == null) {
             scheduleSudahDiikutiFragment = new ScheduleSudahDiikutiFragment();
@@ -35,6 +37,7 @@ public class ScheduleSudahDiikutiFragment extends BaseFragment implements ISched
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_schedule_sudah_diikuti, container, false);
+        presenter = new ScheduleSudahDiikutiPresenter(this);
         return view;
     }
 
