@@ -20,7 +20,7 @@ import id.chessburger.wecare.R;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
 import id.chessburger.wecare.model.enumerations.TipeKegiatan;
-import id.chessburger.wecare.module.detail_activity_search_volunter.DetailActSearchVolunteerActivity;
+import id.chessburger.wecare.module.detail_activity_search_volunter.DetailActSearchVolunterActivity;
 import id.chessburger.wecare.module.mainact.MainActivity;
 import id.chessburger.wecare.utils.CommunicationUtils;
 import id.chessburger.wecare.utils.DateTimeUtils;
@@ -128,7 +128,7 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
         public void onClick(View view) {
             Bundle bundle = new Bundle();
             bundle.putInt(CommunicationKeys.SELECTED_ACTIVITY.getKey(), item.getId());
-            CommunicationUtils.changeActivity((MainActivity) context, DetailActSearchVolunteerActivity.class,
+            CommunicationUtils.changeActivity((MainActivity) context, DetailActSearchVolunterActivity.class,
                     bundle, CommunicationKeys.BUNDLE_KEY.getKey(), false);
         }
     }
