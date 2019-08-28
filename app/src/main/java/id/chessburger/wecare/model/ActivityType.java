@@ -1,5 +1,7 @@
 package id.chessburger.wecare.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,4 +15,10 @@ import lombok.Data;
 @Data
 @Builder
 public class ActivityType {
+
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("name")
+    private String name;
 }

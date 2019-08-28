@@ -3,23 +3,25 @@ package id.chessburger.wecare.module.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
+import id.chessburger.wecare.model.Activity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +42,10 @@ public class HomeFragment extends BaseFragment implements IHomeView {
 
     public static HomeFragment homeFragment;
 
+    private List<Activity> activityList = new ArrayList<>();
+
+
+    private ListActivityHomeAdapter adapter;
     private HomePresenter presenter;
 
     public HomeFragment() {
@@ -70,15 +76,19 @@ public class HomeFragment extends BaseFragment implements IHomeView {
         carouselBanner.setImageListener(new BannersImageListener(banners));
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    private void setRecyclerView() {
+        adapter = new ListActivityHomeAdapter(this.activityList, getContext());
+
+        recyclerViewActivities.setAdapter(adapter);
+        recyclerViewActivities.setLayoutManager(new GridLayoutManager(getContext(),2));
+        recyclerViewActivities.addItemDecoration(new SpaceItemDecoration(10));
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.home_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+    public void onStart() {
+        super.onStart();
+        setRecyclerView();
+        presenter.getAllActivities();
     }
 
     @Override
@@ -94,6 +104,14 @@ public class HomeFragment extends BaseFragment implements IHomeView {
     @Override
     public void showMessage(String message) {
 
+    }
+
+    @Override
+    public void showListActivities(List<Activity> activities) {
+        this.activityList.clear();
+        this.activityList.addAll(activities);
+
+        adapter.notifyDataSetChanged();
     }
 
     private static class BannersImageListener implements ImageListener {

@@ -1,7 +1,10 @@
 package id.chessburger.wecare.data.repository;
 
+import java.util.List;
+
 import id.chessburger.wecare.data.remote.ActivityRemoteDataSource;
 import id.chessburger.wecare.data.source.IActivityDataSource;
+import id.chessburger.wecare.model.Activity;
 
 /**
  * Created by aflah on 12/08/19
@@ -24,5 +27,50 @@ public class ActivityDataRepository implements IActivityDataSource {
 
     public ActivityDataRepository(ActivityRemoteDataSource remoteDataSource) {
         this.remoteDataSource = remoteDataSource;
+    }
+
+    @Override
+    public void followActivity(String token, int idActivity, FollowActivityCallback callback) {
+        remoteDataSource.followActivity(token,idActivity, new FollowActivityCallback() {
+            @Override
+            public void onSuccess(Activity activity) {
+                callback.onSuccess(activity);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void getAllActivitiesJoinQuery(String joinQuery, GetActivitiesCallback callback) {
+        remoteDataSource.getAllActivitiesJoinQuery(joinQuery, new GetActivitiesCallback() {
+            @Override
+            public void onSuccess(List<Activity> activities) {
+                callback.onSuccess(activities);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void getActivityById(int idActivity, GetActivityByIdCallback callback) {
+        remoteDataSource.getActivityById(idActivity, new GetActivityByIdCallback() {
+            @Override
+            public void onSuccess(Activity activity) {
+                callback.onSuccess(activity);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
     }
 }

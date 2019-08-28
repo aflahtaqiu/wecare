@@ -5,13 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
-
 import id.chessburger.wecare.R;
+import id.chessburger.wecare.base.BaseFragment;
 
-public class ScheduleAkanDiikutiFragment extends Fragment {
+public class ScheduleAkanDiikutiFragment extends BaseFragment implements IScheduleAkanDiikutiView {
 
     public static ScheduleAkanDiikutiFragment scheduleAkanDiikutiFragment;
+
+    private ScheduleAkanDiikutiPresenter presenter;
 
     public ScheduleAkanDiikutiFragment() {
         // Required empty public constructor
@@ -28,6 +29,22 @@ public class ScheduleAkanDiikutiFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_schedule_akan_diikuti, container, false);
+        presenter = new ScheduleAkanDiikutiPresenter(this);
         return view;
+    }
+
+    @Override
+    public void showLoading(String message) {
+        super.onShowLoading(message);
+    }
+
+    @Override
+    public void hideLoading() {
+        super.onHideLoading();
+    }
+
+    @Override
+    public void showMessage(String message) {
+
     }
 }
