@@ -2,17 +2,24 @@ package id.chessburger.wecare.module.detail_activity_search_volunter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseActivity;
+import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
 
 public class DetailActSearchVolunterActivity extends BaseActivity implements IDetailActSearchVolunterView {
@@ -22,6 +29,81 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.app_bar)
+    AppBarLayout appBarLayout; //Change the background to activity image
+
+    @BindView(R.id.progress_relawan_act_search_volunter)
+    ProgressBar progressBarRelawan;
+
+    @BindView(R.id.progress_donasi_act_search_volunter)
+    ProgressBar progressBarDonasi;
+
+    @BindView(R.id.tv_nama_activity_search_volunter)
+    TextView tvNamaKegiatan;
+
+    @BindView(R.id.tv_penyelenggara_activity_search_volunter)
+    TextView tvPenyelenggara;
+
+    @BindView(R.id.tv_sisa_volunter_tersedia_act_search_volunter)
+    TextView tvSisaVolunter;//min volunter - actual volunter
+
+    @BindView(R.id.tv_relawan_terdaftar_act_search_volunter)
+    TextView tvVolunterTerdaftar;
+
+    @BindView(R.id.tv_minimal_relawan_act_search_volunter)
+    TextView tvMinimumVolunter;
+
+    @BindView(R.id.tv_donasi_terkumpul_act_search_volunter)
+    TextView tvDonasiTerkumpul;
+
+    @BindView(R.id.tv_donasi_minimum_act_search_volunter)
+    TextView tvDonasiMinimum;
+
+    @BindView(R.id.tv_deadline_pendaftaran_act_search_volunter)
+    TextView tvDeadlinePendaftaran;
+
+    @BindView(R.id.tv_deskripsi_act_search_volunter)
+    TextView tvDeskripsi;
+
+    @BindView(R.id.tv_narahubung_no_telp_act_search_volunter)
+    TextView tvNoTelpCampaigner;
+
+    @BindView(R.id.tv_narahubung_email_act_search_volunter)
+    TextView tvEmailCampaigner;
+
+    @BindView(R.id.tv_tempat_act_search_volunter)
+    TextView tvTempat;
+
+    @BindView(R.id.tv_tanggal_mulai_act_search_volunter)
+    TextView tvTanggalMulai;
+
+    @BindView(R.id.tv_waktu_mulai_act_search_volunter)
+    TextView tvWaktuMulai;
+
+    @BindView(R.id.tv_tanggal_selesai_act_search_volunter)
+    TextView tvTanggalSelesai;
+
+    @BindView(R.id.tv_waktu_selesai_act_search_volunter)
+    TextView tvWaktuSelesai;
+
+    @BindView(R.id.tv_tugas_relawan_act_search_volunter)
+    TextView tvTugasRelawan;
+
+    @BindView(R.id.tv_perlu_disiapkan_act_search_volunter)
+    TextView tvPerluDisiapkan;
+
+    @BindView(R.id.tv_persyaratan_act_search_volunter)
+    TextView tvPersyaratan;
+
+    @BindView(R.id.tv_briefing_act_search_volunter)
+    TextView tvBriefing;
+
+    @BindView(R.id.btn_donasi_activity_volunter)
+    Button btnDonasi;
+
+    @BindView(R.id.btn_follow_activity_volunter)
+    Button btnFollow;
 
     private DetailActSearchVolunterPresenter presenter;
 
@@ -35,8 +117,6 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
         ButterKnife.bind(this);
         setToolbar();
         getBundleIntentData();
-
-        fabBookmark.setOnClickListener(new FabBookmarkOnClickListener());
 
         presenter = new DetailActSearchVolunterPresenter(this);
     }
@@ -55,7 +135,6 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     protected void onStart() {
         super.onStart();
         presenter.getDetailActivity(idActivity);
-//        presenter.followActivity(idActivity);
     }
 
     @Override
@@ -73,11 +152,27 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
 
     }
 
-    private static class FabBookmarkOnClickListener implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        }
+    @OnClick(R.id.fab_bookmark_activity_search_volunter)
+    public void onBookmarkBtnClicked () {
+        Log.e("LELE", "bookmarked");
+    }
+
+    @OnClick(R.id.btn_donasi_activity_volunter)
+    public void onDonasiBtnClicked () {
+
+    }
+
+    @OnClick(R.id.btn_follow_activity_volunter)
+    public void onFollowBtnClicked () {
+//        presenter.followActivity(idActivity);
+    }
+
+    @Override
+    public void setCampaignerData(User campaigner) {
+        String penyelenggara = getText(R.string.oleh)+ " " + campaigner.getName();
+
+        tvPenyelenggara.setText(penyelenggara);
+        tvNoTelpCampaigner.setText(campaigner.getPhoneNumber());
+        tvEmailCampaigner.setText(campaigner.getEmail());
     }
 }

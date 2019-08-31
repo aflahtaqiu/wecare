@@ -54,5 +54,5 @@ public class User implements Serializable {
     private Integer wecarePoint;
 
     @SerializedName("id")
-    private String id;
+    private int id;
 }

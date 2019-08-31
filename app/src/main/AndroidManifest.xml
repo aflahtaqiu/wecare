@@ -18,7 +18,9 @@
         <activity
             android:name=".module.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".module.create_campaign_search_volunteer.CreateCampaignSearchVolunteerActivity" />
+        <activity android:name=".module.create_campaign_search_volunteer.CreateCampaignSearchVolunteerActivity"
+            android:parentActivityName=".module.mainact.MainActivity"
+            android:label="@string/membuat_kampanye"/>
         <activity android:name=".module.create_campaign_search_place.CreateCampaignSearchPlaceActivity" />
         <activity android:name=".module.detail_campaigned_activity.DetailCampaignedActivity" />
         <activity android:name=".module.detail_activity_search_place.DetailActSearchPlaceActivity"

@@ -60,8 +60,8 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
-    public void getActivityById(int idActivity, GetActivityByIdCallback callback) {
-        remoteDataSource.getActivityById(idActivity, new GetActivityByIdCallback() {
+    public void getActivityById(int idActivity,String joinRelation, GetActivityByIdCallback callback) {
+        remoteDataSource.getActivityById(idActivity, joinRelation, new GetActivityByIdCallback() {
             @Override
             public void onSuccess(Activity activity) {
                 callback.onSuccess(activity);
@@ -72,5 +72,10 @@ public class ActivityDataRepository implements IActivityDataSource {
                 callback.onError(errorMessage);
             }
         });
+    }
+
+    @Override
+    public void getAllCategory(GetAllCategoryCallback callback) {
+
     }
 }
