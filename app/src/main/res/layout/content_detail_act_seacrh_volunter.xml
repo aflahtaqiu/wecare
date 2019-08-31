@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".module.detail_activity_search_volunter.DetailActSearchVolunterActivity"
     tools:showIn="@layout/activity_detail_act_seacrh_volunter"
-    android:layout_marginBottom="@dimen/_20sdp">
+    android:layout_marginBottom="@dimen/_50sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
         android:layout_marginLeft="@dimen/_15sdp">
 
         <LinearLayout
+            android:id="@+id/linearlayout_grey_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -52,6 +53,506 @@
                 android:text="Surabaya, Jawa Timur"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_nama_activity_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
+            android:text="Berbagi Makanan Fakir Miskin Desa Pakuwon"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_grey_data"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_7sdp"/>
+
+        <TextView
+            android:id="@+id/tv_penyelenggara_activity_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_nama_activity_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Oleh Pemerintah Kota Surabaya"
+            android:layout_marginTop="@dimen/_3sdp"/>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_progress_data_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tv_penyelenggara_activity_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cari_relawan"
+                android:textColor="@color/colorBlack" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/progress_relawan_act_search_volunter"
+                    android:layout_width="@dimen/_240sdp"
+                    android:layout_height="match_parent"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:progress="50"
+                    android:progressBackgroundTint="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/tv_sisa_volunter_tersedia_act_search_volunter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sisa 20"
+                    android:textColor="@color/colorGold"
+                    android:layout_alignParentRight="true"
+                    android:layout_toLeftOf="@id/progress_relawan_act_search_volunter"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_relawan_terdaftar_act_search_volunter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+                <TextView
+                    android:id="@+id/tv_minimal_relawan_act_search_volunter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="40"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kuota_relawan"
+                    android:layout_marginLeft="@dimen/_7sdp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/galang_donasi"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="@dimen/_7sdp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ProgressBar
+                    android:id="@+id/progress_donasi_act_search_volunter"
+                    android:layout_width="@dimen/_240sdp"
+                    android:layout_height="match_parent"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:progress="70"
+                    android:progressBackgroundTint="@color/colorBlack" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_donasi_terkumpul_act_search_volunter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp 1.800.000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dari_lowercase"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+                <TextView
+                    android:id="@+id/tv_donasi_minimum_act_search_volunter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp 2.000.000"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_deadline_pendaftaran_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_progress_data_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deadline_pendaftaran"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_deadline_pendaftaran_act_search_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="30 April 2019 (3 Hari Lagi)"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_deskripsi_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_deadline_pendaftaran_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deskripsi"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_deskripsi_act_search_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_narahubung_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_deskripsi_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/narahubung"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_narahubung_no_telp_act_search_volunter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="08123456789"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+                <TextView
+                    android:id="@+id/tv_narahubung_email_act_search_volunter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pemkotsby@gmail.com"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view1_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/colorSecondary"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_narahubung_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_tempat_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/view1_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tempat"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_tempat_act_search_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Jl. Kapitem Patimura No.99, Kejawan Wetan, Keputih, Surabaya"/>
+
+        </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/tablelayout_tanggal_waktu_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_tempat_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:stretchColumns="1,2">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tanggal_mulai"
+                        android:textColor="@color/colorSecondary"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_tanggal_mulai_act_search_volunter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Jumat, 30 Juni 2019"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/waktu_mulai"
+                        android:textColor="@color/colorSecondary"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_waktu_mulai_act_search_volunter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="90.00 WIB"/>
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tanggal_selesai"
+                        android:textColor="@color/colorSecondary"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_tanggal_selesai_act_search_volunter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="Sabtu, 31 Juni 2019"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/_15sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/waktu_selesai"
+                        android:textColor="@color/colorSecondary"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_waktu_selesai_act_search_volunter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:text="15.00 WIB"/>
+
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <View
+            android:id="@+id/view2_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/colorSecondary"
+            app:layout_constraintTop_toBottomOf="@id/tablelayout_tanggal_waktu_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_tugas_relawan_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/view2_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tugas_relawan"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_tugas_relawan_act_search_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Menyaipkan makanan, menyiapkan tempat, mengatur dan mengajak warga."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_perlu_disiapkan_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_tugas_relawan_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/perlu_disiapkan"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_perlu_disiapkan_act_search_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Membawa alat tulis, buku, laptop, dan tas. Berpakaian bebas sopan."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_persyaratan_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_perlu_disiapkan_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/persyaratan"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_persyaratan_act_search_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Alat tulis, buku, laptop, dan tas. Berpakaian bebas sopan."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_briefing_act_search_volunter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_persyaratan_act_search_volunter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/briefing"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_briefing_act_search_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Wajib memfollow akun IG, Facebook dan LIne dengan username: @pemkotsby"/>
 
         </LinearLayout>
 

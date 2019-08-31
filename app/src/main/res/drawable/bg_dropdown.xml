@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item
+                android:drawable="@drawable/ic_keyboard_arrow_down_black50_24dp"
+                android:gravity="center_vertical|right"/>
+
+            <item android:top="-2dp" android:right="-2dp" android:left="-2dp">
+                <shape>
+                    <solid android:color="@android:color/transparent" />
+                    <stroke
+                        android:dashGap="10px"
+                        android:width="@dimen/_1sdp"
+                        android:color="@color/colorBlack" />
+
+                    <item/>
+                </shape>
+            </item>
+
+        </layer-list>
+
+    </item>
+</layer-list>

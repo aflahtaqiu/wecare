@@ -76,4 +76,7 @@ public class Activity {
 
     @SerializedName("type")
     private ActivityType type;
+
+    @SerializedName("campaigner")
+    private User campaigner;
 }

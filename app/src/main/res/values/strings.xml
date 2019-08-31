@@ -23,6 +23,7 @@
     <string name="cari_artikel">Cari Artikel</string>
     <string name="cari_kegiatan">Cari Kegiatan</string>
     <string name="cari_relawan">Cari Relawan</string>
+    <string name="cari_tempat">Cari Tempat</string>
     <string name="daftar">Daftar</string>
     <string name="daftar_dengan_nomor_hp">Daftar dengan Nomor HP</string>
     <string name="daftar_wecare">Daftar WeCare</string>
@@ -36,6 +37,7 @@
     <string name="donasi">Donasi</string>
     <string name="donasi_terkumpul">Donasi Terkumpul</string>
     <string name="email">Email</string>
+    <string name="filter">Filter</string>
     <string name="foto_banner_kegiatan">Foto / Banner Kegiatan</string>
     <string name="foto_bukti_transfer">Foto Bukti Transfer</string>
     <string name="foto_kondisi_tempat">Foto Kondisi Tempat</string>
@@ -87,6 +89,7 @@
     <string name="login">Login</string>
     <string name="login_dengan_nomor_hp">Login dengan Nomor HP</string>
     <string name="logout">Logout</string>
+    <string name="membuat_kampanye">Membuat Kampanye</string>
     <string name="membuka_donasi">Membuka Donasi</string>
     <string name="mencari_relawan">Mencari Relawan</string>
     <string name="mencari_tempat">Mencari Tempat</string>
@@ -116,6 +119,8 @@
     <string name="relawan">Relawan</string>
     <string name="rencana_kegiatan">Rencana Kegiatan</string>
     <string name="relawan_mendaftar">Relawan Mendaftar</string>
+    <string name="sebagai_fasilitator">Sebagai Fasilitator</string>
+    <string name="sebagai_relawan">Sebagai Relawan</string>
     <string name="semua">Semua</string>
     <string name="simpan_perubahan">Simpan Perubahan</string>
     <string name="sisa">Sisa</string>
@@ -125,8 +130,13 @@
     <string name="surat_perizinan_tempat">Surat Perizinan Tempat</string>
     <string name="tanggal_mulai">Tanggal Mulai</string>
     <string name="tanggal_selesai">Tanggal Selesai</string>
+    <string name="tanggal_terdekat">Tanggal Terdekat</string>
     <string name="tanggal_telah_terisi">Tanggal Telah Terisi</string>
+    <string name="tempat">Tempat</string>
+    <string name="terbaru">Terbaru</string>
+    <string name="terlama">Terlama</string>
     <string name="tidak">Tidak</string>
+    <string name="tidak_ada">Tidak Ada</string>
     <string name="tugas_relawan">Tugas Relawan</string>
     <string name="tukar">Tukar</string>
     <string name="umur">Umur</string>
@@ -145,7 +155,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="cari_tempat">Cari Tempat</string>
     <string name="title_activity_detail_act_seacrh_volunter">DetailActSeacrhVolunterActivity
     </string>
     <string name="large_text">

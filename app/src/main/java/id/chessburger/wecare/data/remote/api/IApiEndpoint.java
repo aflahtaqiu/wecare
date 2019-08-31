@@ -4,6 +4,7 @@ import java.util.List;
 
 import id.chessburger.wecare.base.BaseResponse;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.response.ResponseLogin;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -38,12 +39,16 @@ public interface IApiEndpoint {
     );
 
     @GET("activity/{id}")
-    Call<Activity> getActivityById(
-            @Path("id") int idActivity
+    Call<Activity> getActivityByIdJoin(
+            @Path("id") int idActivity,
+            @Query("join") String joinRelational
     );
 
     @GET("activity")
     Call<List<Activity>> getAllActivitiesJoin (
             @Query("join") String joinRelational
     );
+
+    @GET("category")
+    Call<List<ActivityCategory>> getAllCatergory ();
 }

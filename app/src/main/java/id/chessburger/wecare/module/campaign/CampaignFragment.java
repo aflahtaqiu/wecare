@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -19,12 +20,17 @@ import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
 import id.chessburger.wecare.module.campaign_belum_terlaksana.CampaignBelumTerlaksanaFragment;
 import id.chessburger.wecare.module.campaign_sudah_terlaksana.CampaignSudahTerlaksanaFragment;
+import id.chessburger.wecare.module.create_campaign_search_place.CreateCampaignSearchPlaceActivity;
+import id.chessburger.wecare.module.create_campaign_search_volunteer.CreateCampaignSearchVolunteerActivity;
 import id.chessburger.wecare.utils.CommunicationUtils;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CampaignFragment extends BaseFragment implements ICampaignView {
+
+    @BindView(R.id.layout_buat_kampanye)
+    View layoutAddKampanye;
 
     @BindView(R.id.btn_belum_terlaksana_campaign)
     Button btnBelumTerlaksana;
@@ -37,6 +43,15 @@ public class CampaignFragment extends BaseFragment implements ICampaignView {
 
     @BindView(R.id.iv_add_campaign)
     ImageView ivAddCampaign;
+
+    @BindView(R.id.tv_mencari_relawan)
+    TextView tvMencariRelawan;
+
+    @BindView(R.id.tv_mencari_tempat)
+    TextView tvMencariTempat;
+
+    @BindView(R.id.iv_close_layout)
+    ImageView ivCloseAddCampaignLayout;
 
     private static CampaignFragment campaignFragment;
 
@@ -60,6 +75,7 @@ public class CampaignFragment extends BaseFragment implements ICampaignView {
         View view = inflater.inflate(R.layout.fragment_campaign, container, false);
         ButterKnife.bind(this, view);
         presenter = new CampaignPresenter(this);
+
         return view;
     }
 
@@ -121,5 +137,27 @@ public class CampaignFragment extends BaseFragment implements ICampaignView {
     public void btnSudahTerlaksanaClicked () {
         customButton(btnSudahTerlaksana, btnBelumTerlaksana);
         fragmentTransaction(CampaignSudahTerlaksanaFragment.getInstance());
+    }
+
+    @OnClick(R.id.iv_add_campaign)
+    public void onAddBtnClicked () {
+        layoutAddKampanye.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.tv_mencari_relawan)
+    public void onTvMencariRelawanClicked () {
+        CommunicationUtils.changeActivity(getActivity(),
+                CreateCampaignSearchVolunteerActivity.class, false);
+    }
+
+    @OnClick(R.id.tv_mencari_tempat)
+    public void onTvMencariTempatClicked () {
+        CommunicationUtils.changeActivity(getActivity(),
+                CreateCampaignSearchPlaceActivity.class, false);
+    }
+
+    @OnClick(R.id.iv_close_layout)
+    public void onCloseLayoutClicked () {
+        layoutAddKampanye.setVisibility(View.GONE);
     }
 }

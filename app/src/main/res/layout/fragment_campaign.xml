@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,91 +8,106 @@
     tools:context=".module.campaign.CampaignFragment"
     android:background="@color/colorWhite">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:fillViewport="true">
 
-        <View
-            android:id="@+id/view_toolbar_campaign"
-            android:background="@drawable/bg_toolbar_top_left"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_170sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <RelativeLayout
-            android:id="@+id/relaytivelayout_toolbar_campaign"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginLeft="@dimen/_20sdp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_campaign_title"
+            <View
+                android:id="@+id/view_toolbar_campaign"
+                android:background="@drawable/bg_toolbar_top_left"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_170sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <RelativeLayout
+                android:id="@+id/relaytivelayout_toolbar_campaign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_20sdp">
+
+                <TextView
+                    android:id="@+id/tv_campaign_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kegiatan_kampanyemu"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:id="@+id/iv_sort_campaign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_sort_grey_24dp"
+                    android:layout_marginRight="@dimen/_18sdp"
+                    android:layout_toLeftOf="@id/iv_add_campaign"/>
+
+                <ImageView
+                    android:id="@+id/iv_add_campaign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_red_24dp"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativelayout_button_campaign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/kegiatan_kampanyemu"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_15sdp" />
+                app:layout_constraintTop_toBottomOf="@id/relaytivelayout_toolbar_campaign"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:layout_marginRight="@dimen/_20sdp">
 
-            <ImageView
-                android:id="@+id/iv_sort_campaign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_sort_grey_24dp"
-                android:layout_marginRight="@dimen/_18sdp"
-                android:layout_toLeftOf="@id/iv_add_campaign"/>
+                <Button
+                    android:id="@+id/btn_belum_terlaksana_campaign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/belum_terlaksana"
+                    android:padding="@dimen/_10sdp"
+                    android:background="@drawable/btn_round_white_border_grey"/>
 
-            <ImageView
-                android:id="@+id/iv_add_campaign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_red_24dp"
-                android:layout_alignParentRight="true"/>
+                <Button
+                    android:id="@+id/btn_sudah_terlaksana_campaign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sudah_terlaksana"
+                    android:background="@drawable/btn_round_white_border_grey"
+                    android:layout_toRightOf="@id/btn_belum_terlaksana_campaign"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"/>
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/relativelayout_button_campaign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/relaytivelayout_toolbar_campaign"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/_80sdp"
-            android:layout_marginRight="@dimen/_20sdp">
-
-            <Button
-                android:id="@+id/btn_belum_terlaksana_campaign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/belum_terlaksana"
-                android:padding="@dimen/_10sdp"
-                android:background="@drawable/btn_round_white_border_grey"/>
-
-            <Button
-                android:id="@+id/btn_sudah_terlaksana_campaign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sudah_terlaksana"
-                android:background="@drawable/btn_round_white_border_grey"
-                android:layout_toRightOf="@id/btn_belum_terlaksana_campaign"
+            <FrameLayout
+                android:id="@+id/framelayout_campaign"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativelayout_button_campaign"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:padding="@dimen/_10sdp"/>
+                android:layout_marginRight="@dimen/_10sdp"/>
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <FrameLayout
-            android:id="@+id/framelayout_campaign"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativelayout_button_campaign"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+    <include
+        android:id="@+id/layout_buat_kampanye"
+        layout="@layout/layout_buat_kampanye"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

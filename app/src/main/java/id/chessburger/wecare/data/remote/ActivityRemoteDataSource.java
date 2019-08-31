@@ -6,6 +6,7 @@ import java.util.List;
 import id.chessburger.wecare.base.BaseRemoteDataSource;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.enumerations.ResponseServerCode;
 import id.chessburger.wecare.model.response.ResponseError;
 import id.chessburger.wecare.utils.ConverterUtils;
@@ -43,8 +44,8 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
     }
 
     @Override
-    public void getActivityById(int idActivity, GetActivityByIdCallback callback) {
-        Call<Activity> call = apiEndpoint.getActivityById(idActivity);
+    public void getActivityById(int idActivity, String joinRelation, GetActivityByIdCallback callback) {
+        Call<Activity> call = apiEndpoint.getActivityByIdJoin(idActivity, joinRelation);
         call.enqueue(new Callback<Activity>() {
             @Override
             public void onResponse(Call<Activity> call, Response<Activity> response) {
@@ -70,6 +71,39 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
 
             @Override
             public void onFailure(Call<Activity> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getAllCategory(GetAllCategoryCallback callback) {
+        Call<List<ActivityCategory>> call = apiEndpoint.getAllCatergory();
+        call.enqueue(new Callback<List<ActivityCategory>>() {
+            @Override
+            public void onResponse(Call<List<ActivityCategory>> call, Response<List<ActivityCategory>> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    sendErrorCallback(response);
+                }
+            }
+
+            private void sendErrorCallback(Response<List<ActivityCategory>> response) {
+                try {
+                    if (response.errorBody() != null) {
+                        ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                        callback.onError(responseError.getMessage());
+                    } else {
+                        callback.onError("Get Activity Category Failed");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ActivityCategory>> call, Throwable t) {
                 callback.onError(t.getMessage());
             }
         });

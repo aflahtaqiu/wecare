@@ -1,7 +1,11 @@
 package id.chessburger.wecare.module.create_campaign_search_place;
 
+import java.util.List;
+
 import id.chessburger.wecare.data.repository.ActivityDataRepository;
+import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.di.Injector;
+import id.chessburger.wecare.model.ActivityCategory;
 
 /**
  * Created by aflah on 12/08/19
@@ -13,10 +17,12 @@ import id.chessburger.wecare.di.Injector;
 public class CreateCampaignSearchPlacePresenter {
 
     private ICreateCampaignSearchPlaceView view;
-    private ActivityDataRepository activityDataRepository;
+    private ActivityDataRepository repository;
 
     public CreateCampaignSearchPlacePresenter(ICreateCampaignSearchPlaceView view) {
         this.view = view;
-        this.activityDataRepository = Injector.provideActivityRepository();
+        this.repository = Injector.provideActivityRepository();
     }
+
+
 }

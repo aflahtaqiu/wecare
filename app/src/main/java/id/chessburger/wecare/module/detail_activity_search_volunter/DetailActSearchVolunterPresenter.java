@@ -27,10 +27,12 @@ public class DetailActSearchVolunterPresenter {
     }
 
     public void getDetailActivity (int idActivity) {
-        activityDataRepository.getActivityById(idActivity, new IActivityDataSource.GetActivityByIdCallback() {
+        String campaignerJoinRelation = "campaigner";
+        activityDataRepository.getActivityById(idActivity, campaignerJoinRelation, new IActivityDataSource.GetActivityByIdCallback() {
             @Override
             public void onSuccess(Activity activity) {
                 Log.e("lele", activity.toString());
+                view.setCampaignerData(activity.getCampaigner());
             }
 
             @Override

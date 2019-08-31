@@ -3,6 +3,7 @@ package id.chessburger.wecare.data.source;
 import java.util.List;
 
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.ActivityCategory;
 
 /**
  * Created by aflah on 12/08/19
@@ -15,7 +16,8 @@ public interface IActivityDataSource {
 
     void followActivity (String token, int idActivity, FollowActivityCallback callback);
     void getAllActivitiesJoinQuery (String joinQuery, GetActivitiesCallback callback);
-    void getActivityById (int idActivity, GetActivityByIdCallback callback);
+    void getActivityById (int idActivity, String joinRelation, GetActivityByIdCallback callback);
+    void getAllCategory (GetAllCategoryCallback callback);
 
     interface FollowActivityCallback {
         void onSuccess (Activity activity);
@@ -27,9 +29,15 @@ public interface IActivityDataSource {
         void onError (String errorMessage);
 
     }
+
     interface GetActivityByIdCallback {
         void onSuccess (Activity activity);
         void onError (String errorMessage);
 
+    }
+
+    interface GetAllCategoryCallback {
+        void onSuccess (List<ActivityCategory> categoryList);
+        void onError (String errorMessage);
     }
 }
