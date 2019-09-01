@@ -16,7 +16,7 @@ public interface IActivityDataSource {
 
     void followActivity (String token, int idActivity, FollowActivityCallback callback);
     void getAllActivitiesJoinQuery (String joinQuery, GetActivitiesCallback callback);
-    void getActivityById (int idActivity, String joinRelation, GetActivityByIdCallback callback);
+    void getActivityById (String token, int idActivity, String joinRelation, GetActivityByIdCallback callback);
     void getAllCategory (GetAllCategoryCallback callback);
 
     interface FollowActivityCallback {

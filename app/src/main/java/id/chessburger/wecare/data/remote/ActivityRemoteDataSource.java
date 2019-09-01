@@ -44,8 +44,8 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
     }
 
     @Override
-    public void getActivityById(int idActivity, String joinRelation, GetActivityByIdCallback callback) {
-        Call<Activity> call = apiEndpoint.getActivityByIdJoin(idActivity, joinRelation);
+    public void getActivityById(String token, int idActivity, String joinRelation, GetActivityByIdCallback callback) {
+        Call<Activity> call = apiEndpoint.getActivityByIdJoin(token, idActivity, joinRelation);
         call.enqueue(new Callback<Activity>() {
             @Override
             public void onResponse(Call<Activity> call, Response<Activity> response) {
@@ -60,7 +60,10 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
                 try {
                     if (response.errorBody() != null) {
                         ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
-                        callback.onError(responseError.getMessage());
+                        if (responseError.getMessage() == null)
+                            callback.onError(responseError.getError());
+                        else
+                            callback.onError(responseError.getMessage());
                     } else {
                         callback.onError("Get Activity Failed");
                     }
@@ -93,7 +96,10 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
                 try {
                     if (response.errorBody() != null) {
                         ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
-                        callback.onError(responseError.getMessage());
+                        if (responseError.getMessage() == null)
+                            callback.onError(responseError.getError());
+                        else
+                            callback.onError(responseError.getMessage());
                     } else {
                         callback.onError("Get Activity Category Failed");
                     }
@@ -129,7 +135,10 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
             try {
                 if (response.errorBody() != null) {
                     ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
-                    callback.onError(responseError.getMessage());
+                    if (responseError.getMessage() == null)
+                        callback.onError(responseError.getError());
+                    else
+                        callback.onError(responseError.getMessage());
                 } else {
                     callback.onError("Get Activities Failed");
                 }
@@ -165,7 +174,10 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
             try {
                 if (response.errorBody() != null) {
                     ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
-                    callback.onError(responseError.getError());
+                    if (responseError.getMessage() == null)
+                        callback.onError(responseError.getError());
+                    else
+                        callback.onError(responseError.getMessage());
                 } else {
                     callback.onError("Failed");
                 }

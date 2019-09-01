@@ -1,5 +1,7 @@
 package id.chessburger.wecare.module.create_campaign_search_volunteer;
 
+import android.util.Log;
+
 import java.util.List;
 
 import id.chessburger.wecare.data.repository.ActivityDataRepository;
@@ -25,15 +27,16 @@ public class CreateCampaignSearchVolunteerPresenter {
     }
 
     public void getAllActivityCategoty () {
+
         repository.getAllCategory(new IActivityDataSource.GetAllCategoryCallback() {
             @Override
             public void onSuccess(List<ActivityCategory> categoryList) {
-
+                view.setActivityCategory(categoryList);
             }
 
             @Override
             public void onError(String errorMessage) {
-
+                view.showMessage(errorMessage);
             }
         });
     }
