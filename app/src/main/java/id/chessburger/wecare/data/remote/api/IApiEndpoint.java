@@ -40,6 +40,7 @@ public interface IApiEndpoint {
 
     @GET("activity/{id}")
     Call<Activity> getActivityByIdJoin(
+            @Header("Authorization") String token,
             @Path("id") int idActivity,
             @Query("join") String joinRelational
     );

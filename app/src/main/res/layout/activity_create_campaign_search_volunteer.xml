@@ -30,6 +30,7 @@
                 android:textSize="@dimen/_14sdp"/>
 
             <Button
+                android:id="@+id/btn_upload_foto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/box_white_dots_stroke"

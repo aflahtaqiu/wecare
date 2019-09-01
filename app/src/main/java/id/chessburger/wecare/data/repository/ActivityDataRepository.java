@@ -5,6 +5,7 @@ import java.util.List;
 import id.chessburger.wecare.data.remote.ActivityRemoteDataSource;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.ActivityCategory;
 
 /**
  * Created by aflah on 12/08/19
@@ -60,8 +61,8 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
-    public void getActivityById(int idActivity,String joinRelation, GetActivityByIdCallback callback) {
-        remoteDataSource.getActivityById(idActivity, joinRelation, new GetActivityByIdCallback() {
+    public void getActivityById(String token, int idActivity,String joinRelation, GetActivityByIdCallback callback) {
+        remoteDataSource.getActivityById(token, idActivity, joinRelation, new GetActivityByIdCallback() {
             @Override
             public void onSuccess(Activity activity) {
                 callback.onSuccess(activity);
@@ -76,6 +77,16 @@ public class ActivityDataRepository implements IActivityDataSource {
 
     @Override
     public void getAllCategory(GetAllCategoryCallback callback) {
+        remoteDataSource.getAllCategory(new GetAllCategoryCallback() {
+            @Override
+            public void onSuccess(List<ActivityCategory> categoryList) {
+                callback.onSuccess(categoryList);
+            }
 
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
     }
 }

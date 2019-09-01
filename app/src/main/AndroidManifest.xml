@@ -20,11 +20,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".module.create_campaign_search_volunteer.CreateCampaignSearchVolunteerActivity"
             android:parentActivityName=".module.mainact.MainActivity"
-            android:label="@string/membuat_kampanye"/>
+            android:label="@string/membuat_kampanye"
+            android:theme="@style/AppTheme.WhiteActionBar"/>
         <activity android:name=".module.create_campaign_search_place.CreateCampaignSearchPlaceActivity" />
         <activity android:name=".module.detail_campaigned_activity.DetailCampaignedActivity" />
         <activity android:name=".module.detail_activity_search_place.DetailActSearchPlaceActivity"
-            android:parentActivityName=".module.mainact.MainActivity"/>
+            android:parentActivityName=".module.mainact.MainActivity" />
         <activity android:name=".module.detail_article.DetailArticleActivity" />
         <activity android:name=".module.wecare_poin.WeCarePoinActivity" />
         <activity android:name=".module.edit_profile.EditProfileActivity" />
@@ -44,5 +45,6 @@
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

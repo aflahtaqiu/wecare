@@ -74,7 +74,7 @@ public class DateTimeUtils {
         return calendar.get(Calendar.YEAR);
     }
 
-    public long getDayDifference (Date date1, Date date2) {
+    public static long getDayDifference (Date date1, Date date2) {
         return (date2.getTime() - date1.getTime()) / (24 * 60 * 60 * 1000);
     }
 

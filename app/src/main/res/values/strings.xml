@@ -5,6 +5,7 @@
     <string name="akan_diikuti">Akan Diikuti</string>
     <string name="alamat">Alamat</string>
     <string name="alamat_tempat_kegiatan">Alamat Tempat Kegiatan</string>
+    <string name="anda_yakin_mengikuti_kegiatan_ini">Anda yakin mengikuti kegiatan ini?</string>
     <string name="app_name">WeCare</string>
     <string name="artikel">Artikel</string>
     <string name="artikel_lainnya">Artikel Lainnya</string>
@@ -47,6 +48,7 @@
     <string name="home">Home</string>
     <string name="judul">Judul</string>
     <string name="ikuti">Ikuti</string>
+    <string name="ikuti_kegiatan">Ikuti Kegiatan</string>
     <string name="ikutan_kegiatan_yuk">Ikutan Kegiatan Yuk…</string>
     <string name="informasi">Informasi</string>
     <string name="informasi_tambahan">Informasi Tambahan</string>
@@ -100,6 +102,7 @@
     <string name="nominal_donasi">Nominal Donasi</string>
     <string name="nomor_hp">Nomor HP</string>
     <string name="nomor_telfon">Nomor Telfon</string>
+    <string name="oke">Oke</string>
     <string name="oleh">Oleh</string>
     <string name="password">Password</string>
     <string name="perlu_disiapkan">Perlu Disiapkan</string>
@@ -148,6 +151,7 @@
     <string name="waktu">Waktu</string>
     <string name="waktu_mulai">Waktu Mulai</string>
     <string name="waktu_selesai">Waktu Selesai</string>
+    <string name="warning">Warning</string>
     <string name="welcome_back">Welcome Back</string>
     <string name="ya">Ya</string>
     <string name="yang_perlu_dibawa_relawan">Yang Perlu Dibawa Relawan</string>
