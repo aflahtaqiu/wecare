@@ -1,5 +1,7 @@
 package id.chessburger.wecare.data.remote;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.enumerations.ResponseServerCode;
 import id.chessburger.wecare.model.response.ResponseError;
 import id.chessburger.wecare.utils.ConverterUtils;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -110,6 +114,59 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
 
             @Override
             public void onFailure(Call<List<ActivityCategory>> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void createActivityCariRelawan(String bearerToken, String name, String start, String end,
+                                          String registerDeadline, String description, String volunteerTasks,
+                                          String volunteerEquipments, String volunteerRequirements,
+                                          String briefs, int minVolunteers, int donationTarget, int categoryId,
+                                          int typeId, String city, String address, MultipartBody.Part photo,
+                                          CreateActivityCariRelawanCallback callback) {
+
+        RequestBody nameBody = RequestBody.create(okhttp3.MultipartBody.FORM, name);
+        RequestBody startBody = RequestBody.create(okhttp3.MultipartBody.FORM, start);
+        RequestBody endBody = RequestBody.create(okhttp3.MultipartBody.FORM, end);
+        RequestBody registerDeadlineBody = RequestBody.create(okhttp3.MultipartBody.FORM, registerDeadline);
+        RequestBody descriptionBody = RequestBody.create(okhttp3.MultipartBody.FORM, description);
+        RequestBody volunterTasksBody = RequestBody.create(okhttp3.MultipartBody.FORM, volunteerTasks);
+        RequestBody volunteerEquipmentsBody = RequestBody.create(okhttp3.MultipartBody.FORM, volunteerEquipments);
+        RequestBody volunteerRequirementsBody = RequestBody.create(okhttp3.MultipartBody.FORM, volunteerRequirements);
+        RequestBody briefsBody = RequestBody.create(okhttp3.MultipartBody.FORM, briefs);
+
+        RequestBody minVolunteersBody = RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(minVolunteers));
+        RequestBody donationTargetBody = RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(donationTarget));
+        RequestBody categoryIdBody = RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(categoryId));
+        RequestBody typeIdBody = RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(typeId));
+
+        RequestBody cityBody = RequestBody.create(okhttp3.MultipartBody.FORM, city);
+        RequestBody addressBody = RequestBody.create(okhttp3.MultipartBody.FORM, address);
+
+
+        Call<Activity> call = apiEndpoint.createActivityCariRelawan(bearerToken, nameBody, startBody,
+                endBody, registerDeadlineBody, descriptionBody, volunterTasksBody,
+                volunteerEquipmentsBody, volunteerRequirementsBody, briefsBody, minVolunteersBody,
+                donationTargetBody, categoryIdBody, typeIdBody, cityBody, addressBody, photo);
+        call.enqueue(new Callback<Activity>() {
+            @Override
+            public void onResponse(Call<Activity> call, Response<Activity> response) {
+                if (response.code() == ResponseServerCode.CREATED.getCode()) {
+                    callback.onSuccess("Activity sudah dibuat");
+                } else {
+                    try {
+                        Log.e("response gagal", response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    callback.onError("Gagal membuat activity");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Activity> call, Throwable t) {
                 callback.onError(t.getMessage());
             }
         });

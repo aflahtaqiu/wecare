@@ -15,6 +15,7 @@ import java.util.Date;
 public class DateTimeUtils {
 
     public static final String FORMAT_DDMMYYYY = "dd/MM/yyyy";
+    public static final String FORMAT_YYYYMMDD = "yyyy-MM-dd";
     public static final String FORMAT_EEEDDMMMYYYY = "EEE, dd MMM yyyy";
     public static final String FORMAT_EEEEDDMMMYYYY = "EEEE, dd MMM yyyy";
     public static final String FORMAT_EEEE = "EEEE";

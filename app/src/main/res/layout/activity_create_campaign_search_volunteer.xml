@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_judul_kegiatan"
+                    android:id="@+id/et_nama_kegiatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/isi_disini"/>
@@ -216,13 +216,14 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/_14sdp"/>
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_tanggal_mulai"
+                    <EditText
+                        android:id="@+id/et_tanggal_mulai"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:background="@drawable/bg_dropdown"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp" />
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:focusable="false"/>
 
                 </LinearLayout>
 
@@ -239,11 +240,12 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/_14sdp"/>
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_waktu_mulai"
+                    <EditText
+                        android:id="@+id/et_waktu_mulai"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:background="@drawable/bg_dropdown"/>
+                        android:background="@drawable/bg_dropdown"
+                        android:focusable="false"/>
 
                 </LinearLayout>
 
@@ -268,13 +270,14 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/_14sdp"/>
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_tanggal_selesai"
+                    <EditText
+                        android:id="@+id/et_tanggal_selesai"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
                         android:background="@drawable/bg_dropdown"
                         android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp" />
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:focusable="false"/>
 
                 </LinearLayout>
 
@@ -293,11 +296,12 @@
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/_14sdp"/>
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/spinner_waktu_selesai"
+                    <EditText
+                        android:id="@+id/et_waktu_selesai"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp"
-                        android:background="@drawable/bg_dropdown"/>
+                        android:background="@drawable/bg_dropdown"
+                        android:focusable="false"/>
 
                 </LinearLayout>
 
@@ -322,11 +326,12 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_deadline_pendaftaran"
+            <EditText
+                android:id="@+id/et_deadline_pendaftaran"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/bg_dropdown"/>
+                android:background="@drawable/bg_dropdown"
+                android:focusable="false"/>
 
         </LinearLayout>
 
@@ -347,11 +352,11 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_kuota_relawan"
+            <EditText
+                android:id="@+id/et_kuota_relawan"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/bg_dropdown"/>
+                android:inputType="number"/>
 
         </LinearLayout>
 
@@ -428,6 +433,39 @@
                     android:id="@+id/et_nominal_donasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/isi_disini"
+                    android:inputType="number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_tugas_relawan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_nominal_donasi"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tugas_relawan"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputlayout_tugas_relawan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_tugas_relawan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/isi_disini"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -441,7 +479,7 @@
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearlayout_nominal_donasi"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_tugas_relawan"
             android:layout_marginTop="@dimen/_20sdp">
 
             <TextView
@@ -540,7 +578,8 @@
             android:background="@drawable/btn_box_red"
             app:layout_constraintTop_toBottomOf="@id/linearlayout_briefing"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_20sdp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -21,8 +21,17 @@
         <activity android:name=".module.create_campaign_search_volunteer.CreateCampaignSearchVolunteerActivity"
             android:parentActivityName=".module.mainact.MainActivity"
             android:label="@string/membuat_kampanye"
+            android:theme="@style/AppTheme.WhiteActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".module.create_campaign_search_place.CreateCampaignSearchPlaceActivity"
+            android:parentActivityName=".module.mainact.MainActivity"
+            android:label="@string/membuat_kampanye"
             android:theme="@style/AppTheme.WhiteActionBar"/>
-        <activity android:name=".module.create_campaign_search_place.CreateCampaignSearchPlaceActivity" />
         <activity android:name=".module.detail_campaigned_activity.DetailCampaignedActivity" />
         <activity android:name=".module.detail_activity_search_place.DetailActSearchPlaceActivity"
             android:parentActivityName=".module.mainact.MainActivity" />
@@ -32,11 +41,7 @@
         <activity
             android:name=".module.splash_screen.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".module.mainact.MainActivity"
