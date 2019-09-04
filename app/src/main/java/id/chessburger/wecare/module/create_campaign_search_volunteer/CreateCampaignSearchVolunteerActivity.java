@@ -1,7 +1,8 @@
 package id.chessburger.wecare.module.create_campaign_search_volunteer;
 
 import android.Manifest;
-import android.content.ContentResolver;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -16,7 +17,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +29,8 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.io.File;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,7 +39,12 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseActivity;
+import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.utils.DateTimeUtils;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class CreateCampaignSearchVolunteerActivity extends BaseActivity implements ICreateCampaignSearchVolunteerView {
 
@@ -42,6 +54,56 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
     @BindView(R.id.btn_upload_foto)
     Button btnUploadFoto;
 
+    @BindView(R.id.btn_create_campaign)
+    Button btnCreateCampaign;
+
+    @BindView(R.id.et_tanggal_mulai)
+    EditText etTanggalMulai;
+
+    @BindView(R.id.et_tanggal_selesai)
+    EditText etTanggalSelesai;
+
+    @BindView(R.id.et_waktu_mulai)
+    EditText etWaktuMulai;
+
+    @BindView(R.id.et_waktu_selesai)
+    EditText etWaktuSelesai;
+
+    @BindView(R.id.et_nama_kegiatan)
+    EditText etNamaKegiatan;
+
+    @BindView(R.id.et_deskripsi_kegiatan)
+    EditText etDeskripsi;
+
+    @BindView(R.id.et_alamat_kegiatan)
+    EditText etAlamat;
+
+    // TODO: bind kabupaten kota
+
+    @BindView(R.id.et_kuota_relawan)
+    EditText etKuotaRelawan;
+
+    @BindView(R.id.et_nominal_donasi)
+    EditText etNominalDonasi;
+
+    @BindView(R.id.et_tugas_relawan)
+    EditText etTugasRelawan;
+
+    @BindView(R.id.et_yang_perlu_dibawa_relawan)
+    EditText etYangPerluDibawaRelawan;
+
+    @BindView(R.id.et_persyaratan_relawan)
+    EditText etPersyaratanRelawan;
+
+    @BindView(R.id.et_briefing)
+    EditText etBriefing;
+
+    @BindView(R.id.et_deadline_pendaftaran)
+    EditText etDeadlinePendaftaran;
+
+    @BindView(R.id.linearlayout_nominal_donasi)
+    LinearLayout linearLayoutNominalDonasi;
+
     @BindView(R.id.rb_yes_donate)
     RadioButton rbYesDonasi;
 
@@ -49,14 +111,18 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
     RadioButton rbNoDonasi;
 
     private CreateCampaignSearchVolunteerPresenter presenter;
+    private final Calendar calendar = Calendar.getInstance();
 
     private boolean isDonasi = false;
+    private int selectedCategory = 1;
+    private String photoUri;
 
     private static final String IMAGE_TYPE = "image/*";
+    private static final String PHOTO_KEY = "photo";
 
     private static final Integer FIRST_INDEX = 0;
     private static final Integer EMPTY_SIZE = 0;
-    private static final Integer SECOND_INDEX = 1;
+    private static final Integer CARI_RELAWAN_TYPE_ID = 1;
     private static final Integer GET_IMAGE_REQUEST_CODE = 4105;
     private static final Integer STORAGE_PERMISSION_REQUEST_CODE = 4106;
 
@@ -91,6 +157,7 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
 
             String imageFileName = imagePath+"."+type;
             btnUploadFoto.setText(imageFileName);
+            photoUri = getRealPath(imageUri);
         }
     }
 
@@ -194,6 +261,7 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
         spinnerActivityCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedCategory = i+1;
             }
 
             @Override
@@ -210,12 +278,12 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
             case R.id.rb_yes_donate :
                 isDonasi = true;
                 rbNoDonasi.setChecked(!isSelected);
-                Log.e("lele", radioButton.getText().toString());
+                etNominalDonasi.setEnabled(false);
                 break;
             case R.id.rb_no_donate :
                 isDonasi = false;
-                Log.e("lele", radioButton.getText().toString());
                 rbYesDonasi.setChecked(!isSelected);
+                etNominalDonasi.setEnabled(true);
                 break;
         }
 
@@ -224,5 +292,139 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
     @OnClick(R.id.btn_upload_foto)
     public void onBtnUploadFotoClicked () {
         setGallery();
+    }
+
+    @OnClick(R.id.btn_create_campaign)
+    public void onBtnCreateCampaignClicked () {
+        // TODO: logic create campaign to server
+
+        String startDateTime = etTanggalMulai.getText().toString() + "T" + etWaktuMulai.getText().toString();
+        String endDateTime = etTanggalSelesai.getText().toString() + "T" + etWaktuSelesai.getText().toString();
+        String deadlineDateTime = etDeadlinePendaftaran.getText().toString();
+
+        int donasi;
+        if (isDonasi)
+            donasi = Integer.valueOf(etNominalDonasi.getText().toString());
+        else
+            donasi = 0;
+
+        Activity createdActivity = Activity.builder()
+                .nameActivity(etNamaKegiatan.getText().toString())
+                .categoryId(selectedCategory)
+                .description(etDeskripsi.getText().toString())
+                .address(etAlamat.getText().toString())
+                .city("Surabaya, Jawa Timur")
+                .minVolunteers(Integer.valueOf(etKuotaRelawan.getText().toString()))
+                .donationTarget(donasi)
+                .volunteerTasks(etTugasRelawan.getText().toString())
+                .volunteerEquipments(etYangPerluDibawaRelawan.getText().toString())
+                .volunteerRequirements(etPersyaratanRelawan.getText().toString())
+                .briefs(etBriefing.getText().toString())
+                .typeId(CARI_RELAWAN_TYPE_ID)
+                .build();
+
+        MultipartBody.Part picture = null;
+
+        if (photoUri != null) {
+            File file = new File(photoUri);
+
+            RequestBody requestFile = RequestBody.create(
+                    MediaType.parse(IMAGE_TYPE), file);
+            picture = MultipartBody.Part.createFormData(PHOTO_KEY, file.getName(),
+                    requestFile);
+        }
+
+        Log.e("lele", picture.headers().toString());
+
+        presenter.createActivityCampaign(createdActivity, startDateTime, endDateTime, deadlineDateTime, picture);
+    }
+
+    @OnClick(R.id.et_tanggal_mulai)
+    public void onEtTanggalMulaiClicked () {
+        new DatePickerDialog(this, new OnStartDateSetListener(), calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                .show();
+    }
+
+    @OnClick(R.id.et_tanggal_selesai)
+    public void onEtTanggalSelesaiClicked () {
+        new DatePickerDialog(this, new OnEndDateSetListener(), calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                .show();
+    }
+
+    @OnClick(R.id.et_waktu_mulai)
+    public void onEtWaktuMulaiClicked () {
+        new TimePickerDialog(this, new OnStartTimeSetListener(),
+                calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.HOUR), true)
+                .show();
+    }
+
+    @OnClick(R.id.et_waktu_selesai)
+    public void onEtWaktuSelesaiClicked () {
+        new TimePickerDialog(this, new OnEndTimeSetListener(),
+                calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.HOUR), true)
+                .show();
+    }
+
+    @OnClick(R.id.et_deadline_pendaftaran)
+    public void onEtDeadlinePendaftaranCLicked () {
+        new DatePickerDialog(this, new OnDeadlineDateSetListener(), calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+                .show();
+    }
+
+    private class OnStartDateSetListener implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            calendar.set(Calendar.YEAR, i);
+            calendar.set(Calendar.MONTH, i1);
+            calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+            String tanggalMulai = DateTimeUtils.dateToString(calendar.getTime(),DateTimeUtils.FORMAT_YYYYMMDD);
+            etTanggalMulai.setText(tanggalMulai);
+        }
+    }
+
+    private class OnEndDateSetListener implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            calendar.set(Calendar.YEAR, i);
+            calendar.set(Calendar.MONTH, i1);
+            calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+            String tanggalSelesai = DateTimeUtils.dateToString(calendar.getTime(),DateTimeUtils.FORMAT_YYYYMMDD);
+            etTanggalSelesai.setText(tanggalSelesai);
+        }
+    }
+
+    private class OnStartTimeSetListener implements TimePickerDialog.OnTimeSetListener {
+        @Override
+        public void onTimeSet(TimePicker timePicker, int i, int i1) {
+            if (i1<10)
+                etWaktuMulai.setText(i + ":0" + i1);
+            else etWaktuMulai.setText(i + ":" + i1);
+        }
+    }
+
+    private class OnEndTimeSetListener implements TimePickerDialog.OnTimeSetListener {
+        @Override
+        public void onTimeSet(TimePicker timePicker, int i, int i1) {
+            if (i1<10)
+                etWaktuSelesai.setText(i + ":0" + i1);
+            else etWaktuSelesai.setText(i + ":" + i1);
+        }
+    }
+
+    private class OnDeadlineDateSetListener implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            calendar.set(Calendar.YEAR, i);
+            calendar.set(Calendar.MONTH, i1);
+            calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+            String deadlinePendaftaran = DateTimeUtils.dateToString(calendar.getTime(),DateTimeUtils.FORMAT_YYYYMMDD);
+            etDeadlinePendaftaran.setText(deadlinePendaftaran);
+        }
     }
 }

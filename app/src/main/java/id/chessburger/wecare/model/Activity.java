@@ -79,4 +79,16 @@ public class Activity {
 
     @SerializedName("campaigner")
     private User campaigner;
+
+    @SerializedName("categoryId")
+    private int categoryId;
+
+    @SerializedName("typeId")
+    private int typeId;
+
+    @SerializedName("address")
+    private String address;
+
+    @SerializedName("city")
+    private String city;
 }

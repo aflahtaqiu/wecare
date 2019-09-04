@@ -6,6 +6,7 @@ import id.chessburger.wecare.data.remote.ActivityRemoteDataSource;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import okhttp3.MultipartBody;
 
 /**
  * Created by aflah on 12/08/19
@@ -81,6 +82,24 @@ public class ActivityDataRepository implements IActivityDataSource {
             @Override
             public void onSuccess(List<ActivityCategory> categoryList) {
                 callback.onSuccess(categoryList);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void createActivityCariRelawan(String bearerToken, String name, String start, String end, String registerDeadline, String description, String volunteerTasks, String volunteerEquipments, String volunteerRequirements, String briefs, int minVolunteers, int donationTarget, int categoryId, int typeId, String city, String address, MultipartBody.Part photo, CreateActivityCariRelawanCallback callback) {
+        remoteDataSource.createActivityCariRelawan(bearerToken, name, start, end, registerDeadline,
+                description, volunteerTasks, volunteerEquipments, volunteerRequirements, briefs,
+                minVolunteers, donationTarget, categoryId, typeId, city, address, photo,
+                new CreateActivityCariRelawanCallback() {
+            @Override
+            public void onSuccess(String successMessage) {
+                callback.onSuccess(successMessage);
             }
 
             @Override

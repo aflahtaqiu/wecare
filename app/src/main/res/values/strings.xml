@@ -16,6 +16,7 @@
     <string name="belum_punya_akun">Belum punya akun? </string>
     <string name="belum_terlaksana">Belum Terlaksana</string>
     <string name="berikan_komentar_kamu">Berikan Komentar Kamu…</string>
+    <string name="berlangsung_selama">Berlangsung Selama</string>
     <string name="bookmark_kegiatan">Bookmark Kegiatan</string>
     <string name="briefing">Briefing</string>
     <string name="buat_akun">Buat Akun</string>
@@ -70,6 +71,8 @@
     <string name="jadwal">Jadwal</string>
     <string name="jangkauan_daerah">Jangkauan Daerah</string>
     <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="jumlah_peserta">Jumlah Peserta</string>
+    <string name="jumlah_relawan">Jumlah Relawan</string>
     <string name="kabupaten_kota">Kabupaten / Kota</string>
     <string name="kampanye">Kampanye</string>
     <string name="kategori_kegiatan">Kategori Kegiatan</string>
@@ -131,6 +134,7 @@
     <string name="sudah_diikuti">Sudah Diikuti</string>
     <string name="sudah_terlaksana">Sudah Terlaksana</string>
     <string name="surat_perizinan_tempat">Surat Perizinan Tempat</string>
+    <string name="tambah_disini_plus">+ Tambah Disini</string>
     <string name="tanggal_mulai">Tanggal Mulai</string>
     <string name="tanggal_selesai">Tanggal Selesai</string>
     <string name="tanggal_terdekat">Tanggal Terdekat</string>

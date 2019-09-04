@@ -4,6 +4,7 @@ import java.util.List;
 
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import okhttp3.MultipartBody;
 
 /**
  * Created by aflah on 12/08/19
@@ -18,6 +19,11 @@ public interface IActivityDataSource {
     void getAllActivitiesJoinQuery (String joinQuery, GetActivitiesCallback callback);
     void getActivityById (String token, int idActivity, String joinRelation, GetActivityByIdCallback callback);
     void getAllCategory (GetAllCategoryCallback callback);
+    void createActivityCariRelawan(String bearerToken, String name, String start, String end, String registerDeadline,
+                                   String description, String volunteerTasks, String volunteerEquipments,
+                                   String volunteerRequirements, String briefs, int minVolunteers,
+                                   int donationTarget, int categoryId, int typeId, String city, String address,
+                                   MultipartBody.Part photo, CreateActivityCariRelawanCallback callback);
 
     interface FollowActivityCallback {
         void onSuccess (Activity activity);
@@ -38,6 +44,11 @@ public interface IActivityDataSource {
 
     interface GetAllCategoryCallback {
         void onSuccess (List<ActivityCategory> categoryList);
+        void onError (String errorMessage);
+    }
+
+    interface CreateActivityCariRelawanCallback {
+        void onSuccess (String successMessage);
         void onError (String errorMessage);
     }
 }
