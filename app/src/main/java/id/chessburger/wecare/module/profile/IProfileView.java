@@ -1,6 +1,9 @@
 package id.chessburger.wecare.module.profile;
 
+import java.util.List;
+
 import id.chessburger.wecare.base.IBaseView;
+import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.User;
 
 /**
@@ -14,4 +17,5 @@ public interface IProfileView extends IBaseView {
     void moveIntoLogin();
     void moveIntoEditProfile();
     void showUserProfileData(User user);
+    void showBookmarkedActivities (List<Activity> activities);
 }

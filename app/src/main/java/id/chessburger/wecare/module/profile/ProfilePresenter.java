@@ -1,7 +1,11 @@
 package id.chessburger.wecare.module.profile;
 
+import java.util.List;
+
 import id.chessburger.wecare.data.repository.UserDataRepository;
+import id.chessburger.wecare.data.source.IUserDataSource;
 import id.chessburger.wecare.di.Injector;
+import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.SharedPrefKeys;
 import id.chessburger.wecare.utils.SharedPrefUtils;
@@ -17,10 +21,13 @@ public class ProfilePresenter {
 
     private IProfileView view;
     private UserDataRepository userDataRepository;
+    private User user;
 
-    public ProfilePresenter(IProfileView view) {
+    ProfilePresenter(IProfileView view) {
         this.view = view;
         this.userDataRepository = Injector.provideUserRepository();
+        user = (User) SharedPrefUtils.getObjectSharedPref(SharedPrefKeys.PROFIL.getKey(),
+                null, User.class);
     }
 
     void doLogout () {
@@ -29,11 +36,26 @@ public class ProfilePresenter {
     }
 
     void getUserProfileData () {
-        User user = (User) SharedPrefUtils.getObjectSharedPref(SharedPrefKeys.PROFIL.getKey(),
-                null, User.class);
-
         if (user != null) {
             view.showUserProfileData(user);
         }
+    }
+
+    void getBookmarkedActivities () {
+        String joinQueryBookmark = "bookmarks";
+        view.showLoading("Loading...");
+        userDataRepository.getBookmarkedActivities(user.getId(), joinQueryBookmark, new IUserDataSource.GetBookmarkedActivitiesCallback() {
+            @Override
+            public void onSuccess(List<Activity> activities) {
+                view.showBookmarkedActivities(activities);
+                view.hideLoading();
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                view.hideLoading();
+                view.showMessage(errorMessage);
+            }
+        });
     }
 }
