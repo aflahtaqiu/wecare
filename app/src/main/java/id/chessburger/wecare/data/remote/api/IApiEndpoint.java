@@ -5,6 +5,7 @@ import java.util.List;
 import id.chessburger.wecare.base.BaseResponse;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.response.ResponseLogin;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -50,7 +51,7 @@ public interface IApiEndpoint {
     );
 
     @GET("activity")
-    Call<List<Activity>> getAllActivitiesJoin (
+    Call<List<Activity>> getActivitiesWithJoin(
             @Query("join") String joinRelational
     );
 
@@ -77,5 +78,23 @@ public interface IApiEndpoint {
             @Part("city") RequestBody city,
             @Part("address") RequestBody address,
             @Part MultipartBody.Part photo
+    );
+
+    @PATCH("activity/bookmark/{id}")
+    Call<User> bookmarkActivity (
+            @Header("Authorization") String bearerToken,
+            @Path("id") int idActivity
+    );
+
+    @PATCH("activity/unbookmark/{id}")
+    Call<User> unBoorkmarkActivity(
+            @Header("Authorization") String bearerToken,
+            @Path("id") int idActivity
+    );
+
+    @GET
+    Call<User> getUserByIdWithJoin (
+            @Path("id") int idUser,
+            @Query("join") String joinRelational
     );
 }

@@ -26,5 +26,7 @@ public interface IDetailActSearchVolunterView extends IBaseView {
     void setEndDateTime (String endDate, String endTime);
     void setArea (String area);
 
+    void setBookmarkView (boolean isBookmarked);
+
     void showConfirmationDialog();
 }

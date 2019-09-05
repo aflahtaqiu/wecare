@@ -27,20 +27,20 @@ public class DetailActSearchVolunterPresenter {
 
     private final String LOADING_STRING = "Loading...";
 
-    public DetailActSearchVolunterPresenter(IDetailActSearchVolunterView view) {
+    DetailActSearchVolunterPresenter(IDetailActSearchVolunterView view) {
         this.view = view;
         this.activityDataRepository = Injector.provideActivityRepository();
         this.token = SharedPrefUtils.getStringSharedPref(SharedPrefKeys.TOKEN.getKey(), "");
     }
 
-    public void getDetailActivity (int idActivity) {
+    void getDetailActivity (int idActivity) {
         String campaignerJoinRelation = "campaigner";
         view.showLoading(LOADING_STRING);
         activityDataRepository.getActivityById(token, idActivity, campaignerJoinRelation, new GetActivityByIdCallback());
         view.hideLoading();
     }
 
-    public void followActivity (int idActivity) {
+    void followActivity (int idActivity) {
         view.showLoading(LOADING_STRING);
         activityDataRepository.followActivity(token, idActivity, new IActivityDataSource.FollowActivityCallback() {
             @Override
@@ -56,6 +56,23 @@ public class DetailActSearchVolunterPresenter {
         });
     }
 
+    void bookmarkActivity (int idActivity) {
+        view.showLoading(LOADING_STRING);
+        activityDataRepository.bookmarkActivity(token, idActivity, new IActivityDataSource.BookmarkActivityCallback() {
+            @Override
+            public void onSuccess(String successMessage) {
+                view.hideLoading();
+                view.showMessage(successMessage);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                view.hideLoading();
+                view.showMessage(errorMessage);
+            }
+        });
+    }
+
     private class GetActivityByIdCallback implements IActivityDataSource.GetActivityByIdCallback {
         @Override
         public void onSuccess(Activity activity) {
@@ -64,6 +81,8 @@ public class DetailActSearchVolunterPresenter {
             view.setActivityDescription(activity.getDescription());
             view.setArea(activity.getArea());
             view.setPersiapanActivityData(activity);
+            view.setBookmarkView(activity.getIsBookmarked());
+
             setVolunteerAndDonationData(activity);
             setDateTime(activity.getRegisterDeadlineDate(), activity.getStartDate(), activity.getEndDate());
         }

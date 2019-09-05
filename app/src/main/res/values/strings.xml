@@ -1,5 +1,6 @@
 <resources>
     <string name="absensi_relawan">Absensi Relawan</string>
+    <string name="ada">Ada</string>
     <string name="ajukan">Ajukan</string>
     <string name="ajukan_tempat">Ajukan Tempat</string>
     <string name="akan_diikuti">Akan Diikuti</string>
@@ -16,6 +17,7 @@
     <string name="belum_punya_akun">Belum punya akun? </string>
     <string name="belum_terlaksana">Belum Terlaksana</string>
     <string name="berikan_komentar_kamu">Berikan Komentar Kamu…</string>
+    <string name="berlangsung">Berlangsung</string>
     <string name="berlangsung_selama">Berlangsung Selama</string>
     <string name="bookmark_kegiatan">Bookmark Kegiatan</string>
     <string name="briefing">Briefing</string>
@@ -147,6 +149,7 @@
     <string name="tugas_relawan">Tugas Relawan</string>
     <string name="tukar">Tukar</string>
     <string name="umur">Umur</string>
+    <string name="untuk">Untuk</string>
     <string name="upload_foto">Upload Foto</string>
     <string name="urutkan">Urutkan</string>
     <string name="validasi">Validasi</string>
@@ -255,4 +258,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_detail_act_search_place">DetailActSearchPlaceActivity</string>
 </resources>

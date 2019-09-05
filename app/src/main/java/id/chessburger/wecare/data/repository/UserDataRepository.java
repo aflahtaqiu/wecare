@@ -1,7 +1,10 @@
 package id.chessburger.wecare.data.repository;
 
+import java.util.List;
+
 import id.chessburger.wecare.data.remote.UserRemoteDataSource;
 import id.chessburger.wecare.data.source.IUserDataSource;
+import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.response.ResponseLogin;
 
 /**
@@ -33,6 +36,21 @@ public class UserDataRepository implements IUserDataSource {
             @Override
             public void onSuccess(ResponseLogin responseLogin) {
                 callback.onSuccess(responseLogin);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void getBookmarkedActivities(int idUser, String joinQuery, GetBookmarkedActivitiesCallback callback) {
+        remoteDataSource.getBookmarkedActivities(idUser, joinQuery, new GetBookmarkedActivitiesCallback() {
+            @Override
+            public void onSuccess(List<Activity> activities) {
+                callback.onSuccess(activities);
             }
 
             @Override

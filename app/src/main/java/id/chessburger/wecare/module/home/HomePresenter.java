@@ -1,5 +1,6 @@
 package id.chessburger.wecare.module.home;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.List;
@@ -39,6 +40,9 @@ public class HomePresenter {
             @Override
             public void onError(String errorMessage) {
                 Log.e("error home presenter" , errorMessage);
+                if (TextUtils.equals("timeout", errorMessage)) {
+                    getAllActivities();
+                }
             }
         });
     }
