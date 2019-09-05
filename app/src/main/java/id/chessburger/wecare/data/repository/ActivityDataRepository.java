@@ -108,4 +108,34 @@ public class ActivityDataRepository implements IActivityDataSource {
             }
         });
     }
+
+    @Override
+    public void bookmarkActivity(String token, int idActivity, BookmarkActivityCallback callback) {
+        remoteDataSource.bookmarkActivity(token, idActivity, new BookmarkActivityCallback() {
+            @Override
+            public void onSuccess(String successMessage) {
+                callback.onSuccess(successMessage);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void unBookmarkActivity(String token, int idActivity, UnBookmarkActivityCallback callback) {
+        remoteDataSource.unBookmarkActivity(token, idActivity, new UnBookmarkActivityCallback() {
+            @Override
+            public void onSuccess(String successMessage) {
+                callback.onSuccess(successMessage);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
 }

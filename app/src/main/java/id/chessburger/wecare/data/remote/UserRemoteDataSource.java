@@ -7,6 +7,7 @@ import java.io.IOException;
 import id.chessburger.wecare.base.BaseRemoteDataSource;
 import id.chessburger.wecare.base.BaseResponse;
 import id.chessburger.wecare.data.source.IUserDataSource;
+import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.ResponseServerCode;
 import id.chessburger.wecare.model.response.ResponseError;
 import id.chessburger.wecare.model.response.ResponseLogin;
@@ -60,6 +61,35 @@ public class UserRemoteDataSource extends BaseRemoteDataSource implements IUserD
 
             @Override
             public void onFailure(Call<BaseResponse<ResponseLogin>> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getBookmarkedActivities(int idUser, String joinQuery, GetBookmarkedActivitiesCallback callback) {
+        Call<User> call = apiEndpoint.getUserByIdWithJoin(idUser, joinQuery);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body().getBookmarkedActivities());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Gagal mendapatkan bookmarked activities");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
                 callback.onError(t.getMessage());
             }
         });

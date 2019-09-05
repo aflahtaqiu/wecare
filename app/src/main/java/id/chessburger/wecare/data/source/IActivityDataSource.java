@@ -4,6 +4,7 @@ import java.util.List;
 
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.User;
 import okhttp3.MultipartBody;
 
 /**
@@ -24,6 +25,9 @@ public interface IActivityDataSource {
                                    String volunteerRequirements, String briefs, int minVolunteers,
                                    int donationTarget, int categoryId, int typeId, String city, String address,
                                    MultipartBody.Part photo, CreateActivityCariRelawanCallback callback);
+    void bookmarkActivity (String token, int idActivity, BookmarkActivityCallback callback);
+    void unBookmarkActivity (String token, int idActivity, UnBookmarkActivityCallback callback);
+
 
     interface FollowActivityCallback {
         void onSuccess (Activity activity);
@@ -48,6 +52,16 @@ public interface IActivityDataSource {
     }
 
     interface CreateActivityCariRelawanCallback {
+        void onSuccess (String successMessage);
+        void onError (String errorMessage);
+    }
+
+    interface BookmarkActivityCallback {
+        void onSuccess (String successMessage);
+        void onError (String errorMessage);
+    }
+
+    interface UnBookmarkActivityCallback {
         void onSuccess (String successMessage);
         void onError (String errorMessage);
     }

@@ -3,6 +3,7 @@ package id.chessburger.wecare.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Builder;
 import lombok.Data;
@@ -55,4 +56,7 @@ public class User implements Serializable {
 
     @SerializedName("id")
     private int id;
+
+    @SerializedName("bookmarks")
+    private List<Activity> bookmarkedActivities;
 }

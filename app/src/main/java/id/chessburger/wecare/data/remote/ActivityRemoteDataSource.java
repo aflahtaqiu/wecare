@@ -1,7 +1,5 @@
 package id.chessburger.wecare.data.remote;
 
-import android.util.Log;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -9,6 +7,7 @@ import id.chessburger.wecare.base.BaseRemoteDataSource;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.ResponseServerCode;
 import id.chessburger.wecare.model.response.ResponseError;
 import id.chessburger.wecare.utils.ConverterUtils;
@@ -43,7 +42,7 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
 
     @Override
     public void getAllActivitiesJoinQuery(String joinQuery, GetActivitiesCallback callback) {
-        Call<List<Activity>> call = apiEndpoint.getAllActivitiesJoin(joinQuery);
+        Call<List<Activity>> call = apiEndpoint.getActivitiesWithJoin(joinQuery);
         call.enqueue(new GetAllActivitiesCallback(callback));
     }
 
@@ -154,19 +153,91 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
             @Override
             public void onResponse(Call<Activity> call, Response<Activity> response) {
                 if (response.code() == ResponseServerCode.CREATED.getCode()) {
-                    callback.onSuccess("Activity sudah dibuat");
+                    callback.onSuccess("Sukses membuat kegiatan");
                 } else {
                     try {
-                        Log.e("response gagal", response.errorBody().string());
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            if (responseError.getMessage() == null)
+                                callback.onError(responseError.getError());
+                            else
+                                callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Gagal membuat kegiatan");
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    callback.onError("Gagal membuat activity");
                 }
             }
 
             @Override
             public void onFailure(Call<Activity> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void bookmarkActivity(String token, int idActivity, BookmarkActivityCallback callback) {
+        Call<User> call = apiEndpoint.bookmarkActivity(token, idActivity);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    String successMessage = "Kegiatan ini berhasil disimpan";
+                    callback.onSuccess(successMessage);
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            if (responseError.getMessage() == null)
+                                callback.onError(responseError.getError());
+                            else
+                                callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Failed add to bookmark");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void unBookmarkActivity(String token, int idActivity, UnBookmarkActivityCallback callback) {
+        Call<User> call = apiEndpoint.unBoorkmarkActivity(token, idActivity);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess("Activity ini berhasil dihapus.");
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            if (responseError.getMessage() == null)
+                                callback.onError(responseError.getError());
+                            else
+                                callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Failed delete from bookmark");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
                 callback.onError(t.getMessage());
             }
         });

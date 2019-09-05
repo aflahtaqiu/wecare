@@ -3,7 +3,6 @@ package id.chessburger.wecare.module.detail_activity_search_volunter;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -139,6 +138,7 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     private void getBundleIntentData() {
         Bundle bundle = getIntent().getBundleExtra(CommunicationKeys.BUNDLE_KEY.getKey());
         idActivity = bundle.getInt(CommunicationKeys.SELECTED_ACTIVITY.getKey());
+
     }
 
     private boolean isIntegerZero (int integer) {
@@ -170,7 +170,8 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
 
     @OnClick(R.id.fab_bookmark_activity_search_volunter)
     public void onBookmarkBtnClicked () {
-        Log.e("LELE", "bookmarked");
+        fabBookmark.setImageResource(R.drawable.ic_already_bookmark);
+        presenter.bookmarkActivity(idActivity);
     }
 
     @OnClick(R.id.btn_donasi_activity_volunter)
@@ -273,6 +274,12 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     @Override
     public void setArea(String area) {
         tvArea.setText(area);
+    }
+
+    @Override
+    public void setBookmarkView(boolean isBookmarked) {
+        if (isBookmarked)
+            fabBookmark.setImageResource(R.drawable.ic_already_bookmark);
     }
 
     @Override

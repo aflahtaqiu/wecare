@@ -3,6 +3,7 @@ package id.chessburger.wecare.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +21,26 @@ public class Activity {
     @SerializedName("id")
     private int id;
 
-    @SerializedName("name")
-    private String nameActivity;
+    @SerializedName("minVolunteers")
+    private int minVolunteers;
 
-    @SerializedName("photo")
-    private String photo;
+    @SerializedName("donationTarget")
+    private int donationTarget;
+
+    @SerializedName("volunteersTotal")
+    private int volunteersTotal;
+
+    @SerializedName("donationsTotal")
+    private int donationsTotal;
+
+    @SerializedName("maxParticipants")
+    private int maxParticipants;
+
+    @SerializedName("categoryId")
+    private int categoryId;
+
+    @SerializedName("typeId")
+    private int typeId;
 
     @SerializedName("start")
     private Date startDate;
@@ -34,6 +50,12 @@ public class Activity {
 
     @SerializedName("registerDeadline")
     private Date registerDeadlineDate;
+
+    @SerializedName("name")
+    private String nameActivity;
+
+    @SerializedName("photo")
+    private String photo;
 
     @SerializedName("description")
     private String description;
@@ -50,45 +72,27 @@ public class Activity {
     @SerializedName("briefs")
     private String briefs;
 
-    @SerializedName("minVolunteers")
-    private int minVolunteers;
-
-    @SerializedName("donationTarget")
-    private int donationTarget;
-
-    @SerializedName("volunteersTotal")
-    private int volunteersTotal;
-
-    @SerializedName("donationsTotal")
-    private int donationsTotal;
-
-    @SerializedName("cashedDown")
-    private boolean cashedDown;
-
     @SerializedName("area")
     private String area;
-
-    @SerializedName("maxParticipants")
-    private int maxParticipants;
-
-    @SerializedName("isDone")
-    private boolean isDone;
-
-    @SerializedName("type")
-    private ActivityType type;
-
-    @SerializedName("campaigner")
-    private User campaigner;
-
-    @SerializedName("categoryId")
-    private int categoryId;
-
-    @SerializedName("typeId")
-    private int typeId;
 
     @SerializedName("address")
     private String address;
 
     @SerializedName("city")
     private String city;
+
+    @SerializedName("cashedDown")
+    private Boolean cashedDown;
+
+    @SerializedName("isDone")
+    private Boolean isDone;
+
+    @SerializedName("bookmarked")
+    private Boolean isBookmarked;
+
+    @SerializedName("type")
+    private ActivityType type;
+
+    @SerializedName("campaigner")
+    private User campaigner;
 }
