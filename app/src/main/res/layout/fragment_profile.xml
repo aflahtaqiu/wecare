@@ -234,7 +234,8 @@
             app:layout_constraintTop_toBottomOf="@+id/linearlayout_wecare_poin"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_20sdp">
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical">
 
 
             <TextView
@@ -245,7 +246,7 @@
                 android:textSize="@dimen/_14sdp"/>
 
             <HorizontalScrollView
-                android:id="@+id/storeNearbyScroll"
+                android:id="@+id/bookmarkedActivitiesScroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
@@ -255,12 +256,12 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginBottom="@dimen/_16sdp">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_neareststore_home"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_bookmarked_activities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_16sdp">
-                </android.support.v7.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
 
             </HorizontalScrollView>
 

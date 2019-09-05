@@ -81,7 +81,6 @@ public class HomeFragment extends BaseFragment implements IHomeView {
 
         recyclerViewActivities.setAdapter(adapter);
         recyclerViewActivities.setLayoutManager(new GridLayoutManager(getContext(),2));
-        recyclerViewActivities.addItemDecoration(new SpaceItemDecoration(10));
     }
 
     @Override

@@ -92,7 +92,7 @@ public interface IApiEndpoint {
             @Path("id") int idActivity
     );
 
-    @GET
+    @GET("user/{id}")
     Call<User> getUserByIdWithJoin (
             @Path("id") int idUser,
             @Query("join") String joinRelational
