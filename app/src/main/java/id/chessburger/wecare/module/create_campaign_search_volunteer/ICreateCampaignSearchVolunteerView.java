@@ -4,6 +4,7 @@ import java.util.List;
 
 import id.chessburger.wecare.base.IBaseView;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.City;
 
 /**
  * Created by aflah on 12/08/19
@@ -15,4 +16,5 @@ import id.chessburger.wecare.model.ActivityCategory;
 public interface ICreateCampaignSearchVolunteerView extends IBaseView {
 
     void setActivityCategory (List<ActivityCategory> activityCategoryList);
+    void setIndonesiaCities (List<City> indonesiaCities);
 }

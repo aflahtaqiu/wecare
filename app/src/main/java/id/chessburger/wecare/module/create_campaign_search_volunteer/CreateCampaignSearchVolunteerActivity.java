@@ -41,6 +41,7 @@ import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseActivity;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.City;
 import id.chessburger.wecare.utils.DateTimeUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -50,6 +51,9 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
 
     @BindView(R.id.spinner_activity_category)
     AppCompatSpinner spinnerActivityCategory;
+
+    @BindView(R.id.spinner_kabupaten_kota)
+    AppCompatSpinner spinnerKabupatenKota;
 
     @BindView(R.id.btn_upload_foto)
     Button btnUploadFoto;
@@ -77,8 +81,6 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
 
     @BindView(R.id.et_alamat_kegiatan)
     EditText etAlamat;
-
-    // TODO: bind kabupaten kota
 
     @BindView(R.id.et_kuota_relawan)
     EditText etKuotaRelawan;
@@ -132,6 +134,13 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
         setContentView(R.layout.activity_create_campaign_search_volunteer);
         ButterKnife.bind(this);
         presenter = new CreateCampaignSearchVolunteerPresenter(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.getAllActivityCategoty();
+        presenter.getAllIndonesiaCities();
     }
 
     @Override
@@ -233,12 +242,6 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        presenter.getAllActivityCategoty();
-    }
-
-    @Override
     public void showLoading(String message) {
         super.onShowLoading(message);
     }
@@ -270,6 +273,25 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
             }
         });
     }
+
+    @Override
+    public void setIndonesiaCities(List<City> indonesiaCities) {
+        ArrayAdapter spinnerCitiesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, indonesiaCities);
+        spinnerCitiesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerKabupatenKota.setAdapter(spinnerCitiesAdapter);
+        spinnerKabupatenKota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e("selected city", adapterView.getItemAtPosition(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
 
     @OnCheckedChanged({R.id.rb_yes_donate, R.id.rb_no_donate})
     public void onRadioButtonClicked(CompoundButton radioButton, boolean isSelected) {

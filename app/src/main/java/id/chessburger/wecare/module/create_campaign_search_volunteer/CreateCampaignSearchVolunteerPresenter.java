@@ -5,10 +5,14 @@ import android.util.Log;
 import java.util.List;
 
 import id.chessburger.wecare.data.repository.ActivityDataRepository;
+import id.chessburger.wecare.data.repository.RajaOngkirDataRepository;
 import id.chessburger.wecare.data.source.IActivityDataSource;
+import id.chessburger.wecare.data.source.IRajaOngkirDataSource;
 import id.chessburger.wecare.di.Injector;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.City;
+import id.chessburger.wecare.model.enumerations.ApiKey;
 import id.chessburger.wecare.model.enumerations.SharedPrefKeys;
 import id.chessburger.wecare.utils.SharedPrefUtils;
 import okhttp3.MultipartBody;
@@ -23,18 +27,20 @@ import okhttp3.MultipartBody;
 public class CreateCampaignSearchVolunteerPresenter {
 
     private ICreateCampaignSearchVolunteerView view;
-    private ActivityDataRepository repository;
+    private ActivityDataRepository activityRepository;
+    private RajaOngkirDataRepository rajaOngkirRepository;
     private String token;
 
     CreateCampaignSearchVolunteerPresenter(ICreateCampaignSearchVolunteerView view) {
         this.view = view;
-        this.repository = Injector.provideActivityRepository();
+        this.activityRepository = Injector.provideActivityRepository();
+        this.rajaOngkirRepository = Injector.provideRajaOngkirRepository();
         this.token = SharedPrefUtils.getStringSharedPref(SharedPrefKeys.TOKEN.getKey(), "");
     }
 
     void getAllActivityCategoty () {
 
-        repository.getAllCategory(new IActivityDataSource.GetAllCategoryCallback() {
+        activityRepository.getAllCategory(new IActivityDataSource.GetAllCategoryCallback() {
             @Override
             public void onSuccess(List<ActivityCategory> categoryList) {
                 view.setActivityCategory(categoryList);
@@ -47,8 +53,23 @@ public class CreateCampaignSearchVolunteerPresenter {
         });
     }
 
+    void getAllIndonesiaCities () {
+
+        rajaOngkirRepository.getCities(ApiKey.RAJA_ONGKIR.getApiKey(), new IRajaOngkirDataSource.GetCitiesCallback() {
+            @Override
+            public void onSuccess(List<City> cities) {
+                view.setIndonesiaCities(cities);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.e("error get cities", errorMessage);
+            }
+        });
+    }
+
     void createActivityCampaign (Activity activity, String startDate, String endDate, String deadlineDate, MultipartBody.Part photo) {
-        repository.createActivityCariRelawan(token, activity.getNameActivity(), startDate, endDate,
+        activityRepository.createActivityCariRelawan(token, activity.getNameActivity(), startDate, endDate,
                 deadlineDate, activity.getDescription(), activity.getVolunteerTasks(),
                 activity.getVolunteerEquipments(), activity.getVolunteerRequirements(), activity.getBriefs(),
                 activity.getMinVolunteers(), activity.getDonationTarget(), activity.getCategoryId(),
