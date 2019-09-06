@@ -109,6 +109,7 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     private DetailActSearchVolunterPresenter presenter;
 
     private int idActivity;
+    private boolean isBookmarked;
 
     private static final int ZERO_VALUE = 0;
     private static final int ONE_HUNDRED = 100;
@@ -138,7 +139,6 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     private void getBundleIntentData() {
         Bundle bundle = getIntent().getBundleExtra(CommunicationKeys.BUNDLE_KEY.getKey());
         idActivity = bundle.getInt(CommunicationKeys.SELECTED_ACTIVITY.getKey());
-
     }
 
     private boolean isIntegerZero (int integer) {
@@ -171,7 +171,11 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     @OnClick(R.id.fab_bookmark_activity_search_volunter)
     public void onBookmarkBtnClicked () {
         fabBookmark.setImageResource(R.drawable.ic_already_bookmark);
-        presenter.bookmarkActivity(idActivity);
+
+        if (isBookmarked)
+            presenter.unBookmarkActivity(idActivity);
+        else
+            presenter.bookmarkActivity(idActivity);
     }
 
     @OnClick(R.id.btn_donasi_activity_volunter)
@@ -278,8 +282,12 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
 
     @Override
     public void setBookmarkView(boolean isBookmarked) {
+        this.isBookmarked = isBookmarked;
+
         if (isBookmarked)
             fabBookmark.setImageResource(R.drawable.ic_already_bookmark);
+        else
+            fabBookmark.setImageResource(R.drawable.ic_bookmark_white);
     }
 
     @Override

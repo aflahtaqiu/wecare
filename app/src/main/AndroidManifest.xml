@@ -12,8 +12,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".module.detail_activity_search_place.DetailActSearchPlaceActivity"
-            android:label="@string/title_activity_detail_act_search_place"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label=""
+            android:parentActivityName=".module.mainact.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".module.detail_activity_search_volunter.DetailActSearchVolunterActivity"
             android:label=""

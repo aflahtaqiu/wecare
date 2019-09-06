@@ -62,6 +62,24 @@ public class DetailActSearchVolunterPresenter {
             @Override
             public void onSuccess(String successMessage) {
                 view.hideLoading();
+                view.setBookmarkView(true);
+                view.showMessage(successMessage);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                view.hideLoading();
+                view.showMessage(errorMessage);
+            }
+        });
+    }
+    void unBookmarkActivity (int idActivity) {
+        view.showLoading(LOADING_STRING);
+        activityDataRepository.unBookmarkActivity(token, idActivity, new IActivityDataSource.UnBookmarkActivityCallback() {
+            @Override
+            public void onSuccess(String successMessage) {
+                view.hideLoading();
+                view.setBookmarkView(false);
                 view.showMessage(successMessage);
             }
 
