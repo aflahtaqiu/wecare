@@ -1,7 +1,5 @@
 package id.chessburger.wecare.module.detail_activity_search_volunter;
 
-import android.util.Log;
-
 import java.util.Date;
 
 import id.chessburger.wecare.data.repository.ActivityDataRepository;
@@ -26,6 +24,7 @@ public class DetailActSearchVolunterPresenter {
     private String token;
 
     private final String LOADING_STRING = "Loading...";
+    private final String BERHASIL_BUAT_ACTIVITY = "Kegiatan Anda telah dipublikasikan untuk dikampanyekan";
 
     DetailActSearchVolunterPresenter(IDetailActSearchVolunterView view) {
         this.view = view;
@@ -36,7 +35,8 @@ public class DetailActSearchVolunterPresenter {
     void getDetailActivity (int idActivity) {
         String campaignerJoinRelation = "campaigner";
         view.showLoading(LOADING_STRING);
-        activityDataRepository.getActivityById(token, idActivity, campaignerJoinRelation, new GetActivityByIdCallback());
+        activityDataRepository.getActivityById(token, idActivity, campaignerJoinRelation, null,
+                new GetActivityByIdCallback());
         view.hideLoading();
     }
 
@@ -45,7 +45,7 @@ public class DetailActSearchVolunterPresenter {
         activityDataRepository.followActivity(token, idActivity, new IActivityDataSource.FollowActivityCallback() {
             @Override
             public void onSuccess(Activity activity) {
-                Log.e("folllow activity", "sukses");
+                view.showMessage(BERHASIL_BUAT_ACTIVITY);
                 view.hideLoading();
             }
 
@@ -94,10 +94,11 @@ public class DetailActSearchVolunterPresenter {
     private class GetActivityByIdCallback implements IActivityDataSource.GetActivityByIdCallback {
         @Override
         public void onSuccess(Activity activity) {
+            view.setActivityImage(activity.getPhoto());
             view.setActivityName(activity.getNameActivity());
-//            view.setCampaignerData(activity.getCampaigner());
+            view.setCampaignerData(activity.getCampaigner());
             view.setActivityDescription(activity.getDescription());
-            view.setArea(activity.getArea());
+            view.setCity(activity.getLocation().getCity());
             view.setPersiapanActivityData(activity);
             view.setBookmarkView(activity.getIsBookmarked());
 

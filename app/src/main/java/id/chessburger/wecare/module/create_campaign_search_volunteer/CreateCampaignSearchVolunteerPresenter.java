@@ -1,7 +1,5 @@
 package id.chessburger.wecare.module.create_campaign_search_volunteer;
 
-import android.util.Log;
-
 import java.util.List;
 
 import id.chessburger.wecare.data.repository.ActivityDataRepository;
@@ -24,12 +22,14 @@ import okhttp3.MultipartBody;
  */
 
 
-public class CreateCampaignSearchVolunteerPresenter {
+class CreateCampaignSearchVolunteerPresenter {
 
     private ICreateCampaignSearchVolunteerView view;
     private ActivityDataRepository activityRepository;
     private RajaOngkirDataRepository rajaOngkirRepository;
     private String token;
+
+    private static final String LOADING_STRING = "Loading...";
 
     CreateCampaignSearchVolunteerPresenter(ICreateCampaignSearchVolunteerView view) {
         this.view = view;
@@ -63,25 +63,28 @@ public class CreateCampaignSearchVolunteerPresenter {
 
             @Override
             public void onError(String errorMessage) {
-                Log.e("error get cities", errorMessage);
+                view.showMessage(errorMessage);
             }
         });
     }
 
     void createActivityCampaign (Activity activity, String startDate, String endDate, String deadlineDate, MultipartBody.Part photo) {
+        view.showLoading(LOADING_STRING);
         activityRepository.createActivityCariRelawan(token, activity.getNameActivity(), startDate, endDate,
                 deadlineDate, activity.getDescription(), activity.getVolunteerTasks(),
                 activity.getVolunteerEquipments(), activity.getVolunteerRequirements(), activity.getBriefs(),
                 activity.getMinVolunteers(), activity.getDonationTarget(), activity.getCategoryId(),
-                activity.getTypeId(), activity.getCity(), activity.getAddress(), photo, new IActivityDataSource.CreateActivityCariRelawanCallback() {
+                activity.getCity(), activity.getAddress(), photo, new IActivityDataSource.CreateActivityCallback() {
                     @Override
                     public void onSuccess(String successMessage) {
-                        Log.e("lele", successMessage);
+                        view.hideLoading();
+                        view.showMessage(successMessage);
                     }
 
                     @Override
                     public void onError(String errorMessage) {
-                        Log.e("lelegagal", errorMessage);
+                        view.hideLoading();
+                        view.showMessage(errorMessage);
                     }
                 });
     }

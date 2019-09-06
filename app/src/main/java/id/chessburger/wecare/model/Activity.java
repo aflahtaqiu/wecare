@@ -81,6 +81,24 @@ public class Activity {
     @SerializedName("city")
     private String city;
 
+    @SerializedName("reportImage")
+    private String reportImage;
+
+    @SerializedName("reportText")
+    private String reportText;
+
+    @SerializedName("preparedByFacilitator")
+    private String preparedByFacilitator;
+
+    @SerializedName("activityPlan")
+    private String activityPlan;
+
+    @SerializedName("locationRequirement")
+    private String locationRequirement;
+
+    @SerializedName("additionalInformation")
+    private String additionalInformation;
+
     @SerializedName("cashedDown")
     private Boolean cashedDown;
 
@@ -90,9 +108,24 @@ public class Activity {
     @SerializedName("bookmarked")
     private Boolean isBookmarked;
 
+    @SerializedName("followed")
+    private Boolean isFollowed;
+
     @SerializedName("type")
     private ActivityType type;
 
     @SerializedName("campaigner")
     private User campaigner;
+
+    @SerializedName("volunteers")
+    private List<User> volunteers;
+
+    @SerializedName("category")
+    private ActivityCategory category;
+
+    @SerializedName("location")
+    private Location location;
+
+    @SerializedName("locations")
+    private List<Location> locationList;
 }

@@ -64,8 +64,12 @@ public class HomeFragment extends BaseFragment implements IHomeView {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
-        presenter = new HomePresenter(this);
+
         showBanners();
+        setRecyclerView();
+
+        presenter = new HomePresenter(this);
+        presenter.getAllActivities();
 
         return view;
     }
@@ -86,8 +90,7 @@ public class HomeFragment extends BaseFragment implements IHomeView {
     @Override
     public void onStart() {
         super.onStart();
-        setRecyclerView();
-        presenter.getAllActivities();
+
     }
 
     @Override

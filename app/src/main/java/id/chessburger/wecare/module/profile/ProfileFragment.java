@@ -30,7 +30,6 @@ import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
 import id.chessburger.wecare.module.edit_profile.EditProfileActivity;
-import id.chessburger.wecare.module.home.SpaceItemDecoration;
 import id.chessburger.wecare.module.login.LoginActivity;
 import id.chessburger.wecare.utils.CommunicationUtils;
 
