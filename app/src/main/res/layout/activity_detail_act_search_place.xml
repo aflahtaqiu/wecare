@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="@dimen/_200sdp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -47,7 +48,7 @@
         layout="@layout/content_detail_act_search_place"/>
 
     <Button
-        android:id="@+id/btn_follow_activity_place"
+        android:id="@+id/btn_ajukan_tempat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/_15sdp"
@@ -57,6 +58,5 @@
         android:text="@string/ajukan_tempat"
         android:textColor="@color/colorWhite"
         android:background="@drawable/btn_box_red"/>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

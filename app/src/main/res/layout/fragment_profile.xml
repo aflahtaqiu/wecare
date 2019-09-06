@@ -251,16 +251,13 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
                 android:overScrollMode="never"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginBottom="@dimen/_16sdp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_bookmarked_activities"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_16sdp">
+                    android:layout_height="wrap_content">
                 </androidx.recyclerview.widget.RecyclerView>
 
             </HorizontalScrollView>

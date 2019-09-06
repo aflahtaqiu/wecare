@@ -15,7 +15,7 @@ public class DetailActSearchPlacePresenter {
     private IDetailActSearchPlaceView view;
     private ActivityDataRepository activityDataRepository;
 
-    public DetailActSearchPlacePresenter(IDetailActSearchPlaceView view) {
+    DetailActSearchPlacePresenter(IDetailActSearchPlaceView view) {
         this.view = view;
         this.activityDataRepository = Injector.provideActivityRepository();
     }

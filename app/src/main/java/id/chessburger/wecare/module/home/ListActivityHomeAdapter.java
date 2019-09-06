@@ -74,15 +74,7 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
         if (item.getType().getId() == ITEM_CARI_RELAWAN) {
             holder.itemView.setOnClickListener(new OnActSearchVolunteerClickListener(item));
         } else {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(CommunicationKeys.SELECTED_ACTIVITY.getKey(), item.getId());
-                    CommunicationUtils.changeActivity((MainActivity) context, DetailActSearchPlaceActivity.class,
-                            bundle, CommunicationKeys.BUNDLE_KEY.getKey(), false);
-                }
-            });
+            holder.itemView.setOnClickListener(new OnActSearchPlaceClickListener(item));
         }
     }
 
@@ -138,6 +130,22 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
             Bundle bundle = new Bundle();
             bundle.putInt(CommunicationKeys.SELECTED_ACTIVITY.getKey(), item.getId());
             CommunicationUtils.changeActivity((MainActivity) context, DetailActSearchVolunterActivity.class,
+                    bundle, CommunicationKeys.BUNDLE_KEY.getKey(), false);
+        }
+    }
+
+    private class OnActSearchPlaceClickListener implements View.OnClickListener {
+        private final Activity item;
+
+        public OnActSearchPlaceClickListener(Activity item) {
+            this.item = item;
+        }
+
+        @Override
+        public void onClick(View view) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(CommunicationKeys.SELECTED_ACTIVITY.getKey(), item.getId());
+            CommunicationUtils.changeActivity((MainActivity) context, DetailActSearchPlaceActivity.class,
                     bundle, CommunicationKeys.BUNDLE_KEY.getKey(), false);
         }
     }
