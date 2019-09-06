@@ -18,19 +18,19 @@ import id.chessburger.wecare.model.Activity;
  */
 
 
-public class HomePresenter {
+class HomePresenter {
 
     private IHomeView view;
     private UserDataRepository userDataRepository;
     private ActivityDataRepository activityDataRepository;
 
-    public HomePresenter(IHomeView view) {
+    HomePresenter(IHomeView view) {
         this.view = view;
         userDataRepository = Injector.provideUserRepository();
         activityDataRepository = Injector.provideActivityRepository();
     }
 
-    public void getAllActivities () {
+    void getAllActivities () {
         activityDataRepository.getAllActivitiesJoinQuery("type", new IActivityDataSource.GetActivitiesCallback() {
             @Override
             public void onSuccess(List<Activity> activities) {
@@ -39,7 +39,6 @@ public class HomePresenter {
 
             @Override
             public void onError(String errorMessage) {
-                Log.e("error home presenter" , errorMessage);
                 if (TextUtils.equals("timeout", errorMessage)) {
                     getAllActivities();
                 }

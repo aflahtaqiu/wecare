@@ -14,7 +14,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseActivity;
+import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
+import id.chessburger.wecare.module.propose_location.ProposeLocationActivity;
+import id.chessburger.wecare.utils.CommunicationUtils;
 
 public class DetailActSearchPlaceActivity extends BaseActivity implements IDetailActSearchPlaceView {
 
@@ -91,6 +94,12 @@ public class DetailActSearchPlaceActivity extends BaseActivity implements IDetai
         presenter = new DetailActSearchPlacePresenter(this);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.getDetailActivity(idActivity);
+    }
+
     private void setToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -119,5 +128,69 @@ public class DetailActSearchPlaceActivity extends BaseActivity implements IDetai
     @OnClick(R.id.btn_ajukan_tempat)
     public void onAjukanTempatBtnClicked () {
 
+    }
+
+    @Override
+    public void setActivityCategory(String category) {
+
+    }
+
+    @Override
+    public void setActivityName(String activityName) {
+
+    }
+
+    @Override
+    public void setCampaignerData(User campaigner) {
+
+    }
+
+    @Override
+    public void setActivityDescription(String description) {
+
+    }
+
+    @Override
+    public void setJangkauanDaerah(String area) {
+
+    }
+
+    @Override
+    public void setKetersediaanWaktu(String startDate, String endDate) {
+
+    }
+
+    @Override
+    public void setTanggalTelahTerisi() {
+
+    }
+
+    @Override
+    public void setRencanaKegiatan(String rencanaKegiatan) {
+
+    }
+
+    @Override
+    public void serPerluDisiapkanFasilitator(String perluDisiapkanFasilitator) {
+
+    }
+
+    @Override
+    public void setPersyaratan(String persyaratan) {
+
+    }
+
+    @Override
+    public void setAdditionalInformation(String additionalInformation) {
+
+    }
+
+    @OnClick(R.id.btn_ajukan_tempat)
+    public void onBtnAjukanTempatClicked() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(CommunicationKeys.SELECTED_ACTIVITY.getKey(), idActivity);
+
+        CommunicationUtils.changeActivity(this, ProposeLocationActivity.class,
+                false, bundle, CommunicationKeys.BUNDLE_KEY.getKey());
     }
 }

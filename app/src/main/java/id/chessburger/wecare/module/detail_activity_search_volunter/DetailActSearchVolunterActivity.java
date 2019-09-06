@@ -4,13 +4,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,8 +29,8 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.app_bar)
-    AppBarLayout appBarLayout; //Change the background to activity image
+    @BindView(R.id.iv_acitvity_picture)
+    ImageView ivActivityPicture; //Change the background to activity image
 
     @BindView(R.id.progress_relawan_act_search_volunter)
     ProgressBar progressBarRelawan;
@@ -40,8 +41,8 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     @BindView(R.id.tv_nama_activity_search_volunter)
     TextView tvNamaKegiatan;
 
-    @BindView(R.id.tv_area_activity)
-    TextView tvArea;
+    @BindView(R.id.tv_city_activity)
+    TextView tvCity;
 
     @BindView(R.id.tv_penyelenggara_activity_search_volunter)
     TextView tvPenyelenggara;
@@ -276,8 +277,13 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     }
 
     @Override
-    public void setArea(String area) {
-        tvArea.setText(area);
+    public void setCity(String city) {
+        tvCity.setText(city);
+    }
+
+    @Override
+    public void setActivityImage(String imageUrl) {
+        Picasso.get().load(imageUrl).fit().into(ivActivityPicture);
     }
 
     @Override

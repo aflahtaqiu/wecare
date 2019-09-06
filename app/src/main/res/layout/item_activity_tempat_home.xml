@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/_200sdp"
+    android:layout_width="@dimen/_145sdp"
+    android:layout_height="@dimen/_187sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="@dimen/_4sdp">
+    app:cardCornerRadius="@dimen/_4sdp"
+    android:elevation="@dimen/_4sdp"
+    app:cardElevation="@dimen/_4sdp"
+    android:layout_marginLeft="@dimen/_12sdp"
+    android:layout_marginRight="@dimen/_12sdp"
+    android:layout_marginBottom="@dimen/_12sdp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent" >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintlayout_img_item_activity"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/iv_foto_item_activity_home"
@@ -21,64 +29,81 @@
                 android:layout_height="@dimen/_100sdp"
                 android:src="@mipmap/banner_1"
                 android:scaleType="fitXY"
-                android:foreground="@drawable/bg_black_gradient"/>
+                android:foreground="@drawable/bg_black_gradient"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_name_activity_item_activity_home"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
-                android:layout_gravity="left|bottom"
-                android:layout_marginLeft="@dimen/_10sdp" />
+                android:maxLines="2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"/>
 
-        </FrameLayout>
-        <LinearLayout
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_item_activity_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/_10sdp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/tv_tanggal_pelaksanaan_item_activity_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4 April 2019"/>
-
-                <TextView
-                    android:id="@+id/tv_pemisah_tanggal_item_activity_tempat_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" - "
-                    android:layout_toRightOf="@id/tv_tanggal_pelaksanaan_item_activity_home"/>
-
-                <TextView
-                    android:id="@+id/tv_tanggal_selesai_item_activity_tempat_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="10-10-2019"
-                    android:layout_toRightOf="@id/tv_pemisah_tanggal_item_activity_tempat_home"/>
-
-            </RelativeLayout>
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraintlayout_img_item_activity"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_9sdp"
+            android:layout_marginRight="@dimen/_9sdp">
 
             <TextView
-                android:id="@+id/tv_deskripsi_singkat_item_activity_home"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="3"
-                android:layout_marginTop="@dimen/_4sdp"/>
-
-            <TextView
-                android:id="@+id/tv_tipe_activity_item_home"
+                android:id="@+id/tv_tanggal_pelaksanaan_item_activity_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cari_tempat"/>
-        </LinearLayout>
+                android:text="10/10/2019"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_pemisah_tanggal_item_activity_tempat_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - "
+                android:layout_toRightOf="@id/tv_tanggal_pelaksanaan_item_activity_home"/>
+
+            <TextView
+                android:id="@+id/tv_tanggal_selesai_item_activity_tempat_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="20/10/2019"
+                android:layout_toRightOf="@id/tv_pemisah_tanggal_item_activity_tempat_home"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_deskripsi_singkat_item_activity_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/relativelayout_item_activity_home"
+            app:layout_constraintBottom_toTopOf="@+id/tv_tipe_activity_item_home"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"/>
+
+        <TextView
+            android:id="@+id/tv_tipe_activity_item_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cari_relawan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi_singkat_item_activity_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="@dimen/_10sdp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

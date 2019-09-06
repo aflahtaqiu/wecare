@@ -2,10 +2,13 @@ package id.chessburger.wecare.data.repository;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import id.chessburger.wecare.data.remote.ActivityRemoteDataSource;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.Donation;
 import okhttp3.MultipartBody;
 
 /**
@@ -62,8 +65,8 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
-    public void getActivityById(String token, int idActivity,String joinRelation, GetActivityByIdCallback callback) {
-        remoteDataSource.getActivityById(token, idActivity, joinRelation, new GetActivityByIdCallback() {
+    public void getActivityById(String token, int idActivity, String joinRelation, @Nullable String joinRelation2, GetActivityByIdCallback callback) {
+        remoteDataSource.getActivityById(token, idActivity, joinRelation, joinRelation2, new GetActivityByIdCallback() {
             @Override
             public void onSuccess(Activity activity) {
                 callback.onSuccess(activity);
@@ -92,11 +95,38 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
-    public void createActivityCariRelawan(String bearerToken, String name, String start, String end, String registerDeadline, String description, String volunteerTasks, String volunteerEquipments, String volunteerRequirements, String briefs, int minVolunteers, int donationTarget, int categoryId, int typeId, String city, String address, MultipartBody.Part photo, CreateActivityCariRelawanCallback callback) {
+    public void createActivityCariRelawan(String bearerToken, String name, String start, String end,
+                                          String registerDeadline, String description, String volunteerTasks,
+                                          String volunteerEquipments, String volunteerRequirements, String briefs,
+                                          int minVolunteers, int donationTarget, int categoryId, String city,
+                                          String address, MultipartBody.Part photo, CreateActivityCallback callback) {
         remoteDataSource.createActivityCariRelawan(bearerToken, name, start, end, registerDeadline,
                 description, volunteerTasks, volunteerEquipments, volunteerRequirements, briefs,
-                minVolunteers, donationTarget, categoryId, typeId, city, address, photo,
-                new CreateActivityCariRelawanCallback() {
+                minVolunteers, donationTarget, categoryId, city, address, photo,
+                new CreateActivityCallback() {
+            @Override
+            public void onSuccess(String successMessage) {
+                callback.onSuccess(successMessage);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void createActivityCariLokasi(String bearerToken, String name, String start, String end,
+                                         String registerDeadline, String description, String area,
+                                         int categoryId, int maxParticipants, int volunteersTotal,
+                                         String preparedByFacilitator, String activityPlan,
+                                         String locationRequirement, String additionalInformation,
+                                         MultipartBody.Part photo, CreateActivityCallback callback) {
+
+        remoteDataSource.createActivityCariLokasi(bearerToken, name, start, end, registerDeadline,
+                description, area, categoryId, maxParticipants, volunteersTotal, preparedByFacilitator,
+                activityPlan, locationRequirement, additionalInformation, photo, new CreateActivityCallback() {
             @Override
             public void onSuccess(String successMessage) {
                 callback.onSuccess(successMessage);
@@ -130,6 +160,21 @@ public class ActivityDataRepository implements IActivityDataSource {
             @Override
             public void onSuccess(String successMessage) {
                 callback.onSuccess(successMessage);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void postDonation(String token, int amount, int activityId, MultipartBody.Part transferValidation, PostDonationCallback callback) {
+        remoteDataSource.postDonation(token, amount, activityId, transferValidation, new PostDonationCallback() {
+            @Override
+            public void onSuccess(Donation donation) {
+                callback.onSuccess(donation);
             }
 
             @Override

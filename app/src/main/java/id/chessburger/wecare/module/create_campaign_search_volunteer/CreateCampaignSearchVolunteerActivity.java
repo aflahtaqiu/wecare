@@ -1,8 +1,10 @@
 package id.chessburger.wecare.module.create_campaign_search_volunteer;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -10,7 +12,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -42,6 +43,8 @@ import id.chessburger.wecare.base.BaseActivity;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.City;
+import id.chessburger.wecare.module.mainact.MainActivity;
+import id.chessburger.wecare.utils.CommunicationUtils;
 import id.chessburger.wecare.utils.DateTimeUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -115,8 +118,10 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
     private CreateCampaignSearchVolunteerPresenter presenter;
     private final Calendar calendar = Calendar.getInstance();
 
+    private ActivityCategory selectedCategory;
+    private City selectedCity;
+
     private boolean isDonasi = false;
-    private int selectedCategory = 1;
     private String photoUri;
 
     private static final String IMAGE_TYPE = "image/*";
@@ -124,7 +129,7 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
 
     private static final Integer FIRST_INDEX = 0;
     private static final Integer EMPTY_SIZE = 0;
-    private static final Integer CARI_RELAWAN_TYPE_ID = 1;
+    private static final Integer ZERO_VALUE = 0;
     private static final Integer GET_IMAGE_REQUEST_CODE = 4105;
     private static final Integer STORAGE_PERMISSION_REQUEST_CODE = 4106;
 
@@ -159,15 +164,26 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
 
         if (isPickImage(requestCode, resultCode, data)) {
             Uri imageUri = data.getData();
-            MimeTypeMap mime = MimeTypeMap.getSingleton();
-
-            String type = mime.getExtensionFromMimeType(getContentResolver().getType(imageUri));
-            String imagePath = imageUri.getPath();
-
-            String imageFileName = imagePath+"."+type;
-            btnUploadFoto.setText(imageFileName);
             photoUri = getRealPath(imageUri);
+            updateBtnUploadFotoText(imageUri);
         }
+    }
+
+    private String getImageType (Uri imageUri) {
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(getContentResolver().getType(imageUri));
+    }
+
+    private void updateBtnUploadFotoText (Uri imageUri) {
+        String type = getImageType(imageUri);
+        String imagePath = imageUri.getPath();
+
+        setBtnUploadFotoText(type, imagePath);
+    }
+
+    private void setBtnUploadFotoText(String type, String imagePath) {
+        String imageFileName = imagePath + "." + type;
+        btnUploadFoto.setText(imageFileName);
     }
 
     private Boolean isPickImage(int requestCode, int resultCode, Intent data) {
@@ -241,6 +257,51 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
                 Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 
+    private void logicRadioButtonClicked (boolean _isDonasi, RadioButton reverseRadioButton) {
+        isDonasi = _isDonasi;
+        etNominalDonasi.setEnabled(_isDonasi);
+        reverseRadioButton.setChecked(false);
+    }
+
+    private int setDonationNominal () {
+        if (isDonasi)
+            return Integer.valueOf(etNominalDonasi.getText().toString());
+        else
+            return ZERO_VALUE;
+    }
+
+    private String parseDateTimeRequestFormat (EditText editTextTanggal, EditText editTextWaktu) {
+        return editTextTanggal.getText().toString() + " " + editTextWaktu.getText().toString();
+    }
+
+    private Activity createActivity () {
+        return Activity.builder()
+                .nameActivity(etNamaKegiatan.getText().toString())
+                .categoryId(selectedCategory.getId())
+                .description(etDeskripsi.getText().toString())
+                .address(etAlamat.getText().toString())
+                .city(selectedCity.toString())
+                .minVolunteers(Integer.valueOf(etKuotaRelawan.getText().toString()))
+                .donationTarget(setDonationNominal())
+                .volunteerTasks(etTugasRelawan.getText().toString())
+                .volunteerEquipments(etYangPerluDibawaRelawan.getText().toString())
+                .volunteerRequirements(etPersyaratanRelawan.getText().toString())
+                .briefs(etBriefing.getText().toString())
+                .build();
+    }
+
+    private MultipartBody.Part getPhotoMultipart() {
+        if (photoUri != null) {
+            File file = new File(photoUri);
+            RequestBody requestFile = RequestBody.create(MediaType.parse(IMAGE_TYPE), file);
+
+            return MultipartBody.Part.createFormData(PHOTO_KEY, file.getName(),
+                    requestFile);
+        } else {
+            return null;
+        }
+    }
+
     @Override
     public void showLoading(String message) {
         super.onShowLoading(message);
@@ -253,7 +314,15 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
 
     @Override
     public void showMessage(String message) {
+        AlertDialog confirmationDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.buat_kampanye)
+                .setMessage(message)
+                .setPositiveButton(R.string.oke, new OnOkClickListener())
+                .setCancelable(false)
+                .create();
 
+        confirmationDialog.setCanceledOnTouchOutside(true);
+        confirmationDialog.show();
     }
 
     @Override
@@ -261,17 +330,7 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
         ArrayAdapter spinnerCategoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, activityCategoryList);
         spinnerCategoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerActivityCategory.setAdapter(spinnerCategoryAdapter);
-        spinnerActivityCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedCategory = i+1;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        spinnerActivityCategory.setOnItemSelectedListener(new OnCategorySelectedListener());
     }
 
     @Override
@@ -279,36 +338,23 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
         ArrayAdapter spinnerCitiesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, indonesiaCities);
         spinnerCitiesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerKabupatenKota.setAdapter(spinnerCitiesAdapter);
-        spinnerKabupatenKota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("selected city", adapterView.getItemAtPosition(i).toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        spinnerKabupatenKota.setOnItemSelectedListener(new OnCitiesSelectedListener());
     }
-
 
     @OnCheckedChanged({R.id.rb_yes_donate, R.id.rb_no_donate})
     public void onRadioButtonClicked(CompoundButton radioButton, boolean isSelected) {
         int rbId = radioButton.getId();
-        switch (rbId) {
-            case R.id.rb_yes_donate :
-                isDonasi = true;
-                rbNoDonasi.setChecked(!isSelected);
-                etNominalDonasi.setEnabled(false);
-                break;
-            case R.id.rb_no_donate :
-                isDonasi = false;
-                rbYesDonasi.setChecked(!isSelected);
-                etNominalDonasi.setEnabled(true);
-                break;
-        }
 
+        if (isSelected) {
+            switch (rbId) {
+                case R.id.rb_yes_donate :
+                    logicRadioButtonClicked(true, rbNoDonasi);
+                    break;
+                case R.id.rb_no_donate :
+                    logicRadioButtonClicked(false, rbYesDonasi);
+                    break;
+            }
+        }
     }
 
     @OnClick(R.id.btn_upload_foto)
@@ -318,45 +364,13 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
 
     @OnClick(R.id.btn_create_campaign)
     public void onBtnCreateCampaignClicked () {
-        // TODO: logic create campaign to server
 
-        String startDateTime = etTanggalMulai.getText().toString() + "T" + etWaktuMulai.getText().toString();
-        String endDateTime = etTanggalSelesai.getText().toString() + "T" + etWaktuSelesai.getText().toString();
+        String startDateTime = parseDateTimeRequestFormat(etTanggalMulai, etWaktuMulai);
+        String endDateTime = parseDateTimeRequestFormat(etTanggalSelesai, etWaktuSelesai);
         String deadlineDateTime = etDeadlinePendaftaran.getText().toString();
 
-        int donasi;
-        if (isDonasi)
-            donasi = Integer.valueOf(etNominalDonasi.getText().toString());
-        else
-            donasi = 0;
-
-        Activity createdActivity = Activity.builder()
-                .nameActivity(etNamaKegiatan.getText().toString())
-                .categoryId(selectedCategory)
-                .description(etDeskripsi.getText().toString())
-                .address(etAlamat.getText().toString())
-                .city("Surabaya, Jawa Timur")
-                .minVolunteers(Integer.valueOf(etKuotaRelawan.getText().toString()))
-                .donationTarget(donasi)
-                .volunteerTasks(etTugasRelawan.getText().toString())
-                .volunteerEquipments(etYangPerluDibawaRelawan.getText().toString())
-                .volunteerRequirements(etPersyaratanRelawan.getText().toString())
-                .briefs(etBriefing.getText().toString())
-                .typeId(CARI_RELAWAN_TYPE_ID)
-                .build();
-
-        MultipartBody.Part picture = null;
-
-        if (photoUri != null) {
-            File file = new File(photoUri);
-
-            RequestBody requestFile = RequestBody.create(
-                    MediaType.parse(IMAGE_TYPE), file);
-            picture = MultipartBody.Part.createFormData(PHOTO_KEY, file.getName(),
-                    requestFile);
-        }
-
-        Log.e("lele", picture.headers().toString());
+        Activity createdActivity = createActivity();
+        MultipartBody.Part picture = getPhotoMultipart();
 
         presenter.createActivityCampaign(createdActivity, startDateTime, endDateTime, deadlineDateTime, picture);
     }
@@ -447,6 +461,39 @@ public class CreateCampaignSearchVolunteerActivity extends BaseActivity implemen
 
             String deadlinePendaftaran = DateTimeUtils.dateToString(calendar.getTime(),DateTimeUtils.FORMAT_YYYYMMDD);
             etDeadlinePendaftaran.setText(deadlinePendaftaran);
+        }
+    }
+
+    private class OnCategorySelectedListener implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            selectedCategory = (ActivityCategory) adapterView.getItemAtPosition(i);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    }
+
+    private class OnCitiesSelectedListener implements AdapterView.OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            selectedCity = (City) adapterView.getItemAtPosition(i);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    }
+
+    private class OnOkClickListener implements DialogInterface.OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+            CommunicationUtils.changeActivity(CreateCampaignSearchVolunteerActivity.this,
+                    MainActivity.class);
         }
     }
 }

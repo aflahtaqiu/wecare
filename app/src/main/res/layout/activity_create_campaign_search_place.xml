@@ -59,18 +59,11 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_judul_kegiatan"
+            <EditText
+                android:id="@+id/et_nama_kegiatan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_nama_kegiatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/isi_disini"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"/>
 
         </LinearLayout>
 
@@ -116,18 +109,11 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_deskirpsi_kegiatan"
+            <EditText
+                android:id="@+id/et_deskripsi_kegiatan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_deskripsi_kegiatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/isi_disini"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"/>
 
         </LinearLayout>
 
@@ -148,20 +134,13 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_jangkauan_daerah_kegiatan"
+            <EditText
+                android:id="@+id/et_jangkauan_daerah_kegiatan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_alamat_kegiatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/tambah_disini_plus"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/linearlayout_ketersediaan_waktu"
@@ -243,7 +222,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearlayout_berlangsung_selama"
+            android:id="@+id/linearlayout_deadline_pengajuan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -255,37 +234,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/berlangsung_selama"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_14sdp"/>
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinner_berlangsung_selama"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:background="@drawable/bg_dropdown"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearlayout_deadline_pendaftaran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearlayout_berlangsung_selama"
-            android:layout_marginTop="@dimen/_15sdp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/deadline_pendaftaran"
+                android:text="@string/deadline_pengajuan"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
             <EditText
-                android:id="@+id/et_deadline_pendaftaran"
+                android:id="@+id/et_deadline_pengajuan"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/bg_dropdown"
@@ -300,7 +254,7 @@
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearlayout_deadline_pendaftaran"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_deadline_pengajuan"
             android:layout_marginTop="@dimen/_15sdp">
 
             <TextView
@@ -310,18 +264,12 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_jumlah_relawan"
+            <EditText
+                android:id="@+id/et_jumlah_relawan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_jumlah_relawan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/isi_disini"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"
+                android:inputType="number"/>
 
         </LinearLayout>
 
@@ -342,18 +290,12 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_jumlah_peserta"
+            <EditText
+                android:id="@+id/et_jumlah_peserta"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_jumlah_peserta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/isi_disini"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"
+                android:inputType="number"/>
 
         </LinearLayout>
 
@@ -374,18 +316,11 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_rencana_kegiatan"
+            <EditText
+                android:id="@+id/et_rencana_kegiatan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_rencana_kegiatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/isi_disini"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"/>
 
         </LinearLayout>
 
@@ -406,18 +341,11 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_perlu_disiapkan_fasilitator"
+            <EditText
+                android:id="@+id/et_perlu_disiapkan_fasilitator"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_perlu_disiapkan_fasilitator"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/isi_disini"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"/>
 
         </LinearLayout>
 
@@ -438,18 +366,11 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_persyaratan_tempat"
+            <EditText
+                android:id="@+id/et_persyaratan_tempat"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_persyaratan_tempat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/isi_disini"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"/>
         </LinearLayout>
 
         <LinearLayout
@@ -469,18 +390,11 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_14sdp"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputlayout_informasi_tambahan"
+            <EditText
+                android:id="@+id/et_informasi_tambahan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_informasi_tambahan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/isi_disini"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"/>
 
         </LinearLayout>
 

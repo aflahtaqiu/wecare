@@ -24,7 +24,8 @@ public interface IDetailActSearchVolunterView extends IBaseView {
     void setDeadlinePendaftaran (String deadline);
     void setStartDateTime (String startDate, String startTime);
     void setEndDateTime (String endDate, String endTime);
-    void setArea (String area);
+    void setCity(String city);
+    void setActivityImage (String imageUrl);
 
     void setBookmarkView (boolean isBookmarked);
 

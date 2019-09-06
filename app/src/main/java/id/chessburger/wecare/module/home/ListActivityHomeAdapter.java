@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,7 +42,7 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
     private static final int ITEM_CARI_RELAWAN = 1;
     private static final int ITEM_CARI_TEMPAT = 2;
 
-    public ListActivityHomeAdapter(List<Activity> items, Context context) {
+    ListActivityHomeAdapter(List<Activity> items, Context context) {
         this.items = items;
         this.context = context;
     }
@@ -65,6 +67,8 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
     @Override
     public void onBindViewHolder(ActivityHomeViewHolder holder, int position) {
         Activity item = items.get(position);
+
+        Picasso.get().load(item.getPhoto()).into(holder.ivFotoActivity);
 
         holder.tvNameActivity.setText(item.getNameActivity());
         holder.tvTanggalPelaksanaan.setText(DateTimeUtils.dateToString(item.getStartDate(), DateTimeUtils.FORMAT_DDMMYYYY));
@@ -95,7 +99,7 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
         }
     }
 
-    public class ActivityHomeViewHolder extends RecyclerView.ViewHolder {
+    class ActivityHomeViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.iv_foto_item_activity_home)
         ImageView ivFotoActivity;
@@ -112,7 +116,7 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
         @BindView(R.id.tv_tipe_activity_item_home)
         TextView tvTipeActivity;
 
-        public ActivityHomeViewHolder(@NonNull View itemView) {
+        ActivityHomeViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -121,7 +125,7 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
     private class OnActSearchVolunteerClickListener implements View.OnClickListener {
         private final Activity item;
 
-        public OnActSearchVolunteerClickListener(Activity item) {
+        OnActSearchVolunteerClickListener(Activity item) {
             this.item = item;
         }
 
@@ -137,7 +141,7 @@ public class ListActivityHomeAdapter extends RecyclerView.Adapter<ListActivityHo
     private class OnActSearchPlaceClickListener implements View.OnClickListener {
         private final Activity item;
 
-        public OnActSearchPlaceClickListener(Activity item) {
+        OnActSearchPlaceClickListener(Activity item) {
             this.item = item;
         }
 

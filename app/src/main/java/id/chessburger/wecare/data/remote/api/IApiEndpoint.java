@@ -2,13 +2,14 @@ package id.chessburger.wecare.data.remote.api;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import id.chessburger.wecare.base.BaseResponse;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.User;
-import id.chessburger.wecare.model.response.BaseResponseRajaOngkir;
-import id.chessburger.wecare.model.response.ResponseGetCitiesRajaOngkir;
 import id.chessburger.wecare.model.response.ResponseLogin;
+import id.chessburger.wecare.model.response.ResponsePostDonation;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -36,7 +37,9 @@ public interface IApiEndpoint {
     Call<Activity> getActivityByIdJoin(
             @Header("Authorization") String token,
             @Path("id") int idActivity,
-            @Query("join") String joinRelational
+            @Query("join") String joinRelational,
+            @Nullable
+            @Query("join") String joinRelational2
     );
 
     @GET("activity")
@@ -72,7 +75,7 @@ public interface IApiEndpoint {
     );
 
     @Multipart
-    @POST("activity")
+    @POST("activity/find-volunteers")
     Call<Activity> createActivityCariRelawan (
             @Header("Authorization") String bearerToken,
             @Part("name") RequestBody name,
@@ -87,9 +90,28 @@ public interface IApiEndpoint {
             @Part("minVolunteers") RequestBody minVolunteers,
             @Part("donationTarget") RequestBody donationTarget,
             @Part("categoryId") RequestBody categoryId,
-            @Part("typeId") RequestBody typeId,
             @Part("city") RequestBody city,
             @Part("address") RequestBody address,
+            @Part MultipartBody.Part photo
+    );
+
+    @Multipart
+    @POST("activity/find-location")
+    Call<Activity> createActivityCariLokasi (
+            @Header("Authorization") String bearerToken,
+            @Part("name") RequestBody name,
+            @Part("start") RequestBody start,
+            @Part("end") RequestBody end,
+            @Part("registerDeadline") RequestBody registerDeadline,
+            @Part("description") RequestBody description,
+            @Part("area") RequestBody area,
+            @Part("categoryId") RequestBody categoryId,
+            @Part("maxParticipants") RequestBody maxParticipants,
+            @Part("volunteersTotal") RequestBody volunteersTotal,
+            @Part("preparedByFacilitator") RequestBody preparedByFacilitator,
+            @Part("activityPlan") RequestBody activityPlan,
+            @Part("locationRequirement") RequestBody locationRequirement,
+            @Part("additionalInformation") RequestBody additionalInformation,
             @Part MultipartBody.Part photo
     );
 
@@ -98,5 +120,14 @@ public interface IApiEndpoint {
     Call<BaseResponse<ResponseLogin>> login (
             @Field("phone") String phoneNumber,
             @Field("password") String password
+    );
+
+    @Multipart
+    @POST("donation")
+    Call<ResponsePostDonation> postDonation (
+            @Header("Authorization") String bearerToken,
+            @Part("amount") RequestBody amount,
+            @Part("activityId") RequestBody activityId,
+            @Part MultipartBody.Part transferValidation
     );
 }
