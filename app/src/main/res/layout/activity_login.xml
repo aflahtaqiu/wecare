@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".module.login.LoginActivity">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginStart="52dp"
+       android:layout_marginTop="@dimen/_240sdp"
+       android:layout_marginEnd="52dp"
+       android:orientation="vertical"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/inputlayout_username_login"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textColorHint="@color/colorWhite"
+           app:hintTextAppearance="@style/HintTextAppearance"
+           app:errorTextAppearance="@style/error_form_appearance">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/et_phone_number_login"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:theme="@style/LoginEditLayout"
+               android:hint="@string/nomor_hp"
+               android:inputType="phone"
+               android:textColor="@color/colorWhite" />
+
+       </com.google.android.material.textfield.TextInputLayout>
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/inputlayout_password_login"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textColorHint="@color/colorWhite"
+           app:hintTextAppearance="@style/HintTextAppearance"
+           app:errorTextAppearance="@style/error_form_appearance"
+           app:passwordToggleEnabled="true"
+           app:passwordToggleTint="@color/colorWhite">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/et_password_login"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="textPassword"
+               android:textColor="@color/colorWhite"
+               android:hint="@string/password"
+               android:theme="@style/LoginEditLayout"/>
+
+       </com.google.android.material.textfield.TextInputLayout>
+
+       <Button
+           android:id="@+id/btn_login"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="50dp"
+           android:background="@drawable/btn_round_white"
+           android:text="@string/login"
+           android:textColor="@color/colorPrimary"
+           android:textSize="20sp" />
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal"
+           android:layout_marginTop="50dp"
+           android:orientation="horizontal">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/belum_punya_akun"
+               android:textAlignment="center"
+               android:textColor="@color/colorWhite"
+               android:textSize="15sp" />
+
+           <TextView
+               android:id="@+id/tv_daftar_disini"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text=" Daftar disini"
+               android:textAlignment="center"
+               android:textColor="@color/colorWhite"
+               android:textSize="15sp"
+               android:textStyle="bold" />
+
+       </LinearLayout>
+
+   </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

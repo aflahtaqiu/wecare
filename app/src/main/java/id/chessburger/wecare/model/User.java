@@ -1,5 +1,10 @@
 package id.chessburger.wecare.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,5 +16,47 @@ import lombok.Data;
 
 @Data
 @Builder
-public class User {
+public class User implements Serializable {
+
+    @SerializedName("email")
+    private String email;
+
+    @SerializedName("phone")
+    private String phoneNumber;
+
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("gender")
+    private String gender;
+
+    @SerializedName("age")
+    private Integer age;
+
+    @SerializedName("profession")
+    private String profession;
+
+    @SerializedName("domicile")
+    private String domicile;
+
+    @SerializedName("description")
+    private String description;
+
+    @SerializedName("expertises")
+    private String expertises;
+
+    @SerializedName("relevance_issues")
+    private String relevanceIssues;
+
+    @SerializedName("photo")
+    private String photo;
+
+    @SerializedName("wecare_point")
+    private Integer wecarePoint;
+
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("bookmarks")
+    private List<Activity> bookmarkedActivities;
 }

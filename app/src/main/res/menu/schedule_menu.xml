@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/btn_sort_activity"
+        android:title="@string/urutkan"
+        android:icon="@drawable/ic_sort_grey_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/btn_filter_activity"
+        android:title="@string/urutkan"
+        android:icon="@drawable/ic_filter_grey_24dp"
+        app:showAsAction="always"/>
+</menu>

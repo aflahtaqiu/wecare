@@ -2,6 +2,7 @@ package id.chessburger.wecare.di;
 
 import id.chessburger.wecare.data.repository.ActivityDataRepository;
 import id.chessburger.wecare.data.repository.ArticleDataRepository;
+import id.chessburger.wecare.data.repository.RajaOngkirDataRepository;
 import id.chessburger.wecare.data.repository.UserDataRepository;
 
 /**
@@ -23,5 +24,9 @@ public class Injector {
 
     public static ArticleDataRepository provideArticleRepository () {
         return ArticleDataRepository.getInstance();
+    }
+
+    public static RajaOngkirDataRepository provideRajaOngkirRepository () {
+        return RajaOngkirDataRepository.getInstance();
     }
 }

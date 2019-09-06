@@ -2,12 +2,13 @@ package id.chessburger.wecare.module.article;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
@@ -37,7 +38,19 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_article, container, false);
         presenter = new ArticlePresenter(this);
+
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.article_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
