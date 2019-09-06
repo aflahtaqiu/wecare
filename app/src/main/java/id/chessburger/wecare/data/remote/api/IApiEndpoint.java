@@ -6,6 +6,8 @@ import id.chessburger.wecare.base.BaseResponse;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.User;
+import id.chessburger.wecare.model.response.BaseResponseRajaOngkir;
+import id.chessburger.wecare.model.response.ResponseGetCitiesRajaOngkir;
 import id.chessburger.wecare.model.response.ResponseLogin;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -30,19 +32,6 @@ import retrofit2.http.Query;
 
 public interface IApiEndpoint {
 
-    @FormUrlEncoded
-    @POST("auth/login")
-    Call<BaseResponse<ResponseLogin>> login (
-            @Field("phone") String phoneNumber,
-            @Field("password") String password
-    );
-
-    @PATCH("activity/follow/{id}")
-    Call<Activity> followActivity (
-            @Header("Authorization") String token,
-            @Path("id") int idActivity
-    );
-
     @GET("activity/{id}")
     Call<Activity> getActivityByIdJoin(
             @Header("Authorization") String token,
@@ -57,6 +46,30 @@ public interface IApiEndpoint {
 
     @GET("category")
     Call<List<ActivityCategory>> getAllCatergory ();
+
+    @GET("user/{id}")
+    Call<User> getUserByIdWithJoin (
+            @Path("id") int idUser,
+            @Query("join") String joinRelational
+    );
+
+    @PATCH("activity/bookmark/{id}")
+    Call<User> bookmarkActivity (
+            @Header("Authorization") String bearerToken,
+            @Path("id") int idActivity
+    );
+
+    @PATCH("activity/unbookmark/{id}")
+    Call<User> unBoorkmarkActivity(
+            @Header("Authorization") String bearerToken,
+            @Path("id") int idActivity
+    );
+
+    @PATCH("activity/follow/{id}")
+    Call<Activity> followActivity (
+            @Header("Authorization") String token,
+            @Path("id") int idActivity
+    );
 
     @Multipart
     @POST("activity")
@@ -80,21 +93,10 @@ public interface IApiEndpoint {
             @Part MultipartBody.Part photo
     );
 
-    @PATCH("activity/bookmark/{id}")
-    Call<User> bookmarkActivity (
-            @Header("Authorization") String bearerToken,
-            @Path("id") int idActivity
-    );
-
-    @PATCH("activity/unbookmark/{id}")
-    Call<User> unBoorkmarkActivity(
-            @Header("Authorization") String bearerToken,
-            @Path("id") int idActivity
-    );
-
-    @GET("user/{id}")
-    Call<User> getUserByIdWithJoin (
-            @Path("id") int idUser,
-            @Query("join") String joinRelational
+    @FormUrlEncoded
+    @POST("auth/login")
+    Call<BaseResponse<ResponseLogin>> login (
+            @Field("phone") String phoneNumber,
+            @Field("password") String password
     );
 }

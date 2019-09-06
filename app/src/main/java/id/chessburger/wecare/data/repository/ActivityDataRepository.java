@@ -27,7 +27,7 @@ public class ActivityDataRepository implements IActivityDataSource {
         return dataRepository;
     }
 
-    public ActivityDataRepository(ActivityRemoteDataSource remoteDataSource) {
+    ActivityDataRepository(ActivityRemoteDataSource remoteDataSource) {
         this.remoteDataSource = remoteDataSource;
     }
 

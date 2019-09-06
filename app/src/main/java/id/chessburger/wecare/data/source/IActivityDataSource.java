@@ -4,7 +4,6 @@ import java.util.List;
 
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
-import id.chessburger.wecare.model.User;
 import okhttp3.MultipartBody;
 
 /**
