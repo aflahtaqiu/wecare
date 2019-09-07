@@ -11,8 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:layout_marginRight="@dimen/_15sdp">
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp">
 
         <LinearLayout
             android:id="@+id/linearlayout_ketentuan_khusus"
@@ -71,6 +71,284 @@
                 android:hint="@string/isi_disini"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_kabupaten_kota_kegiatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_alamat_ajukan_tempat"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/kabupaten_kota"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_kabupaten_kota"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/bg_dropdown"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_ketersediaan_waktu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_kabupaten_kota_kegiatan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/tablelayout_tanggal_waktu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:stretchColumns="1,2">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tanggal_mulai"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp"/>
+
+                        <EditText
+                            android:id="@+id/et_tanggal_mulai"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/bg_dropdown"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:focusable="false"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/waktu_mulai"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp"/>
+
+                        <EditText
+                            android:id="@+id/et_waktu_mulai"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/bg_dropdown"
+                            android:focusable="false"/>
+
+                    </LinearLayout>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/_15sdp">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tanggal_selesai"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp"/>
+
+                        <EditText
+                            android:id="@+id/et_tanggal_selesai"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/bg_dropdown"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:focusable="false"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/_15sdp">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/waktu_selesai"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp"/>
+
+                        <EditText
+                            android:id="@+id/et_waktu_selesai"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/bg_dropdown"
+                            android:focusable="false"/>
+
+                    </LinearLayout>
+
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_jumlah_peserta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_ketersediaan_waktu"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/jumlah_peserta"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"/>
+
+            <EditText
+                android:id="@+id/et_jumlah_peserta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"
+                android:inputType="number"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_deskripsi_kondisi_tempat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_jumlah_peserta"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/deskripsi_kondisi_tempat"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"/>
+
+            <EditText
+                android:id="@+id/et_deskripsi_kondisi_tempat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_perizinan_tempat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearlayout_deskripsi_kondisi_tempat"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/surat_perizinan_tempat"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"/>
+
+            <Button
+                android:id="@+id/btn_perizinan_tempat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box_white_dots_stroke"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:text="@string/upload_foto"
+                android:textColor="@color/colorSecondary"
+                android:textAllCaps="false"
+                android:drawableStart="@drawable/ic_photo_camera" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_kondisi_tempat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearlayout_perizinan_tempat"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/foto_kondisi_tempat"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"/>
+
+            <Button
+                android:id="@+id/btn_kondisi_tempat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box_white_dots_stroke"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:text="@string/upload_foto"
+                android:textColor="@color/colorSecondary"
+                android:textAllCaps="false"
+                android:drawableStart="@drawable/ic_photo_camera" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_ajukan_tempat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ajukan_tempat"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/btn_box_red"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_kondisi_tempat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_30sdp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

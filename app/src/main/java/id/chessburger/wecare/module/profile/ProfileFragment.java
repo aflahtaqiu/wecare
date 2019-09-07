@@ -56,6 +56,15 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
     @BindView(R.id.tv_notelp_profile)
     TextView tvUserPhoneNumber;
 
+    @BindView(R.id.tv_jumlah_kegiatan_profile)
+    TextView tvJumlahKegiatanDiikuti;
+
+    @BindView(R.id.tv_jumlah_kampanye_profile)
+    TextView tvJumlahKampanye;
+
+    @BindView(R.id.tv_jumlah_donasi_profile)
+    TextView tvJumlahDonasi;
+
     @BindView(R.id.rv_bookmarked_activities)
     RecyclerView rvBookmarkedActivities;
 
@@ -94,6 +103,7 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
     public void onStart() {
         super.onStart();
         presenter.getUserProfileData();
+        presenter.getUserStatistic(user.getId());
         presenter.getBookmarkedActivities();
     }
 
@@ -150,6 +160,8 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
 
     @Override
     public void showUserProfileData(User user) {
+        this.user = user;
+
         if (!TextUtils.isEmpty(user.getPhoto()))
             Picasso.get()
                     .load(user.getPhoneNumber())
@@ -165,6 +177,13 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
     public void showBookmarkedActivities(List<Activity> activities) {
         this.bookmarkedActivities = activities;
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showUserStatistics(int followedActivities, int campaignedActivity, int donations) {
+        tvJumlahKegiatanDiikuti.setText(String.valueOf(followedActivities));
+        tvJumlahKampanye.setText(String.valueOf(campaignedActivity));
+        tvJumlahDonasi.setText(String.valueOf(donations));
     }
 
     @OnClick(R.id.iv_logout_profile)
