@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.Donation;
+import id.chessburger.wecare.model.response.ResponsePostDonation;
 import okhttp3.MultipartBody;
 
 /**
@@ -77,7 +78,7 @@ public interface IActivityDataSource {
     }
 
     interface PostDonationCallback {
-        void onSuccess (Donation donation);
+        void onSuccess (ResponsePostDonation responsePostDonation);
         void onError (String errorMessage);
     }
 }

@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_logo_wecare"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.donation.DonationActivity"></activity>
+        <activity
+            android:name=".module.donation.DonationActivity"
+            android:theme="@style/AppTheme.WhiteActionBar"
+            android:parentActivityName=".module.detail_activity_search_volunter.DetailActSearchVolunterActivity"/>
         <activity
             android:name=".module.propose_location.ProposeLocationActivity"
             android:label="@string/ajukan_tempat"

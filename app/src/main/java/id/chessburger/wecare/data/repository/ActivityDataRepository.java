@@ -9,6 +9,7 @@ import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.Donation;
+import id.chessburger.wecare.model.response.ResponsePostDonation;
 import okhttp3.MultipartBody;
 
 /**
@@ -171,10 +172,13 @@ public class ActivityDataRepository implements IActivityDataSource {
 
     @Override
     public void postDonation(String token, int amount, int activityId, MultipartBody.Part transferValidation, PostDonationCallback callback) {
+
+
         remoteDataSource.postDonation(token, amount, activityId, transferValidation, new PostDonationCallback() {
+
             @Override
-            public void onSuccess(Donation donation) {
-                callback.onSuccess(donation);
+            public void onSuccess(ResponsePostDonation responsePostDonation) {
+                callback.onSuccess(responsePostDonation);
             }
 
             @Override

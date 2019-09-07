@@ -23,6 +23,9 @@ public class DetailActSearchVolunterPresenter {
     private ActivityDataRepository activityDataRepository;
     private String token;
 
+    private static final int ZERO_VALUE = 0;
+    private static final int ONE_HUNDRED = 100;
+
     private final String LOADING_STRING = "Loading...";
     private final String BERHASIL_BUAT_ACTIVITY = "Kegiatan Anda telah dipublikasikan untuk dikampanyekan";
 
@@ -109,6 +112,30 @@ public class DetailActSearchVolunterPresenter {
         void setVolunteerAndDonationData(Activity activity) {
             view.setDonationData(activity.getDonationTarget(), activity.getDonationsTotal());
             view.setVolunteerData(activity.getMinVolunteers(), activity.getVolunteersTotal());
+            setDonationProgress((double) activity.getDonationTarget(), (double) activity.getDonationsTotal());
+            setVolunteerProgress((double) activity.getMinVolunteers(), (double) activity.getVolunteersTotal());
+        }
+
+        void setDonationProgress (double requiredDonation, double collectedDonation) {
+            if (isZero(requiredDonation)) {
+                view.setDonationProgress(ZERO_VALUE);
+            } else {
+                double progressDonation = (collectedDonation / requiredDonation) * ONE_HUNDRED;
+                view.setDonationProgress((int) progressDonation);
+            }
+        }
+
+        void setVolunteerProgress (double minVolunteer, double registeredVolunteer) {
+            if (isZero(minVolunteer)) {
+                view.setVolunteerProgress(ZERO_VALUE);
+            } else {
+                double progressVolunteer = (registeredVolunteer / minVolunteer) * ONE_HUNDRED;
+                view.setVolunteerProgress((int) progressVolunteer);
+            }
+        }
+
+        private boolean isZero (double value) {
+            return value == ZERO_VALUE;
         }
 
         void setDateTime(Date deadlineDate, Date startDate, Date endDate) {

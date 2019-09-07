@@ -234,12 +234,28 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
         call.enqueue(new Callback<ResponsePostDonation>() {
             @Override
             public void onResponse(Call<ResponsePostDonation> call, Response<ResponsePostDonation> response) {
-
+                if (response.code() == ResponseServerCode.CREATED.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            if (responseError.getMessage() == null)
+                                callback.onError(responseError.getError());
+                            else
+                                callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Failed donate to this activity");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<ResponsePostDonation> call, Throwable t) {
-
+                callback.onError(t.getMessage());
             }
         });
     }
