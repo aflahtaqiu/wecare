@@ -1,9 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.donation.DonationActivity">
+    tools:context=".module.donation.DonationActivity"
+    android:background="@color/colorWhite">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_50sdp"
+        android:paddingStart="@dimen/_30sdp"
+        android:paddingEnd="@dimen/_30sdp">
+
+        <TextView
+            android:id="@+id/tv_isi1_donasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/isi1_donasi"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_nomor_rekening_donasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/nomor_rekening"
+            android:textAlignment="center"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_isi1_donasi"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <TextView
+            android:id="@+id/tv_isi2_donasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/isi2_donasi"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nomor_rekening_donasi"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <TextView
+            android:id="@+id/tv_nama_rekening_donasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/wecare_indonesia"
+            android:textAlignment="center"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_isi2_donasi"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <TextView
+            android:id="@+id/tv_isi3_donasi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/isi3_donasi"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nama_rekening_donasi"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_nominal_donasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_isi3_donasi"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nominal_donasi"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"/>
+
+            <EditText
+                android:id="@+id/et_nominal_donasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/isi_disini"
+                android:inputType="number"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_upload_bukti_transfer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearlayout_nominal_donasi"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/foto_banner_kegiatan"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"/>
+
+            <Button
+                android:id="@+id/btn_upload_bukti_transfer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box_white_dots_stroke"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:text="@string/upload_foto"
+                android:textColor="@color/colorSecondary"
+                android:textAllCaps="false"
+                android:drawableStart="@drawable/ic_photo_camera" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_validasi_donasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/validasi"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/btn_box_red"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_upload_bukti_transfer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_30sdp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

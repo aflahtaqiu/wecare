@@ -24,6 +24,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_nama_activity_search_place"
             android:layout_marginTop="@dimen/_7sdp">
 
             <ImageView
@@ -35,12 +36,9 @@
                 android:id="@+id/tv_kategori_kegiatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bakti sosial"
                 android:textSize="@dimen/_11sdp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"/>
-
-
         </LinearLayout>
 
         <TextView
@@ -50,10 +48,10 @@
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold"
-            android:text="Berbagi Makanan Fakir Miskin Desa Pakuwon"
             app:layout_constraintTop_toBottomOf="@id/linearlayout_grey_data"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_penyelenggara_activity_search_place"
             android:layout_marginTop="@dimen/_7sdp"/>
 
         <TextView
@@ -63,7 +61,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_nama_activity_search_place"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Oleh Pemerintah Kota Surabaya"
+            app:layout_constraintBottom_toTopOf="@id/relativelayout_data_act_search_place"
             android:layout_marginTop="@dimen/_3sdp"/>
 
         <RelativeLayout
@@ -80,11 +78,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_alignParentLeft="true">
+
                 <ImageView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:src="@drawable/ic_user_gold_24dp"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ic_volunteer_gold"
                     android:layout_gravity="center_horizontal"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,9 +109,9 @@
                 android:orientation="vertical"
                 android:layout_centerInParent="true">
                 <ImageView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:src="@drawable/ic_campaign_white"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ic_participants_gold"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
@@ -137,10 +137,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_alignParentRight="true">
+
                 <ImageView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:src="@drawable/ic_money_white"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ic_duration_gold"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
@@ -154,7 +155,6 @@
                     android:id="@+id/tv_durasi_kegiatan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2 Hari"
                     android:textColor="@color/colorGold"
                     android:textStyle="bold"
                     android:layout_gravity="center_horizontal"/>
@@ -184,8 +184,7 @@
                 android:id="@+id/tv_deskripsi_act_search_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+                android:layout_marginTop="@dimen/_5sdp"/>
 
         </LinearLayout>
 
@@ -214,8 +213,7 @@
                 <TextView
                     android:id="@+id/tv_narahubung_no_telp_act_search_place"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="08123456789"/>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -227,7 +225,6 @@
                     android:id="@+id/tv_narahubung_email_act_search_place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="pemkotsby@gmail.com"
                     android:layout_marginLeft="@dimen/_5sdp"/>
 
             </LinearLayout>
@@ -265,8 +262,7 @@
                 android:id="@+id/tv_jangkauan_daerah_act_search_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="Surabaya, Sidoarjo, Gresik"/>
+                android:layout_marginTop="@dimen/_5sdp"/>
 
         </LinearLayout>
 
@@ -291,8 +287,7 @@
                 android:id="@+id/tv_ketersediaan_waktu_act_search_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="30 juni s/d 30 desember 2019"/>
+                android:layout_marginTop="@dimen/_5sdp"/>
 
         </LinearLayout>
 
@@ -317,8 +312,7 @@
                 android:id="@+id/tv_tanggal_telah_terisi_act_search_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="30 juni s/d 30 desember 2019"/>
+                android:layout_marginTop="@dimen/_5sdp"/>
 
         </LinearLayout>
 
@@ -353,8 +347,7 @@
                 android:id="@+id/tv_rencana_kegiatan_act_search_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="Menyaipkan makanan, menyiapkan tempat, mengatur dan mengajak warga."/>
+                android:layout_marginTop="@dimen/_5sdp"/>
 
         </LinearLayout>
 
@@ -379,8 +372,7 @@
                 android:id="@+id/tv_perlu_disiapkan_fasilitator_act_search_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="Membawa alat tulis, buku, laptop, dan tas. Berpakaian bebas sopan."/>
+                android:layout_marginTop="@dimen/_5sdp"/>
 
         </LinearLayout>
 
@@ -405,8 +397,7 @@
                 android:id="@+id/tv_persyaratan_act_search_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="Alat tulis, buku, laptop, dan tas. Berpakaian bebas sopan."/>
+                android:layout_marginTop="@dimen/_5sdp"/>
 
         </LinearLayout>
 
@@ -431,8 +422,7 @@
                 android:id="@+id/tv_informasi_tambahan_act_search_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="Wajib memfollow akun IG, Facebook dan LIne dengan username: @pemkotsby"/>
+                android:layout_marginTop="@dimen/_5sdp"/>
 
         </LinearLayout>
 

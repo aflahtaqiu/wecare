@@ -20,6 +20,8 @@ import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseActivity;
 import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
+import id.chessburger.wecare.module.donation.DonationActivity;
+import id.chessburger.wecare.utils.CommunicationUtils;
 
 public class DetailActSearchVolunterActivity extends BaseActivity implements IDetailActSearchVolunterView {
 
@@ -30,7 +32,7 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     Toolbar toolbar;
 
     @BindView(R.id.iv_acitvity_picture)
-    ImageView ivActivityPicture; //Change the background to activity image
+    ImageView ivActivityPicture;
 
     @BindView(R.id.progress_relawan_act_search_volunter)
     ProgressBar progressBarRelawan;
@@ -48,7 +50,7 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     TextView tvPenyelenggara;
 
     @BindView(R.id.tv_sisa_volunter_tersedia_act_search_volunter)
-    TextView tvSisaVolunter;//min volunter - actual volunter
+    TextView tvSisaVolunter;
 
     @BindView(R.id.tv_relawan_terdaftar_act_search_volunter)
     TextView tvVolunterTerdaftar;
@@ -112,9 +114,6 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     private int idActivity;
     private boolean isBookmarked;
 
-    private static final int ZERO_VALUE = 0;
-    private static final int ONE_HUNDRED = 100;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,10 +139,6 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     private void getBundleIntentData() {
         Bundle bundle = getIntent().getBundleExtra(CommunicationKeys.BUNDLE_KEY.getKey());
         idActivity = bundle.getInt(CommunicationKeys.SELECTED_ACTIVITY.getKey());
-    }
-
-    private boolean isIntegerZero (int integer) {
-        return integer == ZERO_VALUE;
     }
 
     @Override
@@ -181,7 +176,10 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
 
     @OnClick(R.id.btn_donasi_activity_volunter)
     public void onDonasiBtnClicked () {
-
+        Bundle bundle = new Bundle();
+        bundle.putInt(CommunicationKeys.SELECTED_ACTIVITY.getKey(), idActivity);
+        CommunicationUtils.changeActivity(this, DonationActivity.class, bundle,
+                CommunicationKeys.BUNDLE_KEY.getKey(), false);
     }
 
     @OnClick(R.id.btn_follow_activity_volunter)
@@ -221,17 +219,11 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
         String rupiahString = "Rp. ";
         tvDonasiMinimum.setText(rupiahString + requiredDonation);
         tvDonasiTerkumpul.setText(rupiahString + collectedDonation);
-        setDonationProgress(requiredDonation, collectedDonation);
     }
 
     @Override
-    public void setDonationProgress(int requiredDonation, int collectedDonation) {
-        if (isIntegerZero(requiredDonation)) {
-            progressBarDonasi.setProgress(ZERO_VALUE);
-        } else {
-            int progressDonation = (collectedDonation / requiredDonation) * ONE_HUNDRED;
-            progressBarDonasi.setProgress(progressDonation);
-        }
+    public void setDonationProgress(int donationProgress) {
+        progressBarDonasi.setProgress(donationProgress);
     }
 
     @Override
@@ -239,7 +231,6 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
         tvMinimumVolunter.setText(String.valueOf(minimumVolunteer));
         tvVolunterTerdaftar.setText(String.valueOf(registeredVolunteer));
         setSisaVolunteer(minimumVolunteer, registeredVolunteer);
-        setVolunteerProgress(minimumVolunteer, registeredVolunteer);
     }
 
     @Override
@@ -250,13 +241,8 @@ public class DetailActSearchVolunterActivity extends BaseActivity implements IDe
     }
 
     @Override
-    public void setVolunteerProgress(int minimumVolunteer, int registeredVolunteer) {
-        if (isIntegerZero(minimumVolunteer)) {
-            progressBarRelawan.setProgress(ZERO_VALUE);
-        } else {
-            int progressVolunteer = (registeredVolunteer / minimumVolunteer) * ONE_HUNDRED;
-            progressBarRelawan.setProgress(progressVolunteer);
-        }
+    public void setVolunteerProgress(int volunteerProgress) {
+        progressBarRelawan.setProgress(volunteerProgress);
     }
 
     @Override

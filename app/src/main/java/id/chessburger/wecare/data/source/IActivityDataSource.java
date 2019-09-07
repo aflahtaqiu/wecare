@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
-import id.chessburger.wecare.model.Donation;
+import id.chessburger.wecare.model.response.ResponsePostDonation;
 import okhttp3.MultipartBody;
 
 /**
@@ -19,10 +19,12 @@ import okhttp3.MultipartBody;
 public interface IActivityDataSource {
 
     void followActivity (String token, int idActivity, FollowActivityCallback callback);
+
     void getAllActivitiesJoinQuery (String joinQuery, GetActivitiesCallback callback);
     void getActivityById (String token, int idActivity, String joinRelation, @Nullable String joinRelation2,
                           GetActivityByIdCallback callback);
     void getAllCategory (GetAllCategoryCallback callback);
+
     void createActivityCariRelawan(String bearerToken, String name, String start, String end, String registerDeadline,
                                    String description, String volunteerTasks, String volunteerEquipments,
                                    String volunteerRequirements, String briefs, int minVolunteers,
@@ -34,11 +36,15 @@ public interface IActivityDataSource {
                                    String preparedByFacilitator, String activityPlan, String locationRequirement,
                                    String additionalInformation, MultipartBody.Part photo, CreateActivityCallback callback);
 
+
     void bookmarkActivity (String token, int idActivity, BookmarkActivityCallback callback);
     void unBookmarkActivity (String token, int idActivity, UnBookmarkActivityCallback callback);
 
     void postDonation (String token, int amount, int activityId, MultipartBody.Part transferValidation, PostDonationCallback callback);
 
+    void postLocation (String token, int idActivity, String city, String address, String startDateTime,
+                       String endDateTime, String description, int capacity, MultipartBody.Part locationPhoto,
+                       MultipartBody.Part licensePhoto, PostLocationCallback callback);
 
     interface FollowActivityCallback {
         void onSuccess (Activity activity);
@@ -77,7 +83,12 @@ public interface IActivityDataSource {
     }
 
     interface PostDonationCallback {
-        void onSuccess (Donation donation);
+        void onSuccess (ResponsePostDonation responsePostDonation);
+        void onError (String errorMessage);
+    }
+
+    interface PostLocationCallback {
+        void onSuccess (String successMessage);
         void onError (String errorMessage);
     }
 }

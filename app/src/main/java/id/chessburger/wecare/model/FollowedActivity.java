@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * Created by aflah on 12/08/19
+ * Created by aflah on 08/09/19
  * Email  : aflahtaqiusondha@gmail.com
  * Github : https://github.com/aflahtaqiu
  */
@@ -14,11 +14,17 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Donation {
+public class FollowedActivity {
 
-    @SerializedName("amount")
-    private int amount;
+    @SerializedName("id")
+    private int id;
 
     @SerializedName("activityId")
-    private int activityId;
+    private int idActivity;
+
+    @SerializedName("userId")
+    private int idUser;
+
+    @SerializedName("isPresent")
+    private Boolean isPresent;
 }

@@ -17,10 +17,10 @@ public interface IDetailActSearchVolunterView extends IBaseView {
     void setActivityDescription(String description);
     void setPersiapanActivityData (Activity activityData);
     void setDonationData(int requiredDonation, int collectedDonation);
-    void setDonationProgress(int requiredDonation, int collectedDonation);
+    void setDonationProgress(int donationProgress);
     void setVolunteerData(int minimumVolunteer, int registeredVolunteer);
     void setSisaVolunteer(int minimumVolunteer, int registeredVolunteer);
-    void setVolunteerProgress(int minimumVolunteer, int registeredVolunteer);
+    void setVolunteerProgress(int volunteerProgress);
     void setDeadlinePendaftaran (String deadline);
     void setStartDateTime (String startDate, String startTime);
     void setEndDateTime (String endDate, String endTime);

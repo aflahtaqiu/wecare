@@ -2,7 +2,6 @@ package id.chessburger.wecare.module.profile;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class ListBookmarkedActivitiesAdapter extends RecyclerView.Adapter<ListBo
     public void onBindViewHolder(BookmarkedActivitiesViewHolder holder, int position) {
         Activity item = items.get(position);
 
-        Log.e("lele", item.toString());
+        Picasso.get().load(item.getPhoto()).into(holder.ivFotoActivity);
 
         holder.tvNameActivity.setText(item.getNameActivity());
         holder.tvTanggalPelaksanaan.setText(DateTimeUtils.dateToString(item.getStartDate(), DateTimeUtils.FORMAT_DDMMYYYY));

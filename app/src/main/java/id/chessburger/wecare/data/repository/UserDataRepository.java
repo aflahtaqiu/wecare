@@ -5,7 +5,7 @@ import java.util.List;
 import id.chessburger.wecare.data.remote.UserRemoteDataSource;
 import id.chessburger.wecare.data.source.IUserDataSource;
 import id.chessburger.wecare.model.Activity;
-import id.chessburger.wecare.model.response.ResponseLogin;
+import id.chessburger.wecare.model.User;
 
 /**
  * Created by aflah on 12/08/19
@@ -33,9 +33,10 @@ public class UserDataRepository implements IUserDataSource {
     @Override
     public void login(String phoneNumber, String password, LogInCallback callback) {
         remoteDataSource.login(phoneNumber, password, new LogInCallback() {
+
             @Override
-            public void onSuccess(ResponseLogin responseLogin) {
-                callback.onSuccess(responseLogin);
+            public void onSuccess(User user) {
+                callback.onSuccess(user);
             }
 
             @Override
@@ -51,6 +52,21 @@ public class UserDataRepository implements IUserDataSource {
             @Override
             public void onSuccess(List<Activity> activities) {
                 callback.onSuccess(activities);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void getUserStatistic(int idUser, String joinQuery, String joinQuery2, String joinQuery3, GetUserStatisticCallback callback) {
+        remoteDataSource.getUserStatistic(idUser, joinQuery, joinQuery2, joinQuery3, new GetUserStatisticCallback() {
+            @Override
+            public void onSuccess(User user) {
+                callback.onSuccess(user);
             }
 
             @Override

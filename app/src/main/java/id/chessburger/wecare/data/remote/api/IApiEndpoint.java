@@ -4,11 +4,10 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import id.chessburger.wecare.base.BaseResponse;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.Location;
 import id.chessburger.wecare.model.User;
-import id.chessburger.wecare.model.response.ResponseLogin;
 import id.chessburger.wecare.model.response.ResponsePostDonation;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -53,7 +52,11 @@ public interface IApiEndpoint {
     @GET("user/{id}")
     Call<User> getUserByIdWithJoin (
             @Path("id") int idUser,
-            @Query("join") String joinRelational
+            @Query("join") String joinRelational,
+            @Nullable
+            @Query("join") String joinRelational2,
+            @Nullable
+            @Query("join") String joinRelational3
     );
 
     @PATCH("activity/bookmark/{id}")
@@ -117,7 +120,7 @@ public interface IApiEndpoint {
 
     @FormUrlEncoded
     @POST("auth/login")
-    Call<BaseResponse<ResponseLogin>> login (
+    Call<User> login (
             @Field("phone") String phoneNumber,
             @Field("password") String password
     );
@@ -129,5 +132,20 @@ public interface IApiEndpoint {
             @Part("amount") RequestBody amount,
             @Part("activityId") RequestBody activityId,
             @Part MultipartBody.Part transferValidation
+    );
+
+    @Multipart
+    @POST("location")
+    Call<Location> postLocation (
+            @Header("Authorization") String bearerToken,
+            @Part("activityId") RequestBody activityId,
+            @Part("city") RequestBody city,
+            @Part("address") RequestBody address,
+            @Part("start") RequestBody start,
+            @Part("end") RequestBody end,
+            @Part("description") RequestBody description,
+            @Part("capacity") RequestBody capacity,
+            @Part MultipartBody.Part locationPhoto,
+            @Part MultipartBody.Part licensePhoto
     );
 }
