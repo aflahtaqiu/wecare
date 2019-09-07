@@ -17,7 +17,7 @@ import id.chessburger.wecare.utils.SharedPrefUtils;
  */
 
 
-public class DetailActSearchVolunterPresenter {
+class DetailActSearchVolunterPresenter {
 
     private IDetailActSearchVolunterView view;
     private ActivityDataRepository activityDataRepository;

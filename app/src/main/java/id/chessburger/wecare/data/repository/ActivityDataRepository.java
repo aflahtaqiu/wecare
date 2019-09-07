@@ -8,7 +8,6 @@ import id.chessburger.wecare.data.remote.ActivityRemoteDataSource;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
-import id.chessburger.wecare.model.Donation;
 import id.chessburger.wecare.model.response.ResponsePostDonation;
 import okhttp3.MultipartBody;
 
@@ -171,7 +170,8 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
-    public void postDonation(String token, int amount, int activityId, MultipartBody.Part transferValidation, PostDonationCallback callback) {
+    public void postDonation(String token, int amount, int activityId, MultipartBody.Part transferValidation,
+                             PostDonationCallback callback) {
 
 
         remoteDataSource.postDonation(token, amount, activityId, transferValidation, new PostDonationCallback() {
@@ -179,6 +179,25 @@ public class ActivityDataRepository implements IActivityDataSource {
             @Override
             public void onSuccess(ResponsePostDonation responsePostDonation) {
                 callback.onSuccess(responsePostDonation);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void postLocation(String token, int idActivity, String city, String address, String startDateTime,
+                             String endDateTime, String description, int capacity, MultipartBody.Part locationPhoto,
+                             MultipartBody.Part licensePhoto, PostLocationCallback callback) {
+
+        remoteDataSource.postLocation(token, idActivity, city, address, startDateTime, endDateTime, description,
+                capacity, locationPhoto, licensePhoto, new PostLocationCallback() {
+            @Override
+            public void onSuccess(String successMessage) {
+                callback.onSuccess(successMessage);
             }
 
             @Override

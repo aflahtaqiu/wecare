@@ -2,8 +2,6 @@ package id.chessburger.wecare.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -24,6 +22,9 @@ public class Location {
     @SerializedName("userId")
     private int userId;
 
+    @SerializedName("capacity")
+    private int capacity;
+
     @SerializedName("city")
     private String city;
 
@@ -37,10 +38,10 @@ public class Location {
     private float longitude;
 
     @SerializedName("start")
-    private Date startDate;
+    private String startDate;
 
     @SerializedName("end")
-    private Date endDate;
+    private String endDate;
 
     @SerializedName("description")
     private String description;

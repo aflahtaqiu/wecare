@@ -1,5 +1,7 @@
 package id.chessburger.wecare.module.profile;
 
+import android.util.Log;
+
 import java.util.List;
 
 import id.chessburger.wecare.data.repository.UserDataRepository;
@@ -54,6 +56,28 @@ public class ProfilePresenter {
             @Override
             public void onError(String errorMessage) {
                 view.hideLoading();
+                view.showMessage(errorMessage);
+            }
+        });
+    }
+
+    void getUserStatistic (int idUser) {
+        String joinQueryFollowedActivities = "followedActivities";
+        String joinQueryCampaignedActivities = "activities";
+        String joinQueryDonations = "donations";
+
+        userDataRepository.getUserStatistic(idUser, joinQueryFollowedActivities, joinQueryCampaignedActivities, joinQueryDonations, new IUserDataSource.GetUserStatisticCallback() {
+            @Override
+            public void onSuccess(User user) {
+                int followedActivities = user.getFollowedActivities().size();
+                int campaignedActivities = user.getCampaignedActivities().size();
+                int donations = user.getDonations().size();
+
+                view.showUserStatistics(followedActivities, campaignedActivities, donations);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
                 view.showMessage(errorMessage);
             }
         });

@@ -1,13 +1,16 @@
 package id.chessburger.wecare.module.detail_activity_search_place;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,14 +30,17 @@ public class DetailActSearchPlaceActivity extends BaseActivity implements IDetai
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.app_bar)
-    AppBarLayout appBarLayout; //Change the background to activity image
+    @BindView(R.id.iv_acitvity_picture)
+    ImageView ivActivityPicture;
 
     @BindView(R.id.btn_ajukan_tempat)
     Button btnAjukanTempat;
 
     @BindView(R.id.tv_nama_activity_search_place)
     TextView tvNamaKegiatan;
+
+    @BindView(R.id.tv_kategori_kegiatan)
+    TextView tvKategoriKegiatan;
 
     @BindView(R.id.tv_penyelenggara_activity_search_place)
     TextView tvPenyelenggara;
@@ -81,6 +87,7 @@ public class DetailActSearchPlaceActivity extends BaseActivity implements IDetai
     private DetailActSearchPlacePresenter presenter;
 
     private int idActivity;
+    private boolean isBookmarked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,42 +129,55 @@ public class DetailActSearchPlaceActivity extends BaseActivity implements IDetai
 
     @Override
     public void showMessage(String message) {
+        AlertDialog messageDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.warning)
+                .setMessage(message)
+                .setPositiveButton(R.string.oke, new OnOkeClickListener())
+                .setCancelable(false)
+                .create();
 
+        messageDialog.setCanceledOnTouchOutside(true);
+        messageDialog.show();
     }
 
-    @OnClick(R.id.btn_ajukan_tempat)
-    public void onAjukanTempatBtnClicked () {
-
+    @Override
+    public void setActivityPhoto(String imageUrl) {
+        Picasso.get().load(imageUrl).fit().into(ivActivityPicture);
     }
 
     @Override
     public void setActivityCategory(String category) {
-
+        tvKategoriKegiatan.setText(category);
     }
 
     @Override
     public void setActivityName(String activityName) {
-
+        tvNamaKegiatan.setText(activityName);
     }
 
     @Override
     public void setCampaignerData(User campaigner) {
+        String penyelenggara = getText(R.string.oleh)+ " " + campaigner.getName();
 
+        tvPenyelenggara.setText(penyelenggara);
+        tvNoTelpNarahubung.setText(campaigner.getPhoneNumber());
+        tvEmailNarahubung.setText(campaigner.getEmail());
     }
 
     @Override
     public void setActivityDescription(String description) {
-
+        tvDeskripsi.setText(description);
     }
 
     @Override
     public void setJangkauanDaerah(String area) {
-
+        tvJangkauanDaerah.setText(area);
     }
 
     @Override
     public void setKetersediaanWaktu(String startDate, String endDate) {
-
+        String ketersediaanWaktu = startDate + " s/d " + endDate;
+        tvKetersediaanWaktu.setText(ketersediaanWaktu);
     }
 
     @Override
@@ -166,23 +186,48 @@ public class DetailActSearchPlaceActivity extends BaseActivity implements IDetai
     }
 
     @Override
-    public void setRencanaKegiatan(String rencanaKegiatan) {
+    public void setActivityDuration(int duration) {
+        tvDurasiKegiatan.setText(duration + " " + getResources().getString(R.string.hari));
+    }
 
+    @Override
+    public void setRencanaKegiatan(String rencanaKegiatan) {
+        tvRencanaKegiatan.setText(rencanaKegiatan);
     }
 
     @Override
     public void serPerluDisiapkanFasilitator(String perluDisiapkanFasilitator) {
-
+        tvPerluDisiapkanFasilitator.setText(perluDisiapkanFasilitator);
     }
 
     @Override
     public void setPersyaratan(String persyaratan) {
-
+        tvPersyaratan.setText(persyaratan);
     }
 
     @Override
     public void setAdditionalInformation(String additionalInformation) {
+        tvInformasiTambahan.setText(additionalInformation);
+    }
 
+    @Override
+    public void setBookmarkView(boolean isBookmarked) {
+        this.isBookmarked = isBookmarked;
+
+        if (isBookmarked)
+            fabBookmark.setImageResource(R.drawable.ic_already_bookmark);
+        else
+            fabBookmark.setImageResource(R.drawable.ic_bookmark_white);
+    }
+
+    @OnClick(R.id.fab_bookmark_activity_search_place)
+    public void onBookmarkBtnClicked () {
+        fabBookmark.setImageResource(R.drawable.ic_already_bookmark);
+
+        if (isBookmarked)
+            presenter.unBookmarkActivity(idActivity);
+        else
+            presenter.bookmarkActivity(idActivity);
     }
 
     @OnClick(R.id.btn_ajukan_tempat)
@@ -192,5 +237,12 @@ public class DetailActSearchPlaceActivity extends BaseActivity implements IDetai
 
         CommunicationUtils.changeActivity(this, ProposeLocationActivity.class,
                 false, bundle, CommunicationKeys.BUNDLE_KEY.getKey());
+    }
+
+    private static class OnOkeClickListener implements DialogInterface.OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+        }
     }
 }

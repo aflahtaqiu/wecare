@@ -18,4 +18,5 @@ public interface IProfileView extends IBaseView {
     void moveIntoEditProfile();
     void showUserProfileData(User user);
     void showBookmarkedActivities (List<Activity> activities);
+    void showUserStatistics(int followedActivities, int campaignedActivity, int donations);
 }

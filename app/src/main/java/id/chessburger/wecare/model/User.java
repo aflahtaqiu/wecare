@@ -51,6 +51,9 @@ public class User implements Serializable {
     @SerializedName("photo")
     private String photo;
 
+    @SerializedName("accessToken")
+    private String accessToken;
+
     @SerializedName("wecare_point")
     private Integer wecarePoint;
 
@@ -59,4 +62,13 @@ public class User implements Serializable {
 
     @SerializedName("bookmarks")
     private List<Activity> bookmarkedActivities;
+
+    @SerializedName("followedActivities")
+    private List<FollowedActivity> followedActivities;
+
+    @SerializedName("activities")
+    private List<Activity> campaignedActivities;
+
+    @SerializedName("donations")
+    private List<Donation> donations;
 }

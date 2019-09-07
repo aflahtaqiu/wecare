@@ -1,5 +1,7 @@
 package id.chessburger.wecare.data.remote;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import id.chessburger.wecare.base.BaseRemoteDataSource;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
+import id.chessburger.wecare.model.Location;
 import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.ResponseServerCode;
 import id.chessburger.wecare.model.response.ResponseError;
@@ -256,6 +259,56 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
             @Override
             public void onFailure(Call<ResponsePostDonation> call, Throwable t) {
                 callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void postLocation(String token, int idActivity, String city, String address, String startDateTime,
+                             String endDateTime, String description, int capacity, MultipartBody.Part locationPhoto,
+                             MultipartBody.Part licensePhoto, PostLocationCallback callback) {
+
+        RequestBody idActivityBody = RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(idActivity));
+        RequestBody capacityBody = RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(capacity));
+
+        RequestBody cityBody = RequestBody.create(okhttp3.MultipartBody.FORM, city);
+        RequestBody addressBody = RequestBody.create(okhttp3.MultipartBody.FORM, address);
+        RequestBody startDateTimeBody = RequestBody.create(okhttp3.MultipartBody.FORM, startDateTime);
+        RequestBody endDateTimeBody = RequestBody.create(okhttp3.MultipartBody.FORM, endDateTime);
+        RequestBody descriptionBody = RequestBody.create(okhttp3.MultipartBody.FORM, description);
+
+
+        Call<Location> call = apiEndpoint.postLocation(token, idActivityBody, cityBody, addressBody,
+                startDateTimeBody, endDateTimeBody, descriptionBody, capacityBody, locationPhoto,licensePhoto);
+        Log.e("request", startDateTimeBody.toString());
+        call.enqueue(new Callback<Location>() {
+            @Override
+            public void onResponse(Call<Location> call, Response<Location> response) {
+                if (response.code() == ResponseServerCode.CREATED.getCode()) {
+                    callback.onSuccess("Anda berhasil mengajukan tempat untuk kegiatan ini.");
+                } else {
+                    try {
+                        Log.e("responsebody", response.errorBody().string());
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            if (responseError.getMessage() == null)
+                                callback.onError(responseError.getError());
+                            else
+                                callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Failed mengajukan tempat");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Location> call, Throwable t) {
+                callback.onError(t.toString());
+                Log.e("failure", t.toString());
+                t.printStackTrace();
             }
         });
     }

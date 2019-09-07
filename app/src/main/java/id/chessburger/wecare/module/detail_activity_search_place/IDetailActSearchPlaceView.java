@@ -11,6 +11,8 @@ import id.chessburger.wecare.model.User;
 
 
 public interface IDetailActSearchPlaceView extends IBaseView {
+    void setActivityPhoto (String imageUrl);
+
     void setActivityCategory(String category);
     void setActivityName(String activityName);
     void setCampaignerData (User campaigner);
@@ -18,8 +20,11 @@ public interface IDetailActSearchPlaceView extends IBaseView {
     void setJangkauanDaerah (String area);
     void setKetersediaanWaktu (String startDate , String endDate);
     void setTanggalTelahTerisi ();
+    void setActivityDuration(int duration);
     void setRencanaKegiatan (String rencanaKegiatan);
     void serPerluDisiapkanFasilitator (String perluDisiapkanFasilitator);
     void setPersyaratan (String persyaratan);
     void setAdditionalInformation (String additionalInformation);
+
+    void setBookmarkView (boolean isBookmarked);
 }
