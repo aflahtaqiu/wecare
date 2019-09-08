@@ -46,6 +46,15 @@ public interface IApiEndpoint {
             @Query("join") String joinRelational
     );
 
+    @GET("activity")
+    Call<List<Activity>> getActivitiesWithFilter (
+            @Query("filter") String filter,
+            @Nullable
+            @Query("filter") String filter2,
+            @Nullable
+            @Query("join") String join
+    );
+
     @GET("category")
     Call<List<ActivityCategory>> getAllCatergory ();
 

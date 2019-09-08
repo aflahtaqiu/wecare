@@ -90,7 +90,6 @@ public class HomeFragment extends BaseFragment implements IHomeView {
     @Override
     public void onStart() {
         super.onStart();
-
     }
 
     @Override
