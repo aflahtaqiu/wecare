@@ -53,6 +53,13 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
     }
 
     @Override
+    public void getAllActivitiesFilterQuery(String filter, String filter2, @Nullable String joinQuery,
+                                            GetActivitiesCallback callback) {
+        Call<List<Activity>> call = apiEndpoint.getActivitiesWithFilter(filter, filter2, joinQuery);
+        call.enqueue(new GetAllActivitiesCallback(callback));
+    }
+
+    @Override
     public void getActivityById(String token, int idActivity, String joinRelation, @Nullable String joinRelation2,
                                 GetActivityByIdCallback callback) {
         Call<Activity> call = apiEndpoint.getActivityByIdJoin(token, idActivity, joinRelation, joinRelation2);

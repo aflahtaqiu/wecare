@@ -21,6 +21,8 @@ public interface IActivityDataSource {
     void followActivity (String token, int idActivity, FollowActivityCallback callback);
 
     void getAllActivitiesJoinQuery (String joinQuery, GetActivitiesCallback callback);
+    void getAllActivitiesFilterQuery (String filter, String filter2, @Nullable String joinQuery, GetActivitiesCallback callback);
+
     void getActivityById (String token, int idActivity, String joinRelation, @Nullable String joinRelation2,
                           GetActivityByIdCallback callback);
     void getAllCategory (GetAllCategoryCallback callback);
@@ -54,7 +56,6 @@ public interface IActivityDataSource {
     interface GetActivitiesCallback {
         void onSuccess (List<Activity> activities);
         void onError (String errorMessage);
-
     }
 
     interface GetActivityByIdCallback {

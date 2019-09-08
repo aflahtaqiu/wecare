@@ -91,7 +91,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@mipmap/ic_launcher"
-        android:elevation="8dp"
+        android:scaleType="fitXY"
+        android:elevation="@dimen/_8sdp"
         android:layout_marginLeft="@dimen/_10sdp"/>
 
     <LinearLayout
