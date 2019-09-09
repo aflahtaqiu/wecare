@@ -1,6 +1,7 @@
 package id.chessburger.wecare.module.schedule_akan_diikuti;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import butterknife.ButterKnife;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.Schedule;
 
 public class ScheduleAkanDiikutiFragment extends BaseFragment implements IScheduleAkanDiikutiView {
 
@@ -27,7 +29,7 @@ public class ScheduleAkanDiikutiFragment extends BaseFragment implements ISchedu
     private ScheduleAkanDiikutiPresenter presenter;
     private ListFollowedActivityAdapter adapter;
 
-    private List<Activity> activityList = new ArrayList<>();
+    private List<Schedule> schedules = new ArrayList<>();
 
     public ScheduleAkanDiikutiFragment() {
         // Required empty public constructor
@@ -49,11 +51,13 @@ public class ScheduleAkanDiikutiFragment extends BaseFragment implements ISchedu
         setRecyclerView();
 
         presenter = new ScheduleAkanDiikutiPresenter(this);
+        presenter.getScheduledActivities();
+
         return view;
     }
 
     private void setRecyclerView () {
-        adapter = new ListFollowedActivityAdapter(this.activityList, getContext());
+        adapter = new ListFollowedActivityAdapter(this.schedules, getContext());
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -75,9 +79,9 @@ public class ScheduleAkanDiikutiFragment extends BaseFragment implements ISchedu
     }
 
     @Override
-    public void showListActivities(List<Activity> activities) {
-        this.activityList.clear();
-        this.activityList.addAll(activities);
+    public void showListActivities(List<Schedule> schedules) {
+        this.schedules.clear();
+        this.schedules.addAll(schedules);
 
         adapter.notifyDataSetChanged();
     }

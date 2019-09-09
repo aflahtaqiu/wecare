@@ -1,4 +1,4 @@
-package id.chessburger.wecare.module.detail_campaigned_activity;
+package id.chessburger.wecare.module.detail_campaigned_activity.undone_activity;
 
 import id.chessburger.wecare.base.IBaseView;
 
@@ -9,5 +9,5 @@ import id.chessburger.wecare.base.IBaseView;
  */
 
 
-public interface IDetailCampaignedActView extends IBaseView {
+public interface IUnDoneCampaignedActView extends IBaseView {
 }

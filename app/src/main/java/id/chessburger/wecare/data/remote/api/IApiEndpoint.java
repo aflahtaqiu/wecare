@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.ActivityCategory;
 import id.chessburger.wecare.model.Location;
+import id.chessburger.wecare.model.Schedule;
 import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.response.ResponsePostDonation;
 import okhttp3.MultipartBody;
@@ -66,6 +67,28 @@ public interface IApiEndpoint {
             @Query("join") String joinRelational2,
             @Nullable
             @Query("join") String joinRelational3
+    );
+
+    @GET("user-schedule/done/{id}")
+    Call<List<Schedule>> getDoneFollowedActivity (
+            @Path("id") int idUser
+    );
+
+
+    @GET("user-schedule/undone/{id}")
+    Call<List<Schedule>> getUndoneFollowedActivity (
+            @Path("id") int idUser
+    );
+
+    @GET("user-activities/done/{id}")
+    Call<List<Activity>> getDoneCampaignedActivity (
+            @Path("id") int idUser
+    );
+
+
+    @GET("user-activities/undone/{id}")
+    Call<List<Activity>> getUndoneCampaignedActivity (
+            @Path("id") int idUser
     );
 
     @PATCH("activity/bookmark/{id}")

@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.chessburger.wecare.R;
-import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.Schedule;
 
 /**
  * Created by aflah on 08/09/19
@@ -30,9 +30,9 @@ import id.chessburger.wecare.model.Activity;
 public class ListFollowedActivityAdapter extends RecyclerView.Adapter<ListFollowedActivityAdapter.FollowedActivityViewHolder> {
 
     private final Context context;
-    private List<Activity> items;
+    private List<Schedule> items;
 
-    ListFollowedActivityAdapter(List<Activity> items, Context context) {
+    ListFollowedActivityAdapter(List<Schedule> items, Context context) {
         this.items = items;
         this.context = context;
     }
@@ -47,13 +47,14 @@ public class ListFollowedActivityAdapter extends RecyclerView.Adapter<ListFollow
 
     @Override
     public void onBindViewHolder(FollowedActivityViewHolder holder, int position) {
-        Activity item = items.get(position);
+        Schedule item = items.get(position);
 
-        String penyelenggara = context.getResources().getString(R.string.oleh) + " " + item.getCampaigner().getName();
 
-        Picasso.get().load(item.getPhoto()).fit().into(holder.ivCampaign);
+        String penyelenggara = context.getResources().getString(R.string.oleh) + " " + item.getActivity().getCampaigner().getName();
 
-        holder.tvNameActivity.setText(item.getNameActivity());
+        Picasso.get().load(item.getActivity().getPhoto()).fit().into(holder.ivCampaign);
+
+        holder.tvNameActivity.setText(item.getActivity().getNameActivity());
         holder.tvCampaigner.setText(penyelenggara);
     }
 
