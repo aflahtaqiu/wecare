@@ -1,6 +1,9 @@
 package id.chessburger.wecare.module.schedule_sudah_diikuti;
 
+import java.util.List;
+
 import id.chessburger.wecare.base.IBaseView;
+import id.chessburger.wecare.model.Activity;
 
 /**
  * Created by aflah on 26/08/19
@@ -10,4 +13,5 @@ import id.chessburger.wecare.base.IBaseView;
 
 
 public interface IScheduleSudahDiikutiView extends IBaseView {
+    void showListActivities (List<Activity> activities);
 }
