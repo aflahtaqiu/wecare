@@ -2,9 +2,12 @@ package id.chessburger.wecare.data.remote;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import id.chessburger.wecare.base.BaseRemoteDataSource;
 import id.chessburger.wecare.data.source.IUserDataSource;
+import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.Schedule;
 import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.ResponseServerCode;
 import id.chessburger.wecare.model.response.ResponseError;
@@ -116,6 +119,122 @@ public class UserRemoteDataSource extends BaseRemoteDataSource implements IUserD
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getDoneFollowedActivities(int idUser, GetScheduleCallback callback) {
+        Call<List<Schedule>> call = apiEndpoint.getDoneFollowedActivity(idUser);
+        call.enqueue(new Callback<List<Schedule>>() {
+            @Override
+            public void onResponse(Call<List<Schedule>> call, Response<List<Schedule>> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Gagal mendapatkan activities");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Schedule>> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getUndoneFollowedActivities(int idUser, GetScheduleCallback callback) {
+        Call<List<Schedule>> call = apiEndpoint.getUndoneFollowedActivity(idUser);
+        call.enqueue(new Callback<List<Schedule>>() {
+            @Override
+            public void onResponse(Call<List<Schedule>> call, Response<List<Schedule>> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Gagal mendapatkan activities");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Schedule>> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getDoneCampaignedActivities(int idUser, GetActivitiesCallback callback) {
+        Call<List<Activity>> call = apiEndpoint.getDoneCampaignedActivity(idUser);
+        call.enqueue(new Callback<List<Activity>>() {
+            @Override
+            public void onResponse(Call<List<Activity>> call, Response<List<Activity>> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Gagal mendapatkan activities");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Activity>> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getUnDoneCampaignedActivities(int idUser, GetActivitiesCallback callback) {
+        Call<List<Activity>> call = apiEndpoint.getUndoneCampaignedActivity(idUser);
+        call.enqueue(new Callback<List<Activity>>() {
+            @Override
+            public void onResponse(Call<List<Activity>> call, Response<List<Activity>> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Gagal mendapatkan activities");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Activity>> call, Throwable t) {
                 callback.onError(t.getMessage());
             }
         });

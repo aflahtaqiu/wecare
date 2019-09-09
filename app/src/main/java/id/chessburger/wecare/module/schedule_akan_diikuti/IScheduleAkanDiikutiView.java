@@ -4,6 +4,7 @@ import java.util.List;
 
 import id.chessburger.wecare.base.IBaseView;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.Schedule;
 
 /**
  * Created by aflah on 27/08/19
@@ -13,5 +14,5 @@ import id.chessburger.wecare.model.Activity;
 
 
 public interface IScheduleAkanDiikutiView extends IBaseView {
-    void showListActivities (List<Activity> activities);
+    void showListActivities (List<Schedule> schedules);
 }

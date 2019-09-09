@@ -1,6 +1,7 @@
 package id.chessburger.wecare.module.campaign_belum_terlaksana;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.enumerations.CommunicationKeys;
+import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.UnDoneCampaignedActivity;
+import id.chessburger.wecare.module.mainact.MainActivity;
+import id.chessburger.wecare.utils.CommunicationUtils;
 
 /**
  * Created by aflah on 08/09/19
@@ -55,6 +60,8 @@ public class ListCampaignActivityAdapter extends RecyclerView.Adapter<ListCampai
 
         holder.tvNameActivity.setText(item.getNameActivity());
         holder.tvCampaigner.setText(penyelenggara);
+
+        holder.itemView.setOnClickListener(new OnItemClickListener(item));
     }
 
     @Override
@@ -96,4 +103,20 @@ public class ListCampaignActivityAdapter extends RecyclerView.Adapter<ListCampai
             ButterKnife.bind(this, itemView);
         }
     }
-}   
+
+    private class OnItemClickListener implements View.OnClickListener {
+        private final Activity item;
+
+        public OnItemClickListener(Activity item) {
+            this.item = item;
+        }
+
+        @Override
+        public void onClick(View view) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(CommunicationKeys.SELECTED_TYPE.getKey(), item.getTypeId());
+            CommunicationUtils.changeActivity((MainActivity) context, UnDoneCampaignedActivity.class,
+                    bundle,CommunicationKeys.BUNDLE_KEY.getKey(), false);
+        }
+    }
+}

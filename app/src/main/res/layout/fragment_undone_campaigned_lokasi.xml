@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".module.detail_campaigned_activity.undone_activity.informasi_cari_lokasi.UndoneCampaignedLokasiFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_15sdp">
+
+        <LinearLayout
+            android:id="@+id/linearlayout_grey_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tv_nama_activity_search_place"
+            android:layout_marginTop="@dimen/_7sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/ic_tag_grey"/>
+
+            <TextView
+                android:id="@+id/tv_kategori_kegiatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_11sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_nama_activity_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_grey_data"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tv_penyelenggara_activity_search_place"
+            android:layout_marginTop="@dimen/_7sdp"/>
+
+        <TextView
+            android:id="@+id/tv_penyelenggara_activity_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_nama_activity_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/relativelayout_data_act_search_place"
+            android:layout_marginTop="@dimen/_3sdp"/>
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_data_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_penyelenggara_activity_search_place">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentLeft="true">
+
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ic_volunteer_gold"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ada"
+                    android:textColor="@color/colorGold"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/tv_jumlah_relawan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100 Relawan"
+                    android:textColor="@color/colorGold"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ic_participants_gold"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/untuk"
+                    android:textColor="@color/colorGold"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/tv_jumlah_peserta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100 Peserta"
+                    android:textColor="@color/colorGold"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:src="@drawable/ic_duration_gold"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/berlangsung"
+                    android:textColor="@color/colorGold"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/tv_durasi_kegiatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGold"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_deskripsi_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/relativelayout_data_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/deskripsi"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_deskripsi_act_search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_narahubung_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_deskripsi_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/narahubung"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/tv_narahubung_no_telp_act_search_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+                <TextView
+                    android:id="@+id/tv_narahubung_email_act_search_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view1_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/colorSecondary"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_narahubung_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_jangkauan_daerah_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/view1_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/jangkauan_daerah"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_jangkauan_daerah_act_search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_ketersediaan_waktu_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_jangkauan_daerah_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ketersediaan_waktu"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_ketersediaan_waktu_act_search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_tanggal_telah_terisi_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_ketersediaan_waktu_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tanggal_telah_terisi"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_tanggal_telah_terisi_act_search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view2_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/colorSecondary"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_tanggal_telah_terisi_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"/>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_rencana_kegiatan_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/view2_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rencana_kegiatan"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_rencana_kegiatan_act_search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_perlu_disiapkan_fasilitator_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_rencana_kegiatan_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/perlu_disiapkan_fasilitator"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_perlu_disiapkan_fasilitator_act_search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_persyaratan_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_perlu_disiapkan_fasilitator_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/persyaratan"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_persyaratan_act_search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_informasi_tambahan_act_search_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearlayout_persyaratan_act_search_place"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_15sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/informasi_tambahan"
+                android:textColor="@color/colorSecondary"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_informasi_tambahan_act_search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -5,6 +5,7 @@ import java.util.List;
 import id.chessburger.wecare.data.remote.UserRemoteDataSource;
 import id.chessburger.wecare.data.source.IUserDataSource;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.Schedule;
 import id.chessburger.wecare.model.User;
 
 /**
@@ -67,6 +68,66 @@ public class UserDataRepository implements IUserDataSource {
             @Override
             public void onSuccess(User user) {
                 callback.onSuccess(user);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void getDoneFollowedActivities(int idUser, GetScheduleCallback callback) {
+        remoteDataSource.getDoneFollowedActivities(idUser, new GetScheduleCallback() {
+            @Override
+            public void onSuccess(List<Schedule> schedules) {
+                callback.onSuccess(schedules);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void getUndoneFollowedActivities(int idUser, GetScheduleCallback callback) {
+        remoteDataSource.getUndoneFollowedActivities(idUser, new GetScheduleCallback() {
+            @Override
+            public void onSuccess(List<Schedule> schedules) {
+                callback.onSuccess(schedules);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void getDoneCampaignedActivities(int idUser, GetActivitiesCallback callback) {
+        remoteDataSource.getDoneCampaignedActivities(idUser, new GetActivitiesCallback() {
+            @Override
+            public void onSuccess(List<Activity> activities) {
+                callback.onSuccess(activities);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void getUnDoneCampaignedActivities(int idUser, GetActivitiesCallback callback) {
+        remoteDataSource.getUnDoneCampaignedActivities(idUser, new GetActivitiesCallback() {
+            @Override
+            public void onSuccess(List<Activity> activities) {
+                callback.onSuccess(activities);
             }
 
             @Override

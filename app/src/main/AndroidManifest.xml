@@ -11,9 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".module.detail_campaigned_activity.done_activity.DoneCampaignedActivity"
+            android:label="@string/title_activity_done_campaigned"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".module.detail_campaigned_activity.undone_activity.UnDoneCampaignedActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".module.donation.DonationActivity"
-            android:theme="@style/AppTheme.WhiteActionBar"
-            android:parentActivityName=".module.detail_activity_search_volunter.DetailActSearchVolunterActivity"/>
+            android:parentActivityName=".module.detail_activity_search_volunter.DetailActSearchVolunterActivity"
+            android:theme="@style/AppTheme.WhiteActionBar" />
         <activity
             android:name=".module.propose_location.ProposeLocationActivity"
             android:label="@string/ajukan_tempat"
@@ -44,13 +52,12 @@
             android:label="@string/membuat_kampanye"
             android:parentActivityName=".module.mainact.MainActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
-        <activity android:name=".module.detail_campaigned_activity.DetailCampaignedActivity" />
         <activity android:name=".module.detail_article.DetailArticleActivity" />
         <activity android:name=".module.wecare_poin.WeCarePoinActivity" />
         <activity android:name=".module.edit_profile.EditProfileActivity" />
         <activity
             android:name=".module.splash_screen.SplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,8 +67,7 @@
         <activity
             android:name=".module.mainact.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 

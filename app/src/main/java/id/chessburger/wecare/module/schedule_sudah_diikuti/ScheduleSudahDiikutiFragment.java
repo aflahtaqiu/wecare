@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.Schedule;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +34,7 @@ public class ScheduleSudahDiikutiFragment extends BaseFragment implements ISched
     private ScheduleSudahDiikutiPresenter presenter;
     private ListFollowedActivityAdapter adapter;
 
-    private List<Activity> activityList = new ArrayList<>();
+    private List<Schedule> scheduleList = new ArrayList<>();
 
     public static ScheduleSudahDiikutiFragment getInstance() {
         if (scheduleSudahDiikutiFragment == null) {
@@ -56,11 +57,13 @@ public class ScheduleSudahDiikutiFragment extends BaseFragment implements ISched
         setRecyclerView();
 
         presenter = new ScheduleSudahDiikutiPresenter(this);
+        presenter.getScheduledActivities();
+
         return view;
     }
 
     private void setRecyclerView () {
-        adapter = new ListFollowedActivityAdapter(this.activityList, getContext());
+        adapter = new ListFollowedActivityAdapter(this.scheduleList, getContext());
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -82,9 +85,9 @@ public class ScheduleSudahDiikutiFragment extends BaseFragment implements ISched
     }
 
     @Override
-    public void showListActivities(List<Activity> activities) {
-        this.activityList.clear();
-        this.activityList.addAll(activities);
+    public void showListActivities(List<Schedule> schedules) {
+        this.scheduleList.clear();
+        this.scheduleList.addAll(schedules);
 
         adapter.notifyDataSetChanged();
     }

@@ -1,4 +1,4 @@
-package id.chessburger.wecare.module.detail_campaigned_activity;
+package id.chessburger.wecare.module.detail_campaigned_activity.undone_activity;
 
 import id.chessburger.wecare.data.repository.UserDataRepository;
 import id.chessburger.wecare.di.Injector;
@@ -10,12 +10,12 @@ import id.chessburger.wecare.di.Injector;
  */
 
 
-public class DetailCampaignedActPresenter {
+public class UnDoneCampaignedActPresenter {
 
-    private IDetailCampaignedActView view;
+    private IUnDoneCampaignedActView view;
     private UserDataRepository userDataRepository;
 
-    public DetailCampaignedActPresenter(IDetailCampaignedActView view) {
+    public UnDoneCampaignedActPresenter(IUnDoneCampaignedActView view) {
         this.view = view;
         this.userDataRepository = Injector.provideUserRepository();
     }
