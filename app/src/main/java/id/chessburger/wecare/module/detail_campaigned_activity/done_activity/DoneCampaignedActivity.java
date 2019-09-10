@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import id.chessburger.wecare.R;
+import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
 import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye.UndoneCampaignedHasilKampanyeFragment;
 import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.informasi_cari_lokasi.UndoneCampaignedLokasiFragment;
@@ -40,6 +41,8 @@ public class DoneCampaignedActivity extends AppCompatActivity {
     int idType;
 
     private static final int ID_CARI_RELAWAN = 1;
+
+    private Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +91,7 @@ public class DoneCampaignedActivity extends AppCompatActivity {
     public void onBtnInformasiClicked () {
         customButton(btnInformasi, btnHasilKampanye);
         if (idType == ID_CARI_RELAWAN)
-            fragmentTransaction(UndoneCampaignedRelawanFragment.getInstance());
+            fragmentTransaction(UndoneCampaignedRelawanFragment.getInstance(activity));
         else
             fragmentTransaction(UndoneCampaignedLokasiFragment.getInstance());
     }

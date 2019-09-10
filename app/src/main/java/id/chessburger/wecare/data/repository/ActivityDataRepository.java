@@ -156,6 +156,36 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
+    public void presenceUser(String token, List<Integer> userIds, PresenceCallack callack) {
+        remoteDataSource.presenceUser(token, userIds, new PresenceCallack() {
+            @Override
+            public void onSuccess(Activity activity) {
+                callack.onSuccess(activity);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callack.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
+    public void doneActivity(String token, int idActivity, String reportText, MultipartBody.Part photo, DoneActivityCallback callback) {
+        remoteDataSource.doneActivity(token, idActivity, reportText, photo, new DoneActivityCallback() {
+            @Override
+            public void onSuccess(Activity activity) {
+                callback.onSuccess(activity);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
     public void bookmarkActivity(String token, int idActivity, BookmarkActivityCallback callback) {
         remoteDataSource.bookmarkActivity(token, idActivity, new BookmarkActivityCallback() {
             @Override

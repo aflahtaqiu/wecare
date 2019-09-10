@@ -2,6 +2,11 @@ package id.chessburger.wecare.data.remote;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -33,6 +38,8 @@ import retrofit2.Response;
 public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IActivityDataSource {
 
     private static ActivityRemoteDataSource remoteDataSource;
+    private Gson gson = new GsonBuilder().create();
+
     public static ActivityRemoteDataSource getInstance() {
         if (remoteDataSource == null) {
             remoteDataSource = new ActivityRemoteDataSource();
@@ -220,6 +227,85 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
         });
     }
 
+    @Override
+    public void presenceUser(String token, List<Integer> userIds, PresenceCallack callback) {
+
+        JsonArray jsonUserIds = gson.toJsonTree(userIds).getAsJsonArray();
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.add("userIds", jsonUserIds);
+
+        Call<Activity> call = apiEndpoint.presenceUserByActivity(token, jsonObject);
+        call.enqueue(new Callback<Activity>() {
+            @Override
+            public void onResponse(Call<Activity> call, Response<Activity> response) {
+                    if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            if (responseError.getMessage() == null)
+                                callback.onError(responseError.getError());
+                            else
+                                callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Gagal upload absensi");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Activity> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void doneActivity(String token, int idActivity, String reportText, MultipartBody.Part photo,
+                             DoneActivityCallback callback) {
+
+        RequestBody reportTextBody = RequestBody.create(okhttp3.MultipartBody.FORM, reportText);
+
+
+        Call<Activity> call = apiEndpoint.doneActivity(token, idActivity, reportTextBody, photo);
+
+        Log.e("request done", call.request().toString());
+
+
+        call.enqueue(new Callback<Activity>() {
+            @Override
+            public void onResponse(Call<Activity> call, Response<Activity> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            if (responseError.getMessage() == null)
+                                callback.onError(responseError.getError());
+                            else
+                                callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Gagal menyelesaikan kegiatan");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Activity> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
 
     @Override
     public void bookmarkActivity(String token, int idActivity, BookmarkActivityCallback callback) {
@@ -287,7 +373,6 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
 
         Call<Location> call = apiEndpoint.postLocation(token, idActivityBody, cityBody, addressBody,
                 startDateTimeBody, endDateTimeBody, descriptionBody, capacityBody, locationPhoto,licensePhoto);
-        Log.e("request", startDateTimeBody.toString());
         call.enqueue(new Callback<Location>() {
             @Override
             public void onResponse(Call<Location> call, Response<Location> response) {
@@ -295,7 +380,6 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
                     callback.onSuccess("Anda berhasil mengajukan tempat untuk kegiatan ini.");
                 } else {
                     try {
-                        Log.e("responsebody", response.errorBody().string());
                         if (response.errorBody() != null) {
                             ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
                             if (responseError.getMessage() == null)
