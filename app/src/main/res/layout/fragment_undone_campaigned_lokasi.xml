@@ -423,6 +423,38 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/linearlayout_button_undone_campaigned_volunteer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearlayout_informasi_tambahan_act_search_place">
+
+            <Button
+                android:id="@+id/btn_donasi_activity_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/batalkan_kampanye"
+                android:textColor="@color/colorWhite"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:background="@drawable/btn_box_red" />
+
+            <Button
+                android:id="@+id/btn_follow_activity_volunter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/isi_laporan"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/btn_box_accent"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

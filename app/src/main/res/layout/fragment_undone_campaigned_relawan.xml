@@ -551,14 +551,11 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:id="@+id/linearlayout_button_undone_campaigned_volunteer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_15sdp"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -573,7 +570,7 @@
                 android:textColor="@color/colorWhite"
                 android:textAlignment="center"
                 android:gravity="center"
-                android:background="@drawable/btn_box_accent"/>
+                android:background="@drawable/btn_box_red" />
 
             <Button
                 android:id="@+id/btn_follow_activity_volunter"
@@ -581,7 +578,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/isi_laporan"
                 android:textColor="@color/colorWhite"
-                android:background="@drawable/btn_box_red"/>
+                android:background="@drawable/btn_box_accent"
+                android:layout_marginTop="@dimen/_10sdp"/>
 
         </LinearLayout>
 
