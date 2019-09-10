@@ -38,6 +38,8 @@ public interface IActivityDataSource {
                                    String preparedByFacilitator, String activityPlan, String locationRequirement,
                                    String additionalInformation, MultipartBody.Part photo, CreateActivityCallback callback);
 
+    void presenceUser (String token, List<Integer> userIds, PresenceCallack callack);
+    void doneActivity (String token, int idActivity, String reportText, MultipartBody.Part photo, DoneActivityCallback callback);
 
     void bookmarkActivity (String token, int idActivity, BookmarkActivityCallback callback);
     void unBookmarkActivity (String token, int idActivity, UnBookmarkActivityCallback callback);
@@ -90,6 +92,16 @@ public interface IActivityDataSource {
 
     interface PostLocationCallback {
         void onSuccess (String successMessage);
+        void onError (String errorMessage);
+    }
+
+    interface PresenceCallack {
+        void onSuccess (Activity activity);
+        void onError (String errorMessage);
+    }
+
+    interface DoneActivityCallback {
+        void onSuccess (Activity activity);
         void onError (String errorMessage);
     }
 }

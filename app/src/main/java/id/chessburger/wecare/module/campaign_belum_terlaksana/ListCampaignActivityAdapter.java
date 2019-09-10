@@ -2,7 +2,6 @@ package id.chessburger.wecare.module.campaign_belum_terlaksana;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,11 +59,10 @@ public class ListCampaignActivityAdapter extends RecyclerView.Adapter<ListCampai
         String penyelenggara = context.getResources().getString(R.string.oleh) + " " + item.getCampaigner().getName();
 
         if (item.getTypeId() == CARI_RELAWAN) {
-            Log.e("lele", item.toString());
-//            holder.tvJumlahRelawan.setText(item.getVolunteers().size()+" " + context.getResources().getString(R.string.relawan));
+            holder.tvJumlahRelawan.setText(item.getVolunteersTotal()+" " + context.getResources().getString(R.string.relawan));
             holder.tvJumlahDonasi.setText("Rp " + item.getDonationsTotal());
         } else {
-
+            holder.tvJumlahDonasi.setText("Tidak membuka donasi");
         }
 
 
@@ -127,6 +125,7 @@ public class ListCampaignActivityAdapter extends RecyclerView.Adapter<ListCampai
         public void onClick(View view) {
             Bundle bundle = new Bundle();
             bundle.putInt(CommunicationKeys.SELECTED_TYPE.getKey(), item.getTypeId());
+            bundle.putInt(CommunicationKeys.SELECTED_ACTIVITY.getKey(), item.getId());
             CommunicationUtils.changeActivity((MainActivity) context, UnDoneCampaignedActivity.class,
                     bundle,CommunicationKeys.BUNDLE_KEY.getKey(), false);
         }

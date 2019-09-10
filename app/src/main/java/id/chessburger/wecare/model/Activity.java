@@ -2,6 +2,7 @@ package id.chessburger.wecare.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Activity {
+public class Activity implements Serializable {
 
     @SerializedName("id")
     private int id;
@@ -119,6 +120,9 @@ public class Activity {
 
     @SerializedName("volunteers")
     private List<User> volunteers;
+
+//    @SerializedName("volunteers")
+//    private List<FollowedActivity> followedActivities;
 
     @SerializedName("category")
     private ActivityCategory category;

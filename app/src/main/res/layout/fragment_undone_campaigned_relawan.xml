@@ -556,6 +556,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -563,7 +564,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearlayout_briefing_act_search_volunter">
 
             <Button
-                android:id="@+id/btn_donasi_activity_volunter"
+                android:id="@+id/btn_cancel_activity_volunter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/batalkan_kampanye"
@@ -573,7 +574,7 @@
                 android:background="@drawable/btn_box_red" />
 
             <Button
-                android:id="@+id/btn_follow_activity_volunter"
+                android:id="@+id/btn_report_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/isi_laporan"

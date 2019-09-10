@@ -1,5 +1,7 @@
 package id.chessburger.wecare.data.remote.api;
 
+import com.google.gson.JsonObject;
+
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -13,6 +15,7 @@ import id.chessburger.wecare.model.response.ResponsePostDonation;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -107,6 +110,21 @@ public interface IApiEndpoint {
     Call<Activity> followActivity (
             @Header("Authorization") String token,
             @Path("id") int idActivity
+    );
+
+    @PATCH("activity/presence/{id}")
+    Call<Activity> presenceUserByActivity (
+            @Header("Authorization") String bearerToken,
+            @Body JsonObject jsonObject
+    );
+
+    @Multipart
+    @PATCH("activity/done/{id}")
+    Call<Activity> doneActivity (
+            @Header("Authorization") String bearerToken,
+            @Path("id") int idActivity,
+            @Part("reportText") RequestBody reportText,
+            @Part MultipartBody.Part photo
     );
 
     @Multipart
