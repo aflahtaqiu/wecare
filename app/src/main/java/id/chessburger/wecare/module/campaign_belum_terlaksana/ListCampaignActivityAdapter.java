@@ -2,6 +2,7 @@ package id.chessburger.wecare.module.campaign_belum_terlaksana;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,8 @@ public class ListCampaignActivityAdapter extends RecyclerView.Adapter<ListCampai
     private final Context context;
     private List<Activity> items;
 
+    private static final int CARI_RELAWAN = 1;
+
     ListCampaignActivityAdapter(List<Activity> items, Context context) {
         this.items = items;
         this.context = context;
@@ -56,6 +59,15 @@ public class ListCampaignActivityAdapter extends RecyclerView.Adapter<ListCampai
 
         String penyelenggara = context.getResources().getString(R.string.oleh) + " " + item.getCampaigner().getName();
 
+        if (item.getTypeId() == CARI_RELAWAN) {
+            Log.e("lele", item.toString());
+//            holder.tvJumlahRelawan.setText(item.getVolunteers().size()+" " + context.getResources().getString(R.string.relawan));
+            holder.tvJumlahDonasi.setText("Rp " + item.getDonationsTotal());
+        } else {
+
+        }
+
+
         Picasso.get().load(item.getPhoto()).fit().into(holder.ivCampaign);
 
         holder.tvNameActivity.setText(item.getNameActivity());
@@ -72,7 +84,7 @@ public class ListCampaignActivityAdapter extends RecyclerView.Adapter<ListCampai
         return items.size();
     }
 
-    public class CampaignActivityViewHolder extends RecyclerView.ViewHolder {
+    class CampaignActivityViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.cardview_campaign)
         CardView cardView;
@@ -107,7 +119,7 @@ public class ListCampaignActivityAdapter extends RecyclerView.Adapter<ListCampai
     private class OnItemClickListener implements View.OnClickListener {
         private final Activity item;
 
-        public OnItemClickListener(Activity item) {
+        OnItemClickListener(Activity item) {
             this.item = item;
         }
 

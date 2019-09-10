@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,10 +9,49 @@
     tools:context=".module.detail_campaigned_activity.done_activity.DoneCampaignedActivity"
     tools:showIn="@layout/activity_done_campaigned">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/lienearlayout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/framelayout_done_campaigned"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_30sdp">
+
+            <Button
+                android:id="@+id/btn_informasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/informasi" />
+
+            <Button
+                android:id="@+id/btn_hasil_kampanye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hasil_kampanye"
+                android:padding="@dimen/_5sdp"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/framelayout_done_campaigned"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/lienearlayout_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

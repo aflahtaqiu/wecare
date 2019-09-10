@@ -1,18 +1,15 @@
 package id.chessburger.wecare.module.detail_campaigned_activity.undone_activity;
 
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +23,12 @@ import id.chessburger.wecare.utils.CommunicationUtils;
 
 public class UnDoneCampaignedActivity extends AppCompatActivity {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.fab_edit_activity_data)
+    FloatingActionButton fab;
+
     @BindView(R.id.btn_informasi)
     Button btnInformasi;
 
@@ -34,6 +37,9 @@ public class UnDoneCampaignedActivity extends AppCompatActivity {
 
     @BindView(R.id.framelayout_undone_campaigned)
     FrameLayout frameLayout;
+
+    @BindView(R.id.iv_acitvity_picture)
+    ImageView ivActivityPicture;
 
     int idType;
 
@@ -47,19 +53,7 @@ public class UnDoneCampaignedActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         getBundleIntentData();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
     }
 
     private void getBundleIntentData() {
@@ -107,5 +101,10 @@ public class UnDoneCampaignedActivity extends AppCompatActivity {
     public void onBtnHasilKampanyeClicked () {
         customButton(btnHasilKampanye, btnInformasi);
         fragmentTransaction(UndoneCampaignedHasilKampanyeFragment.getInstance());
+    }
+
+    @OnClick(R.id.fab_edit_activity_data)
+    public void onFabClicked () {
+        // TODO: on fab clicked
     }
 }

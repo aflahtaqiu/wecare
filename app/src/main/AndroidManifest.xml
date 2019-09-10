@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".module.detail_campaigned_activity.done_activity.DoneCampaignedActivity"
-            android:label="@string/title_activity_done_campaigned"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".module.detail_campaigned_activity.undone_activity.UnDoneCampaignedActivity"
