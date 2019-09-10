@@ -45,6 +45,12 @@ public class MainActivity extends BaseActivity implements IMainactView {
         presenter = new MainactPresenter(this);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+//        navView.setSelectedItemId(R.id.navigation_home);
+    }
+
     private void setBottomNavigation() {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

@@ -41,8 +41,8 @@ public class UnDoneCampaignedActPresenter {
     private class GetActivityByIdCallback implements IActivityDataSource.GetActivityByIdCallback {
         @Override
         public void onSuccess(Activity activity) {
-            Log.e("lele", activity.toString());
             view.setActivity(activity);
+            view.setActivityPicture(activity.getPhoto());
         }
 
         @Override
