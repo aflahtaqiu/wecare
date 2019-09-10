@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -121,6 +122,11 @@ public class UnDoneCampaignedActivity extends BaseActivity implements IUnDoneCam
     public void setActivity(Activity activity) {
         this.activity = activity;
         btnInformasi.performClick();
+    }
+
+    @Override
+    public void setActivityPicture(String imageUrl) {
+        Picasso.get().load(imageUrl).fit().into(ivActivityPicture);
     }
 
     @Override

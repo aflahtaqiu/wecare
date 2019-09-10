@@ -12,4 +12,5 @@ import id.chessburger.wecare.model.Activity;
 
 public interface IUnDoneCampaignedActView extends IBaseView {
     void setActivity (Activity activity);
+    void setActivityPicture (String imageUrl);
 }
