@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_logo_wecare"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".module.create_report.CreateReportActivity"></activity>
+        <activity android:name=".module.create_report.CreateReportActivity"/>
         <activity
             android:name=".module.detail_campaigned_activity.done_activity.DoneCampaignedActivity"
             android:label=""
@@ -68,7 +68,11 @@
         <activity
             android:name=".module.mainact.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/> <activity android:name="com.facebook.FacebookActivity" android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" /> <activity android:name="com.facebook.CustomTabActivity" android:exported="true"> <intent-filter> <action android:name="android.intent.action.VIEW" /> <category android:name="android.intent.category.DEFAULT" /> <category android:name="android.intent.category.BROWSABLE" /> <data android:scheme="@string/fb_login_protocol_scheme" /> </intent-filter> </activity>
+
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

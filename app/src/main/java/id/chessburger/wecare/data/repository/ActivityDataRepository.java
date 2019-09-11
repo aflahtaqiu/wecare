@@ -81,6 +81,21 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
+    public void getAllActivitiesSearch(String keyword, String join, GetActivitiesCallback callback) {
+        remoteDataSource.getAllActivitiesSearch(keyword, join, new GetActivitiesCallback() {
+            @Override
+            public void onSuccess(List<Activity> activities) {
+                callback.onSuccess(activities);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
     public void getActivityById(String token, int idActivity, String joinRelation, @Nullable String joinRelation2, GetActivityByIdCallback callback) {
         remoteDataSource.getActivityById(token, idActivity, joinRelation, joinRelation2, new GetActivityByIdCallback() {
             @Override
