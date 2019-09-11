@@ -4,6 +4,7 @@ import java.util.List;
 
 import id.chessburger.wecare.base.IBaseView;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.ActivityCategory;
 
 /**
  * Created by aflah on 09/08/19
@@ -14,4 +15,5 @@ import id.chessburger.wecare.model.Activity;
 
 public interface IHomeView extends IBaseView {
     void showListActivities (List<Activity> activities);
+    void showCategories (List<ActivityCategory> activityCategories);
 }

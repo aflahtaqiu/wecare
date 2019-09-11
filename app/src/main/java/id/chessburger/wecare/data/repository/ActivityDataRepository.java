@@ -65,7 +65,7 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
-    public void getAllActivitiesFilterQuery(String filter, String filter2, @Nullable String joinQuery,
+    public void getAllActivitiesFilterQuery(String filter, @Nullable String filter2, @Nullable String joinQuery,
                                             GetActivitiesCallback callback) {
         remoteDataSource.getAllActivitiesFilterQuery(filter, filter2, joinQuery, new GetActivitiesCallback() {
             @Override
