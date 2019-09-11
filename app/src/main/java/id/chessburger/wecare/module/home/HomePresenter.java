@@ -9,6 +9,7 @@ import id.chessburger.wecare.data.repository.UserDataRepository;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.di.Injector;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.ActivityCategory;
 
 /**
  * Created by aflah on 09/08/19
@@ -47,7 +48,6 @@ class HomePresenter {
 
     void searchActivitiesByName (String nameQuery) {
         String filterActivityName = "name||cont||" + nameQuery;
-
         activityDataRepository.getAllActivitiesFilterQuery(filterActivityName, null, "type",
                 new IActivityDataSource.GetActivitiesCallback() {
             @Override
@@ -60,5 +60,39 @@ class HomePresenter {
 
             }
         });
+    }
+
+    void getCategories () {
+        activityDataRepository.getAllCategory(new IActivityDataSource.GetAllCategoryCallback() {
+            @Override
+            public void onSuccess(List<ActivityCategory> categoryList) {
+                view.showCategories(categoryList);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+
+            }
+        });
+    }
+
+    void getActivitiesByCategory (int categoryId) {
+        String filterCategory = "categoryId||eq||" + categoryId;
+        if (categoryId != 0) {
+            activityDataRepository.getAllActivitiesFilterQuery(filterCategory, null, "type",
+                    new IActivityDataSource.GetActivitiesCallback() {
+                        @Override
+                        public void onSuccess(List<Activity> activities) {
+                            view.showListActivities(activities);
+                        }
+
+                        @Override
+                        public void onError(String errorMessage) {
+
+                        }
+                    });
+        } else {
+            getAllActivities();
+        }
     }
 }

@@ -2,7 +2,6 @@ package id.chessburger.wecare.module.home;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.synnapps.carouselview.CarouselView;
@@ -25,6 +25,7 @@ import butterknife.OnTextChanged;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
 import id.chessburger.wecare.model.Activity;
+import id.chessburger.wecare.model.ActivityCategory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,15 +44,21 @@ public class HomeFragment extends BaseFragment implements IHomeView {
     @BindView(R.id.recyclerview_activities_home)
     RecyclerView recyclerViewActivities;
 
+    @BindView(R.id.rv_categories)
+    RecyclerView recyclerViewCategories;
+
     @BindView(R.id.et_search_activity_home)
     EditText etSearch;
 
     public static HomeFragment homeFragment;
 
     private List<Activity> activityList = new ArrayList<>();
+    private List<ActivityCategory> categories = new ArrayList<>();
 
 
     private ListActivityHomeAdapter adapter;
+    private ListCategoryAdapter categoryAdapter;
+
     private HomePresenter presenter;
 
     public HomeFragment() {
@@ -71,11 +78,13 @@ public class HomeFragment extends BaseFragment implements IHomeView {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
 
+        presenter = new HomePresenter(this);
+
         showBanners();
         setRecyclerView();
 
-        presenter = new HomePresenter(this);
         presenter.getAllActivities();
+        presenter.getCategories();
 
         return view;
     }
@@ -88,9 +97,14 @@ public class HomeFragment extends BaseFragment implements IHomeView {
 
     private void setRecyclerView() {
         adapter = new ListActivityHomeAdapter(this.activityList, getContext());
+        categoryAdapter = new ListCategoryAdapter(this.categories, getContext(), presenter);
 
         recyclerViewActivities.setAdapter(adapter);
+        recyclerViewCategories.setAdapter(categoryAdapter);
+
         recyclerViewActivities.setLayoutManager(new GridLayoutManager(getContext(),2));
+        recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override
@@ -126,10 +140,19 @@ public class HomeFragment extends BaseFragment implements IHomeView {
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void showCategories(List<ActivityCategory> activityCategories) {
+        this.categories.clear();
+        this.categories.add(ActivityCategory.builder().id(0).name("Semua").build());
+        this.categories.addAll(activityCategories);
+
+        categoryAdapter.notifyDataSetChanged();
+    }
+
     private static class BannersImageListener implements ImageListener {
         private final int[] banners;
 
-        public BannersImageListener(int[] banners) {
+        BannersImageListener(int[] banners) {
             this.banners = banners;
         }
 

@@ -1,5 +1,6 @@
 package id.chessburger.wecare.module.article;
 
+import id.chessburger.wecare.data.repository.ActivityDataRepository;
 import id.chessburger.wecare.data.repository.ArticleDataRepository;
 import id.chessburger.wecare.di.Injector;
 
@@ -10,13 +11,13 @@ import id.chessburger.wecare.di.Injector;
  */
 
 
-public class ArticlePresenter {
+class ArticlePresenter {
 
     private IArticleView view;
-    private ArticleDataRepository repository;
+    private ActivityDataRepository repository;
 
-    public ArticlePresenter(IArticleView view) {
+    ArticlePresenter(IArticleView view) {
         this.view = view;
-        this.repository = Injector.provideArticleRepository();
+        this.repository = Injector.provideActivityRepository();
     }
 }
