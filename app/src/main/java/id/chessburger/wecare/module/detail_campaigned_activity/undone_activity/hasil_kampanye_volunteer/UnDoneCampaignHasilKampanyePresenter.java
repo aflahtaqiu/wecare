@@ -1,5 +1,7 @@
 package id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye_volunteer;
 
+import android.util.Log;
+
 import id.chessburger.wecare.data.repository.ActivityDataRepository;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.di.Injector;
@@ -30,10 +32,11 @@ class UnDoneCampaignHasilKampanyePresenter {
     void getVolunteersName (int idActivity) {
         String volunteersJoinRelation = "volunteers.user";
         String filterIsPresentFalse = "volunteers.isPresent||eq||false";
-        repository.getActivityById(token, idActivity, volunteersJoinRelation, filterIsPresentFalse,
+        repository.getActivityByIdJoinFilter(token, idActivity, volunteersJoinRelation, filterIsPresentFalse,
                 new IActivityDataSource.GetActivityByIdCallback() {
             @Override
             public void onSuccess(Activity activity) {
+                Log.e("lel", "lele");
                 view.setFollowerActivities(activity.getFollowedActivities());
             }
 
@@ -44,8 +47,8 @@ class UnDoneCampaignHasilKampanyePresenter {
         });
     }
 
-    void absenceVolunteer (int idUser) {
-        repository.presenceUser(token, idUser, new IActivityDataSource.PresenceCallack() {
+    void absenceVolunteer (int idUser, int idActivity) {
+        repository.presenceUser(token, idActivity, idUser,  new IActivityDataSource.PresenceCallack() {
             @Override
             public void onSuccess(Activity activity) {
                 view.showMessage("User ini sudah diabsensi");

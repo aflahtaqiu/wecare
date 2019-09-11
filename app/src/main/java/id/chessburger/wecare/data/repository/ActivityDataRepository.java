@@ -96,6 +96,21 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
+    public void getActivityByIdJoinFilter(String token, int idActivity, String joinQuery, String filterQuery, GetActivityByIdCallback callback) {
+        remoteDataSource.getActivityByIdJoinFilter(token, idActivity, joinQuery, filterQuery, new GetActivityByIdCallback() {
+            @Override
+            public void onSuccess(Activity activity) {
+                callback.onSuccess(activity);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
+
+    @Override
     public void getAllCategory(GetAllCategoryCallback callback) {
         remoteDataSource.getAllCategory(new GetAllCategoryCallback() {
             @Override
@@ -156,8 +171,8 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
-    public void presenceUser(String token, int idUser, PresenceCallack callack) {
-        remoteDataSource.presenceUser(token, idUser, new PresenceCallack() {
+    public void presenceUser(String token, int idActivity, int idUser, PresenceCallack callack) {
+        remoteDataSource.presenceUser(token, idActivity, idUser, new PresenceCallack() {
             @Override
             public void onSuccess(Activity activity) {
                 callack.onSuccess(activity);

@@ -1,7 +1,6 @@
 package id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye_volunteer;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,8 @@ public class ListVolunteerAdapter extends RecyclerView.Adapter<ListVolunteerAdap
     private final Context context;
     private List<FollowedActivity> items;
 
-    ListVolunteerAdapter(List<FollowedActivity> items, Context context, UnDoneCampaignHasilKampanyePresenter presenter) {
+    ListVolunteerAdapter(List<FollowedActivity> items, Context context,
+                         UnDoneCampaignHasilKampanyePresenter presenter) {
         this.items = items;
         this.context = context;
         this.presenter = presenter;
@@ -62,6 +62,13 @@ public class ListVolunteerAdapter extends RecyclerView.Adapter<ListVolunteerAdap
 
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, items.size());
+            }
+        });
+
+        holder.ivChecked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.absenceVolunteer( item.getIdUser(), item.getIdActivity());
             }
         });
     }
