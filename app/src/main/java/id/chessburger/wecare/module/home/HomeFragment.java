@@ -21,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
@@ -31,6 +32,12 @@ import id.chessburger.wecare.model.ActivityCategory;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends BaseFragment implements IHomeView {
+
+    @BindView(R.id.layout_urutkan)
+    View layoutUrutkan;
+
+    @BindView(R.id.layout_filter)
+    View layoutFilter;
 
     @BindView(R.id.cv_banner)
     CarouselView carouselBanner;
@@ -105,6 +112,7 @@ public class HomeFragment extends BaseFragment implements IHomeView {
         recyclerViewActivities.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerViewCategories.setLayoutManager(new LinearLayoutManager(getContext(),
                 LinearLayoutManager.HORIZONTAL, false));
+
     }
 
     @Override
@@ -160,5 +168,25 @@ public class HomeFragment extends BaseFragment implements IHomeView {
         public void setImageForPosition(int position, ImageView imageView) {
             imageView.setImageResource(banners[position]);
         }
+    }
+
+    @OnClick(R.id.iv_sort_activities_home)
+    public void onSortBtnClicked () {
+        layoutUrutkan.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.iv_close_sort_layout)
+    public void onCloseBtnSortClicked () {
+        layoutUrutkan.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.iv_close_filter_layout)
+    public void onCloseBtnFilterClicked () {
+        layoutFilter.setVisibility(View.GONE);
+    }
+
+    @OnClick(R.id.iv_filter_activities_home)
+    public void onFilterButtonClicked () {
+        layoutFilter.setVisibility(View.VISIBLE);
     }
 }

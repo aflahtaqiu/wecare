@@ -54,7 +54,10 @@
             android:parentActivityName=".module.mainact.MainActivity"
             android:theme="@style/AppTheme.WhiteActionBar" />
         <activity android:name=".module.detail_article.DetailArticleActivity" />
-        <activity android:name=".module.wecare_poin.WeCarePoinActivity" />
+        <activity android:name=".module.wecare_poin.WeCarePoinActivity"
+            android:label="@string/wecare_poin"
+            android:parentActivityName=".module.mainact.MainActivity"
+            android:theme="@style/AppTheme.WhiteActionBar"/>
         <activity android:name=".module.edit_profile.EditProfileActivity" />
         <activity
             android:name=".module.splash_screen.SplashScreenActivity"

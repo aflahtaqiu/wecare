@@ -80,7 +80,6 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tv_artikel_terbaik"
             android:layout_marginTop="@dimen/_10sdp"
-
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_15sdp"/>
 

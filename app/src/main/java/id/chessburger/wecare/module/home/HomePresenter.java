@@ -47,18 +47,18 @@ class HomePresenter {
     }
 
     void searchActivitiesByName (String nameQuery) {
-//        activityDataRepository.getAllActivitiesSearch(nameQuery, "type",
-//                new IActivityDataSource.GetActivitiesCallback() {
-//            @Override
-//            public void onSuccess(List<Activity> activities) {
-//                view.showListActivities(activities);
-//            }
-//
-//            @Override
-//            public void onError(String errorMessage) {
-//
-//            }
-//        });
+        activityDataRepository.getAllActivitiesSearch(nameQuery,
+                new IActivityDataSource.GetActivitiesCallback() {
+            @Override
+            public void onSuccess(List<Activity> activities) {
+                view.showListActivities(activities);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+
+            }
+        });
     }
 
     void getCategories () {

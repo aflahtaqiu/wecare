@@ -13,6 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorBlack"
-        android:layout_margin="@dimen/_2sdp"/>
+        android:layout_margin="@dimen/_7sdp"/>
 
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,7 @@
 package id.chessburger.wecare.data.remote;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -64,8 +66,8 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
     }
 
     @Override
-    public void getAllActivitiesSearch(String keyword,String join, GetActivitiesCallback callback) {
-        Call<List<Activity>> call = apiEndpoint.searchActivities(keyword, join);
+    public void getAllActivitiesSearch(String keyword, GetActivitiesCallback callback) {
+        Call<List<Activity>> call = apiEndpoint.searchActivities(keyword);
         call.enqueue(new Callback<List<Activity>>() {
             @Override
             public void onResponse(Call<List<Activity>> call, Response<List<Activity>> response) {
