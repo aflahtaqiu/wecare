@@ -24,7 +24,7 @@ public class UnDoneCampaignedActPresenter {
 
     private final String LOADING_STRING = "Loading...";
 
-    public UnDoneCampaignedActPresenter(IUnDoneCampaignedActView view) {
+    UnDoneCampaignedActPresenter(IUnDoneCampaignedActView view) {
         this.view = view;
         this.repository = Injector.provideActivityRepository();
         this.token = SharedPrefUtils.getStringSharedPref(SharedPrefKeys.TOKEN.getKey(), "");

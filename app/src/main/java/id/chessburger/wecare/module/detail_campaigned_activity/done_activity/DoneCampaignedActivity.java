@@ -16,7 +16,7 @@ import butterknife.OnClick;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
-import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye.UndoneCampaignedHasilKampanyeFragment;
+import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye_volunteer.UndoneCampaignedHasilKampanyeFragment;
 import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.informasi_cari_lokasi.UndoneCampaignedLokasiFragment;
 import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.informasi_cari_relawan.UndoneCampaignedRelawanFragment;
 import id.chessburger.wecare.utils.CommunicationUtils;
@@ -99,7 +99,7 @@ public class DoneCampaignedActivity extends AppCompatActivity {
     @OnClick(R.id.btn_hasil_kampanye)
     public void onBtnHasilKampanyeClicked () {
         customButton(btnHasilKampanye, btnInformasi);
-        fragmentTransaction(UndoneCampaignedHasilKampanyeFragment.getInstance());
+        fragmentTransaction(UndoneCampaignedHasilKampanyeFragment.getInstance(activity.getId()));
     }
 
     @OnClick(R.id.fab_edit_activity_data)

@@ -118,11 +118,11 @@ public class Activity implements Serializable {
     @SerializedName("campaigner")
     private User campaigner;
 
-    @SerializedName("volunteers")
-    private List<User> volunteers;
-
 //    @SerializedName("volunteers")
-//    private List<FollowedActivity> followedActivities;
+//    private List<User> volunteers;
+
+    @SerializedName("volunteers")
+    private List<FollowedActivity> followedActivities;
 
     @SerializedName("category")
     private ActivityCategory category;

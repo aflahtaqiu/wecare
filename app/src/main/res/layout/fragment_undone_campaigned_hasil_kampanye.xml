@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".module.detail_campaigned_activity.undone_activity.hasil_kampanye.UndoneCampaignedHasilKampanyeFragment">
+    tools:context=".module.detail_campaigned_activity.undone_activity.hasil_kampanye_volunteer.UndoneCampaignedHasilKampanyeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -61,13 +61,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/pengusul_tempat"
+                android:text="@string/relawan_mendaftar"
                 android:textColor="@color/colorBlack"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_pengusul_tempat"
+                android:id="@+id/recyclerview_relawan_mendaftar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_5sdp">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -77,7 +77,7 @@
         <LinearLayout
             android:id="@+id/linearlayout_tempat_yang_disetujui"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,11 +88,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/tempat_yang_disetujui"
+                android:text="@string/relawan_mendaftar"
                 android:textColor="@color/colorBlack"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_tempat_yang_disetujui"
+                android:id="@+id/recyclerview_relawan_mendaftar_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp">

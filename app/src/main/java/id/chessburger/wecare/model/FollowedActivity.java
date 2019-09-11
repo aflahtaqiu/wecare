@@ -27,4 +27,7 @@ public class FollowedActivity {
 
     @SerializedName("isPresent")
     private Boolean isPresent;
+
+    @SerializedName("user")
+    private User user;
 }
