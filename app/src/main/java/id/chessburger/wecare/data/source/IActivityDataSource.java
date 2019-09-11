@@ -38,7 +38,7 @@ public interface IActivityDataSource {
                                    String preparedByFacilitator, String activityPlan, String locationRequirement,
                                    String additionalInformation, MultipartBody.Part photo, CreateActivityCallback callback);
 
-    void presenceUser (String token, List<Integer> userIds, PresenceCallack callack);
+    void presenceUser (String token, int idUser, PresenceCallack callack);
     void doneActivity (String token, int idActivity, String reportText, MultipartBody.Part photo, DoneActivityCallback callback);
 
     void bookmarkActivity (String token, int idActivity, BookmarkActivityCallback callback);

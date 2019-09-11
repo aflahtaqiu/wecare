@@ -1,7 +1,5 @@
 package id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye_volunteer;
 
-import android.util.Log;
-
 import id.chessburger.wecare.data.repository.ActivityDataRepository;
 import id.chessburger.wecare.data.source.IActivityDataSource;
 import id.chessburger.wecare.di.Injector;
@@ -16,27 +14,41 @@ import id.chessburger.wecare.utils.SharedPrefUtils;
  */
 
 
-public class UnDoneCampaignHasilKampanyePresenter {
+class UnDoneCampaignHasilKampanyePresenter {
 
     private IUnDoneCampaignHasilKampanyeView view;
     private ActivityDataRepository repository;
     private String token;
 
 
-    public UnDoneCampaignHasilKampanyePresenter(IUnDoneCampaignHasilKampanyeView view) {
+    UnDoneCampaignHasilKampanyePresenter(IUnDoneCampaignHasilKampanyeView view) {
         this.view = view;
         this.repository = Injector.provideActivityRepository();
         this.token = SharedPrefUtils.getStringSharedPref(SharedPrefKeys.TOKEN.getKey(), "");
     }
 
     void getVolunteersName (int idActivity) {
-        Log.e("id activity", idActivity+ "");
         String volunteersJoinRelation = "volunteers.user";
-        repository.getActivityById(token, idActivity, volunteersJoinRelation, null, new IActivityDataSource.GetActivityByIdCallback() {
+        String filterIsPresentFalse = "volunteers.isPresent||eq||false";
+        repository.getActivityById(token, idActivity, volunteersJoinRelation, filterIsPresentFalse,
+                new IActivityDataSource.GetActivityByIdCallback() {
             @Override
             public void onSuccess(Activity activity) {
-                Log.e("activitynya", activity.toString());
                 view.setFollowerActivities(activity.getFollowedActivities());
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+
+            }
+        });
+    }
+
+    void absenceVolunteer (int idUser) {
+        repository.presenceUser(token, idUser, new IActivityDataSource.PresenceCallack() {
+            @Override
+            public void onSuccess(Activity activity) {
+                view.showMessage("User ini sudah diabsensi");
             }
 
             @Override

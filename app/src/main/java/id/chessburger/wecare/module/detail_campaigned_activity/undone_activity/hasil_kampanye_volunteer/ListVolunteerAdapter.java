@@ -28,12 +28,15 @@ import id.chessburger.wecare.model.FollowedActivity;
  */
 
 public class ListVolunteerAdapter extends RecyclerView.Adapter<ListVolunteerAdapter.ListVolunteerViewHolder> {
+
+    private UnDoneCampaignHasilKampanyePresenter presenter;
     private final Context context;
     private List<FollowedActivity> items;
 
-    ListVolunteerAdapter(List<FollowedActivity> items, Context context) {
+    ListVolunteerAdapter(List<FollowedActivity> items, Context context, UnDoneCampaignHasilKampanyePresenter presenter) {
         this.items = items;
         this.context = context;
+        this.presenter = presenter;
     }
 
     @Override
@@ -51,6 +54,16 @@ public class ListVolunteerAdapter extends RecyclerView.Adapter<ListVolunteerAdap
         Picasso.get().load(item.getUser().getPhoto());
 
         holder.tvNamaUser.setText(item.getUser().getName());
+
+        holder.ivDecline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                items.remove(position);
+
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, items.size());
+            }
+        });
     }
 
     @Override
