@@ -67,7 +67,7 @@ public class UndoneCampaignedHasilKampanyeFragment extends BaseFragment implemen
 
 
     private void setRecyclerView () {
-        adapter = new ListVolunteerAdapter(this.followedActivities, getContext());
+        adapter = new ListVolunteerAdapter(this.followedActivities, getContext(), this.presenter);
 
         recyclerViewRelawanMendaftar.setAdapter(adapter);
         recyclerViewRelawanMendaftar.setLayoutManager(new LinearLayoutManager(getContext()));

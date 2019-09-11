@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
@@ -228,12 +227,10 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
     }
 
     @Override
-    public void presenceUser(String token, List<Integer> userIds, PresenceCallack callback) {
-
-        JsonArray jsonUserIds = gson.toJsonTree(userIds).getAsJsonArray();
+    public void presenceUser(String token, int idUser, PresenceCallack callback) {
 
         JsonObject jsonObject = new JsonObject();
-        jsonObject.add("userIds", jsonUserIds);
+        jsonObject.addProperty("userId", idUser);
 
         Call<Activity> call = apiEndpoint.presenceUserByActivity(token, jsonObject);
         call.enqueue(new Callback<Activity>() {

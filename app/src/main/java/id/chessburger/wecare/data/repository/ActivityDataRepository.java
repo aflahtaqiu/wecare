@@ -156,8 +156,8 @@ public class ActivityDataRepository implements IActivityDataSource {
     }
 
     @Override
-    public void presenceUser(String token, List<Integer> userIds, PresenceCallack callack) {
-        remoteDataSource.presenceUser(token, userIds, new PresenceCallack() {
+    public void presenceUser(String token, int idUser, PresenceCallack callack) {
+        remoteDataSource.presenceUser(token, idUser, new PresenceCallack() {
             @Override
             public void onSuccess(Activity activity) {
                 callack.onSuccess(activity);
