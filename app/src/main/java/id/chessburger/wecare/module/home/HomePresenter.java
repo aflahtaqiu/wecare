@@ -1,7 +1,6 @@
 package id.chessburger.wecare.module.home;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import java.util.List;
 
@@ -42,6 +41,23 @@ class HomePresenter {
                 if (TextUtils.equals("timeout", errorMessage)) {
                     getAllActivities();
                 }
+            }
+        });
+    }
+
+    void searchActivitiesByName (String nameQuery) {
+        String filterActivityName = "name||cont||" + nameQuery;
+
+        activityDataRepository.getAllActivitiesFilterQuery(filterActivityName, null, "type",
+                new IActivityDataSource.GetActivitiesCallback() {
+            @Override
+            public void onSuccess(List<Activity> activities) {
+                view.showListActivities(activities);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+
             }
         });
     }

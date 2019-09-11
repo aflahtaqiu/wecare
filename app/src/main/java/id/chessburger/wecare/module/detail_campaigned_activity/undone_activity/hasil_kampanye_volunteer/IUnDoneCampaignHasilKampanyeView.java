@@ -4,7 +4,6 @@ import java.util.List;
 
 import id.chessburger.wecare.base.IBaseView;
 import id.chessburger.wecare.model.FollowedActivity;
-import id.chessburger.wecare.model.User;
 
 /**
  * Created by aflah on 11/09/19
@@ -15,4 +14,5 @@ import id.chessburger.wecare.model.User;
 
 public interface IUnDoneCampaignHasilKampanyeView extends IBaseView {
     void setFollowerActivities (List<FollowedActivity> followerActivities);
+    void setAbsencedFollowedActivities (List<FollowedActivity> followedActivities);
 }

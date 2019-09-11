@@ -74,7 +74,39 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
     @Override
     public void getActivityByIdJoinFilter(String token, int idActivity, String joinQuery, String filterQuery, GetActivityByIdCallback callback) {
         Call<Activity> call = apiEndpoint.getActivityByIdJoinFilter(token, idActivity, joinQuery, filterQuery);
-        call.enqueue(new DetailActivityByIdCallback(callback));
+        call.enqueue(new Callback<Activity>() {
+            @Override
+            public void onResponse(Call<Activity> call, Response<Activity> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else if (response.code() == ResponseServerCode.NOT_FOUND.getCode()) {
+                  callback.onError("not_found");
+                } else {
+                    sendErrorCallback(response);
+                }
+            }
+
+            private void sendErrorCallback(Response<Activity> response) {
+                try {
+                    if (response.errorBody() != null) {
+                        ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                        if (responseError.getMessage() == null)
+                            callback.onError(responseError.getError());
+                        else
+                            callback.onError(responseError.getMessage());
+                    } else {
+                        callback.onError("Get Activities Failed");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Activity> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
     }
 
     @Override
@@ -273,7 +305,6 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
 
         RequestBody reportTextBody = RequestBody.create(okhttp3.MultipartBody.FORM, reportText);
 
-
         Call<Activity> call = apiEndpoint.doneActivity(token, idActivity, reportTextBody, photo);
         call.enqueue(new Callback<Activity>() {
             @Override
@@ -396,7 +427,6 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
             @Override
             public void onFailure(Call<Location> call, Throwable t) {
                 callback.onError(t.toString());
-                Log.e("failure", t.toString());
                 t.printStackTrace();
             }
         });

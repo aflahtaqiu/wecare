@@ -2,9 +2,11 @@ package id.chessburger.wecare.module.home;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnTextChanged;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
 import id.chessburger.wecare.model.Activity;
@@ -39,6 +42,9 @@ public class HomeFragment extends BaseFragment implements IHomeView {
 
     @BindView(R.id.recyclerview_activities_home)
     RecyclerView recyclerViewActivities;
+
+    @BindView(R.id.et_search_activity_home)
+    EditText etSearch;
 
     public static HomeFragment homeFragment;
 
@@ -105,6 +111,11 @@ public class HomeFragment extends BaseFragment implements IHomeView {
     @Override
     public void showMessage(String message) {
 
+    }
+
+    @OnTextChanged(R.id.et_search_activity_home)
+    public void onEtSearchChangeListener (CharSequence text) {
+        presenter.searchActivitiesByName(text.toString());
     }
 
     @Override
