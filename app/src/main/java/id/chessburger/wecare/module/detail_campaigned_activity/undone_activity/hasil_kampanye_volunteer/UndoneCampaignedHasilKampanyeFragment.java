@@ -1,7 +1,10 @@
 package id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye_volunteer;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +36,12 @@ public class UndoneCampaignedHasilKampanyeFragment extends BaseFragment implemen
     private int idActivity;
 
     private List<FollowedActivity> followedActivities = new ArrayList<>();
+    private List<FollowedActivity> absencedFollowedActivities = new ArrayList<>();
 
     private UnDoneCampaignHasilKampanyePresenter presenter;
-    private ListVolunteerAdapter adapter;
+
+    private ListVolunteerAdapter volunteerAdapter;
+    private ListAbsencedVolunteerAdapter absencedVolunteerAdapter;
 
     private static UndoneCampaignedHasilKampanyeFragment fragment;
     public static UndoneCampaignedHasilKampanyeFragment getInstance(int idActivity) {
@@ -49,7 +55,6 @@ public class UndoneCampaignedHasilKampanyeFragment extends BaseFragment implemen
         this.idActivity = idActivity;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class UndoneCampaignedHasilKampanyeFragment extends BaseFragment implemen
 
         presenter = new UnDoneCampaignHasilKampanyePresenter(this);
         presenter.getVolunteersName(idActivity);
+        presenter.getAbsencedVolunteersName(idActivity);
 
         setRecyclerView();
 
@@ -67,10 +73,15 @@ public class UndoneCampaignedHasilKampanyeFragment extends BaseFragment implemen
 
 
     private void setRecyclerView () {
-        adapter = new ListVolunteerAdapter(this.followedActivities, getContext(), this.presenter);
+        volunteerAdapter = new ListVolunteerAdapter(this.followedActivities, getContext(), this.presenter);
+        absencedVolunteerAdapter = new ListAbsencedVolunteerAdapter(this.absencedFollowedActivities, getContext(), this.presenter);
 
-        recyclerViewRelawanMendaftar.setAdapter(adapter);
+
+        recyclerViewRelawanMendaftar.setAdapter(volunteerAdapter);
+        recyclerViewRelawanMendaftarBottom.setAdapter(absencedVolunteerAdapter);
+
         recyclerViewRelawanMendaftar.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewRelawanMendaftarBottom.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override
@@ -85,7 +96,15 @@ public class UndoneCampaignedHasilKampanyeFragment extends BaseFragment implemen
 
     @Override
     public void showMessage(String message) {
+        AlertDialog messageDialog = new AlertDialog.Builder(getContext())
+                .setTitle(R.string.wecare_indonesia)
+                .setMessage(message)
+                .setPositiveButton(R.string.oke, new OnOkeClickListener())
+                .setCancelable(false)
+                .create();
 
+        messageDialog.setCanceledOnTouchOutside(true);
+        messageDialog.show();
     }
 
     @Override
@@ -93,6 +112,24 @@ public class UndoneCampaignedHasilKampanyeFragment extends BaseFragment implemen
         this.followedActivities.clear();
         this.followedActivities.addAll(followerActivities);
 
-        adapter.notifyDataSetChanged();
+        volunteerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setAbsencedFollowedActivities(List<FollowedActivity> followedActivities) {
+        this.absencedFollowedActivities.clear();
+        this.absencedFollowedActivities.addAll(followedActivities);
+
+        absencedVolunteerAdapter.notifyDataSetChanged();
+    }
+
+    private class OnOkeClickListener implements DialogInterface.OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+
+            presenter.getVolunteersName(idActivity);
+            presenter.getAbsencedVolunteersName(idActivity);
+        }
     }
 }

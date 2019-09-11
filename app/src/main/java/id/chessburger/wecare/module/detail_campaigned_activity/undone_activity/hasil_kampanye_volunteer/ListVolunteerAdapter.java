@@ -52,6 +52,8 @@ public class ListVolunteerAdapter extends RecyclerView.Adapter<ListVolunteerAdap
         FollowedActivity item = items.get(position);
 
         Picasso.get().load(item.getUser().getPhoto());
+//                .error(R.mipmap.img_no_picture)
+//                .into(holder.ivPicture);
 
         holder.tvNamaUser.setText(item.getUser().getName());
 

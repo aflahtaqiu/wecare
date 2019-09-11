@@ -88,7 +88,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/relawan_mendaftar"
+                android:text="@string/relawan_telah_terdaftar"
                 android:textColor="@color/colorBlack"/>
 
             <androidx.recyclerview.widget.RecyclerView
