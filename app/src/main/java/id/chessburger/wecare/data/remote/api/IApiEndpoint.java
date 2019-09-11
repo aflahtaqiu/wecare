@@ -68,6 +68,13 @@ public interface IApiEndpoint {
             @Query("join") String join
     );
 
+    @GET("activity")
+    Call<List<Activity>> searchActivities (
+            @Query("keyword") String keyword,
+            @Nullable
+            @Query("join") String join
+    );
+
     @GET("category")
     Call<List<ActivityCategory>> getAllCatergory ();
 

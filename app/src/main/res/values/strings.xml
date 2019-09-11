@@ -1,4 +1,9 @@
 <resources>
+
+    <string name="facebook_app_id">498245270753279</string>
+    <string name="fb_login_protocol_scheme">fb498245270753279</string>
+
+
     <string name="absensi_relawan">Absensi Relawan</string>
     <string name="ada">Ada</string>
     <string name="ajukan">Ajukan</string>

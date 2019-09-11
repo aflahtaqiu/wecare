@@ -9,18 +9,32 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseFragment;
+import id.chessburger.wecare.model.Activity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ArticleFragment extends BaseFragment implements IArticleView {
 
+    @BindView(R.id.recyclerview_kegiatan_lain_schedule)
+    RecyclerView recyclerViewArtikel;
+
     private static ArticleFragment articleFragment;
 
     private ArticlePresenter presenter;
+    private ListArticleAdapter adapter;
+
+    private List<Activity> activityList = new ArrayList<>();
 
     public ArticleFragment() {
         // Required empty public constructor
@@ -37,9 +51,21 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_article, container, false);
-        presenter = new ArticlePresenter(this);
+        ButterKnife.bind(this, view);
 
+
+        presenter = new ArticlePresenter(this);
+        presenter.getDoneActivities();
+
+        setRecyclerView();
         return view;
+    }
+
+    private void setRecyclerView() {
+        adapter = new ListArticleAdapter(this.activityList, getContext());
+
+        recyclerViewArtikel.setAdapter(adapter);
+        recyclerViewArtikel.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override
@@ -66,5 +92,13 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     @Override
     public void showMessage(String message) {
 
+    }
+
+    @Override
+    public void showListActivities(List<Activity> activities) {
+        this.activityList.clear();
+        this.activityList.addAll(activities);
+
+        adapter.notifyDataSetChanged();
     }
 }

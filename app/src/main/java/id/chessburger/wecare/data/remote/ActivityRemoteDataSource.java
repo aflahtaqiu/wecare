@@ -1,12 +1,11 @@
 package id.chessburger.wecare.data.remote;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -62,6 +61,27 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
                                             GetActivitiesCallback callback) {
         Call<List<Activity>> call = apiEndpoint.getActivitiesWithFilter(filter, filter2, joinQuery);
         call.enqueue(new GetAllActivitiesCallback(callback));
+    }
+
+    @Override
+    public void getAllActivitiesSearch(String keyword,String join, GetActivitiesCallback callback) {
+        Call<List<Activity>> call = apiEndpoint.searchActivities(keyword, join);
+        call.enqueue(new Callback<List<Activity>>() {
+            @Override
+            public void onResponse(Call<List<Activity>> call, Response<List<Activity>> response) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    List<Activity> activities = new ArrayList<>();
+                    callback.onSuccess(activities);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Activity>> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
     }
 
     @Override

@@ -47,19 +47,18 @@ class HomePresenter {
     }
 
     void searchActivitiesByName (String nameQuery) {
-        String filterActivityName = "name||cont||" + nameQuery;
-        activityDataRepository.getAllActivitiesFilterQuery(filterActivityName, null, "type",
-                new IActivityDataSource.GetActivitiesCallback() {
-            @Override
-            public void onSuccess(List<Activity> activities) {
-                view.showListActivities(activities);
-            }
-
-            @Override
-            public void onError(String errorMessage) {
-
-            }
-        });
+//        activityDataRepository.getAllActivitiesSearch(nameQuery, "type",
+//                new IActivityDataSource.GetActivitiesCallback() {
+//            @Override
+//            public void onSuccess(List<Activity> activities) {
+//                view.showListActivities(activities);
+//            }
+//
+//            @Override
+//            public void onError(String errorMessage) {
+//
+//            }
+//        });
     }
 
     void getCategories () {
