@@ -1,7 +1,6 @@
 package id.chessburger.wecare.module.detail_campaigned_activity.undone_activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -19,7 +18,7 @@ import id.chessburger.wecare.R;
 import id.chessburger.wecare.base.BaseActivity;
 import id.chessburger.wecare.model.Activity;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
-import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye.UndoneCampaignedHasilKampanyeFragment;
+import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.hasil_kampanye_volunteer.UndoneCampaignedHasilKampanyeFragment;
 import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.informasi_cari_lokasi.UndoneCampaignedLokasiFragment;
 import id.chessburger.wecare.module.detail_campaigned_activity.undone_activity.informasi_cari_relawan.UndoneCampaignedRelawanFragment;
 import id.chessburger.wecare.utils.CommunicationUtils;
@@ -110,7 +109,7 @@ public class UnDoneCampaignedActivity extends BaseActivity implements IUnDoneCam
     @OnClick(R.id.btn_hasil_kampanye)
     public void onBtnHasilKampanyeClicked () {
         customButton(btnHasilKampanye, btnInformasi);
-        fragmentTransaction(UndoneCampaignedHasilKampanyeFragment.getInstance());
+        fragmentTransaction(UndoneCampaignedHasilKampanyeFragment.getInstance(idActivity));
     }
 
     @OnClick(R.id.fab_edit_activity_data)

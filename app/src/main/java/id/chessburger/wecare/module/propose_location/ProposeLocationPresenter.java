@@ -49,14 +49,12 @@ class ProposeLocationPresenter {
                 kondisiTempat, perizinanTempat, new IActivityDataSource.PostLocationCallback() {
             @Override
             public void onSuccess(String successMessage) {
-                Log.e("lele", "nfalf");
                 view.hideLoading();
                 view.showMessage(successMessage);
             }
 
             @Override
             public void onError(String errorMessage) {
-                Log.e("lelee", "bjkafe");
                 view.hideLoading();
                 view.showMessage(errorMessage);
             }
