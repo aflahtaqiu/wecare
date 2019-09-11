@@ -57,7 +57,6 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
         Call<List<Activity>> call = apiEndpoint.getActivitiesWithJoin(joinQuery);
         call.enqueue(new GetAllActivitiesCallback(callback));
     }
-
     @Override
     public void getAllActivitiesFilterQuery(String filter, String filter2, @Nullable String joinQuery,
                                             GetActivitiesCallback callback) {
@@ -69,6 +68,12 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
     public void getActivityById(String token, int idActivity, String joinRelation, @Nullable String joinRelation2,
                                 GetActivityByIdCallback callback) {
         Call<Activity> call = apiEndpoint.getActivityByIdJoin(token, idActivity, joinRelation, joinRelation2);
+        call.enqueue(new DetailActivityByIdCallback(callback));
+    }
+
+    @Override
+    public void getActivityByIdJoinFilter(String token, int idActivity, String joinQuery, String filterQuery, GetActivityByIdCallback callback) {
+        Call<Activity> call = apiEndpoint.getActivityByIdJoinFilter(token, idActivity, joinQuery, filterQuery);
         call.enqueue(new DetailActivityByIdCallback(callback));
     }
 
@@ -227,16 +232,16 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
     }
 
     @Override
-    public void presenceUser(String token, int idUser, PresenceCallack callback) {
+    public void presenceUser(String token, int idActivity, int idUser, PresenceCallack callback) {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("userId", idUser);
 
-        Call<Activity> call = apiEndpoint.presenceUserByActivity(token, jsonObject);
+        Call<Activity> call = apiEndpoint.presenceUserByActivity(token, idActivity, jsonObject);
         call.enqueue(new Callback<Activity>() {
             @Override
             public void onResponse(Call<Activity> call, Response<Activity> response) {
-                    if (response.code() == ResponseServerCode.OK.getCode()) {
+                if (response.code() == ResponseServerCode.OK.getCode()) {
                     callback.onSuccess(response.body());
                 } else {
                     try {
@@ -270,10 +275,6 @@ public class ActivityRemoteDataSource extends BaseRemoteDataSource implements IA
 
 
         Call<Activity> call = apiEndpoint.doneActivity(token, idActivity, reportTextBody, photo);
-
-        Log.e("request done", call.request().toString());
-
-
         call.enqueue(new Callback<Activity>() {
             @Override
             public void onResponse(Call<Activity> call, Response<Activity> response) {

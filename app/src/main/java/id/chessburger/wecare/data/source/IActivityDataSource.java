@@ -23,8 +23,11 @@ public interface IActivityDataSource {
     void getAllActivitiesJoinQuery (String joinQuery, GetActivitiesCallback callback);
     void getAllActivitiesFilterQuery (String filter, String filter2, @Nullable String joinQuery, GetActivitiesCallback callback);
 
+
     void getActivityById (String token, int idActivity, String joinRelation, @Nullable String joinRelation2,
                           GetActivityByIdCallback callback);
+    void getActivityByIdJoinFilter (String token, int idActivity, String joinQuery, String filterQuery, GetActivityByIdCallback callback);
+
     void getAllCategory (GetAllCategoryCallback callback);
 
     void createActivityCariRelawan(String bearerToken, String name, String start, String end, String registerDeadline,
@@ -38,7 +41,7 @@ public interface IActivityDataSource {
                                    String preparedByFacilitator, String activityPlan, String locationRequirement,
                                    String additionalInformation, MultipartBody.Part photo, CreateActivityCallback callback);
 
-    void presenceUser (String token, int idUser, PresenceCallack callack);
+    void presenceUser (String token, int idActivity, int idUser, PresenceCallack callack);
     void doneActivity (String token, int idActivity, String reportText, MultipartBody.Part photo, DoneActivityCallback callback);
 
     void bookmarkActivity (String token, int idActivity, BookmarkActivityCallback callback);

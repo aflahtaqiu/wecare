@@ -45,6 +45,15 @@ public interface IApiEndpoint {
             @Query("join") String joinRelational2
     );
 
+    @GET("activity/{id}")
+    Call<Activity> getActivityByIdJoinFilter(
+            @Header("Authorization") String token,
+            @Path("id") int idActivity,
+            @Query("join") String joinRelational,
+            @Nullable
+            @Query("filter") String filterRelational
+    );
+
     @GET("activity")
     Call<List<Activity>> getActivitiesWithJoin(
             @Query("join") String joinRelational
@@ -115,6 +124,7 @@ public interface IApiEndpoint {
     @PATCH("activity/presence/{id}")
     Call<Activity> presenceUserByActivity (
             @Header("Authorization") String bearerToken,
+            @Path("id") int idActivity,
             @Body JsonObject jsonObject
     );
 

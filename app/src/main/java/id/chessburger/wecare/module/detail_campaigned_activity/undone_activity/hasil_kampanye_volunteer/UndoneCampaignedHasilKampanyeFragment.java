@@ -56,11 +56,11 @@ public class UndoneCampaignedHasilKampanyeFragment extends BaseFragment implemen
         View view =  inflater.inflate(R.layout.fragment_undone_campaigned_hasil_kampanye, container, false);
 
         ButterKnife.bind(this, view);
-        setRecyclerView();
 
         presenter = new UnDoneCampaignHasilKampanyePresenter(this);
-
         presenter.getVolunteersName(idActivity);
+
+        setRecyclerView();
 
         return view;
     }
