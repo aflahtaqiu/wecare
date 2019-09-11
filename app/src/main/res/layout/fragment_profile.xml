@@ -267,6 +267,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btn_tukar_poin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintRight_toRightOf="parent"

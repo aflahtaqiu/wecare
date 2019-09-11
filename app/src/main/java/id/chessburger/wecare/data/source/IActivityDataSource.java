@@ -23,7 +23,7 @@ public interface IActivityDataSource {
     void getAllActivitiesJoinQuery (String joinQuery, GetActivitiesCallback callback);
     void getAllActivitiesFilterQuery (String filter, String filter2, @Nullable String joinQuery, GetActivitiesCallback callback);
 
-    void getAllActivitiesSearch (String keyword, String join, GetActivitiesCallback callback);
+    void getAllActivitiesSearch (String keyword, GetActivitiesCallback callback);
 
     void getActivityById (String token, int idActivity, String joinRelation, @Nullable String joinRelation2,
                           GetActivityByIdCallback callback);

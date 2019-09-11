@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,12 +32,16 @@ import id.chessburger.wecare.model.User;
 import id.chessburger.wecare.model.enumerations.CommunicationKeys;
 import id.chessburger.wecare.module.edit_profile.EditProfileActivity;
 import id.chessburger.wecare.module.login.LoginActivity;
+import id.chessburger.wecare.module.wecare_poin.WeCarePoinActivity;
 import id.chessburger.wecare.utils.CommunicationUtils;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends BaseFragment implements IProfileView {
+
+    @BindView(R.id.btn_tukar_poin)
+    Button btnTukarPoin;
 
     @BindView(R.id.iv_logout_profile)
     ImageView ivLogout;
@@ -194,5 +199,10 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
     @OnClick(R.id.iv_edit_profile)
     public void onEditIVClicked () {
         moveIntoEditProfile();
+    }
+
+    @OnClick(R.id.btn_tukar_poin)
+    public void onTukarPoinBtnClicked () {
+        CommunicationUtils.changeActivity(getActivity(), WeCarePoinActivity.class, false);
     }
 }
