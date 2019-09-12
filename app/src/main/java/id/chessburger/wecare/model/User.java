@@ -54,7 +54,7 @@ public class User implements Serializable {
     @SerializedName("accessToken")
     private String accessToken;
 
-    @SerializedName("wecare_point")
+    @SerializedName("wecarePoint")
     private Integer wecarePoint;
 
     @SerializedName("id")
