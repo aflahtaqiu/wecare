@@ -28,12 +28,15 @@ public class LIstAVoucherAdapter extends RecyclerView.Adapter<LIstAVoucherAdapte
     String[] asalaVoucers;
     int[] pointVoucer;
 
-    public LIstAVoucherAdapter(Context context, int[] imagesId, String[] namaVoucers, String[] asalaVoucers, int[] pointVoucer) {
+    private WeCarePoinPresenter presenter;
+
+    public LIstAVoucherAdapter(Context context, int[] imagesId, String[] namaVoucers, String[] asalaVoucers, int[] pointVoucer, WeCarePoinPresenter presenter) {
         this.context = context;
         this.imagesId = imagesId;
         this.namaVoucers = namaVoucers;
         this.asalaVoucers = asalaVoucers;
         this.pointVoucer = pointVoucer;
+        this.presenter = presenter;
     }
 
     @Override
@@ -50,6 +53,13 @@ public class LIstAVoucherAdapter extends RecyclerView.Adapter<LIstAVoucherAdapte
        holder.tvNamaVoucer.setText(namaVoucers[position]);
        holder.tvPoinVoucer.setText(pointVoucer[position] + " Poin");
        holder.tvAsalVoucer.setText(asalaVoucers[position]);
+
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               presenter.updateWeCarePoin(pointVoucer[position]);
+           }
+       });
     }
 
     @Override

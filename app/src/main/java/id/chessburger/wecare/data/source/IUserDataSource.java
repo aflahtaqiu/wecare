@@ -25,6 +25,8 @@ public interface IUserDataSource {
     void getDoneCampaignedActivities(int idUser, GetActivitiesCallback callback);
     void getUnDoneCampaignedActivities(int idUser, GetActivitiesCallback callback);
 
+    void updateWeCarePoint (String token, int amount, LogInCallback callback);
+
     interface LogInCallback {
         void onSuccess (User user);
         void onError (String errorMessage);

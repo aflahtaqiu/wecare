@@ -10,5 +10,5 @@ import id.chessburger.wecare.base.IBaseView;
 
 
 public interface IWeCarePoinView extends IBaseView {
-
+    void updateWeCarePoin (int wecarepoin);
 }

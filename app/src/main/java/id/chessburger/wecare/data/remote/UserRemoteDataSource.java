@@ -1,6 +1,8 @@
 package id.chessburger.wecare.data.remote;
 
 
+import com.google.gson.JsonObject;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -235,6 +237,38 @@ public class UserRemoteDataSource extends BaseRemoteDataSource implements IUserD
 
             @Override
             public void onFailure(Call<List<Activity>> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void updateWeCarePoint(String token, int amount, LogInCallback callback) {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("amount", amount);
+
+        Call<User> call = apiEndpoint.updateWeCarePoint(token, jsonObject);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == ResponseServerCode.CREATED.getCode()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    try {
+                        if (response.errorBody() != null) {
+                            ResponseError responseError = ConverterUtils.stringToResponseError(response.errorBody().string());
+                            callback.onError(responseError.getMessage());
+                        } else {
+                            callback.onError("Coba lagi :(");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
                 callback.onError(t.getMessage());
             }
         });
