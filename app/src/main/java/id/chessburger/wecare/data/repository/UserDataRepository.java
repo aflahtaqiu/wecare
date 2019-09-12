@@ -136,4 +136,19 @@ public class UserDataRepository implements IUserDataSource {
             }
         });
     }
+
+    @Override
+    public void updateWeCarePoint(String token, int amount, LogInCallback callback) {
+        remoteDataSource.updateWeCarePoint(token, amount, new LogInCallback() {
+            @Override
+            public void onSuccess(User user) {
+                callback.onSuccess(user);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                callback.onError(errorMessage);
+            }
+        });
+    }
 }

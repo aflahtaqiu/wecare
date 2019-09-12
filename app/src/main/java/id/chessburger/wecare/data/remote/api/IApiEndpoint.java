@@ -133,6 +133,13 @@ public interface IApiEndpoint {
             @Body JsonObject jsonObject
     );
 
+    @POST("user/use-point")
+    Call<User> updateWeCarePoint (
+            @Header("Authorization") String bearerToken,
+            @Body JsonObject jsonObject
+    );
+
+
     @Multipart
     @PATCH("activity/done/{id}")
     Call<Activity> doneActivity (

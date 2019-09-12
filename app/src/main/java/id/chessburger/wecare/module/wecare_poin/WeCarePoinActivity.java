@@ -1,6 +1,7 @@
 package id.chessburger.wecare.module.wecare_poin;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +15,9 @@ public class WeCarePoinActivity extends BaseActivity implements IWeCarePoinView 
 
     @BindView(R.id.rv_availableVoucher)
     RecyclerView recyclerView;
+
+    @BindView(R.id.btn_jumlah_poin)
+    Button btnJumlahPooin;
 
     private WeCarePoinPresenter presenter;
 
@@ -34,7 +38,7 @@ public class WeCarePoinActivity extends BaseActivity implements IWeCarePoinView 
 
 
         presenter = new WeCarePoinPresenter(this);
-        adapter = new LIstAVoucherAdapter(this, imagesId, namaVoucer, alamats, points);
+        adapter = new LIstAVoucherAdapter(this, imagesId, namaVoucer, alamats, points, presenter);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,
@@ -57,5 +61,10 @@ public class WeCarePoinActivity extends BaseActivity implements IWeCarePoinView 
     @Override
     public void showMessage(String message) {
 
+    }
+
+    @Override
+    public void updateWeCarePoin(int wecarepoin) {
+        btnJumlahPooin.setText("Poin Kamu : " + wecarepoin + " Poin");
     }
 }
