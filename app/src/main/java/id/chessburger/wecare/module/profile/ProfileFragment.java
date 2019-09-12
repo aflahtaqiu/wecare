@@ -70,6 +70,9 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
     @BindView(R.id.tv_jumlah_donasi_profile)
     TextView tvJumlahDonasi;
 
+    @BindView(R.id.tv_wecare_poin)
+    TextView tvWeCarePoin;
+
     @BindView(R.id.rv_bookmarked_activities)
     RecyclerView rvBookmarkedActivities;
 
@@ -176,6 +179,8 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
         tvUserName.setText(user.getName());
         tvUserEmail.setText(user.getEmail());
         tvUserPhoneNumber.setText(user.getPhoneNumber());
+
+        tvWeCarePoin.setText(String.valueOf(user.getWecarePoint()));
     }
 
     @Override
@@ -189,6 +194,11 @@ public class ProfileFragment extends BaseFragment implements IProfileView {
         tvJumlahKegiatanDiikuti.setText(String.valueOf(followedActivities));
         tvJumlahKampanye.setText(String.valueOf(campaignedActivity));
         tvJumlahDonasi.setText(String.valueOf(donations));
+    }
+
+    @Override
+    public void setWeCarePoin(int weCarePoin) {
+        tvWeCarePoin.setText(String.valueOf(weCarePoin));
     }
 
     @OnClick(R.id.iv_logout_profile)
